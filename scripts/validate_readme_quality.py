@@ -18,12 +18,12 @@ FORBIDDEN_PATTERNS = {
 }
 
 REQUIRED_ZH = [
-    "简体中文",
     "README_EN.md",
     "快速开始",
     "Codex / Claude Code",
     "完整性规则",
     "模块路由",
+    "Example Outputs",
     "搜索关键词",
 ]
 
@@ -35,6 +35,15 @@ REQUIRED_EN = [
     "Integrity Rules",
     "Module Routing",
     "Search Keywords",
+]
+
+REQUIRED_ASSETS = [
+    "hero.png",
+    "workflow.png",
+    "literature-matrix-preview.png",
+    "claim-ledger-preview.png",
+    "integrity-guard.png",
+    "logo.svg",
 ]
 
 
@@ -60,9 +69,14 @@ def check_file(path: Path, required_terms: list[str], min_chars: int) -> None:
     if missing:
         fail(f"{path.name} missing required terms: {', '.join(missing)}")
 
-    badge_count = text.count("img.shields.io")
-    if badge_count < 5:
-        fail(f"{path.name} should keep a compact badge row")
+    if path == README_ZH:
+        image_sources = re.findall(r"<img[^>]+src=[\"']([^\"']+)[\"']", text)
+        bad_sources = [
+            src for src in image_sources
+            if not re.fullmatch(r"\./assets/[^/]+\.png", src)
+        ]
+        if bad_sources:
+            fail(f"{path.name} image paths must use ./assets/*.png: {', '.join(bad_sources)}")
 
     table_count = text.count("|---")
     if table_count < 5:
@@ -79,8 +93,12 @@ def main() -> None:
             fail("README_ZH.md should point readers to README.md and README_EN.md")
 
     assets_dir = ROOT / "assets"
-    if assets_dir.exists():
-        fail("assets directory still exists; remove generated README hero images")
+    if not assets_dir.exists():
+        fail("assets directory is missing")
+
+    missing_assets = [name for name in REQUIRED_ASSETS if not (assets_dir / name).exists()]
+    if missing_assets:
+        fail(f"assets directory missing required files: {', '.join(missing_assets)}")
 
     print("README quality check passed.")
 
