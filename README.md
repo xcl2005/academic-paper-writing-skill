@@ -2,7 +2,7 @@
 
 # Academic Paper Writing Skill
 
-**证据优先的论文、毕业设计、文献综述、rebuttal 与答辩工作流。**
+**证据优先的专业学术级别论文、毕业设计、文献综述、rebuttal 与答辩工作流。**
 
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub stars"></a>
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/network/members"><img src="https://img.shields.io/github/forks/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub forks"></a>
