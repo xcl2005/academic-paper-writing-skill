@@ -1,5 +1,9 @@
 <div align="center">
 
+<p>
+  <img src="./assets/hero.png" alt="Academic Paper Writing Skill" width="900">
+</p>
+
 # Academic Paper Writing Skill
 
 **面向学术论文、文献综述、rebuttal 与研究写作的证据优先工作流。**

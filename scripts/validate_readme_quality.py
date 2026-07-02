@@ -79,8 +79,10 @@ def main() -> None:
             fail("README_ZH.md should point readers to README.md and README_EN.md")
 
     assets_dir = ROOT / "assets"
-    if assets_dir.exists():
-        fail("assets directory still exists; remove generated README hero images")
+    hero = assets_dir / "hero.png"
+    readme_text = README_ZH.read_text(encoding="utf-8")
+    if "./assets/hero.png" in readme_text and not hero.exists():
+        fail("README.md references ./assets/hero.png but assets/hero.png is missing")
 
     print("README quality check passed.")
 
