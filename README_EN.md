@@ -2,7 +2,7 @@
 
 # Academic Paper Writing Skill
 
-**Evidence-first workflows for papers, theses, literature reviews, rebuttals, and defenses.**
+**Evidence-first workflows for academic papers, literature reviews, rebuttals, and research writing.**
 
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub stars"></a>
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/network/members"><img src="https://img.shields.io/github/forks/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub forks"></a>
@@ -19,7 +19,9 @@
 
 ## 🔥 Positioning
 
-This repository is not a single academic-writing prompt. It is an installable Agent Skill that breaks papers, theses, reviews, experiment planning, rebuttals, and defense materials into verifiable modules. The agent handles sources, evidence, claims, experiments, school requirements, and integrity risks before final prose.
+This repository is not a single academic-writing prompt. It is an installable Agent Skill that breaks academic papers, literature reviews, research writing, experiment planning, and rebuttals into verifiable modules. The agent handles sources, evidence, claims, experiments, and integrity risks before final prose.
+
+Undergraduate theses and capstone projects can use the same evidence-first workflow as compatible scenarios.
 
 It works for Codex, Claude Code, and other agents that follow the Agent Skills folder layout. Claude Code can use the same `SKILL.md`; the install path and direct invocation syntax are different. See [Codex / Claude Code](#-codex--claude-code).
 
@@ -36,7 +38,7 @@ The fragile part of academic writing is rarely wording. It is broken evidence: u
 | Research papers | Topic scoping, related work, novelty/SOTA checks, experiment matrices, pre-submission audits |
 | Literature reviews | Literature matrices by method, dataset, claim, limitation, and relevance |
 | Rebuttal / revision | Simulated review, response matrices, evidence strengthening, calibrated wording |
-| Undergraduate thesis / capstone | Requirement discovery, scope ladder, proposal/midterm/final/defense evidence package |
+| Undergraduate thesis / capstone | Supports proposals, midterms, final papers, defenses, and evidence materials |
 | Hybrid projects | Satisfy graduation first, then decide whether to upgrade into a paper or portfolio artifact |
 
 ## 🎯 Highlights
@@ -48,7 +50,7 @@ The fragile part of academic writing is rarely wording. It is broken evidence: u
 | 🧭 | Novelty and SOTA checks before strong claims |
 | 🔗 | Claim ledgers that map every strong claim to evidence |
 | 🛡️ | Integrity checks that separate planned, preliminary, and achieved results |
-| 🎓 | Undergraduate thesis routes for proposals, midterms, final papers, capstone projects, and defenses |
+| 🎓 | Compatible undergraduate thesis / capstone route for proposals, midterms, final papers, defenses, and evidence materials |
 
 ## 📦 Quick Start
 

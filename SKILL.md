@@ -1,6 +1,6 @@
 ---
 name: academic-paper-writing-skill
-description: Assist with academic research papers, literature reviews, thesis and graduation project writing, proposals, reports, defenses, rebuttals, revisions, claim-evidence checks, citation workflows, and research integrity checks. Use when an agent is asked to plan, write, revise, evaluate, or package academic papers or graduation thesis work.
+description: Assist with academic research papers, literature reviews, rebuttals, revisions, research writing, claim-evidence checks, citation workflows, and research integrity checks. Also supports thesis and graduation project evidence workflows as compatible scenarios. Use when an agent is asked to plan, write, revise, evaluate, or package academic papers, research writing, rebuttals, or evidence-grounded thesis/capstone work.
 ---
 # Academic Research & Graduation Thesis Skill
 

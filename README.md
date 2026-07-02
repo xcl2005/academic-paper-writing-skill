@@ -2,7 +2,7 @@
 
 # Academic Paper Writing Skill
 
-**证据优先的专业学术级别论文、毕业设计、文献综述、rebuttal 与答辩工作流。**
+**面向学术论文、文献综述、rebuttal 与研究写作的证据优先工作流。**
 
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub stars"></a>
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/network/members"><img src="https://img.shields.io/github/forks/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub forks"></a>
@@ -19,7 +19,9 @@
 
 ## 🔥 最新定位
 
-这个仓库不是一段“学术写作提示词”，而是一套可安装的 Agent Skill：它把论文、毕业设计、综述、实验规划、rebuttal、答辩材料拆成可验证的模块，让 agent 在写作前先处理来源、证据、claim、实验、学校要求和完整性风险。
+这个仓库不是一段“学术写作提示词”，而是一套可安装的 Agent Skill：它把学术论文、文献综述、研究写作、实验规划和 rebuttal 拆成可验证的模块，让 agent 在写作前先处理来源、证据、claim、实验和完整性风险。
+
+本科论文 / 毕业设计也可以使用这套证据优先流程，作为兼容场景保留。
 
 适用于 Codex、Claude Code，以及遵循 Agent Skills 目录结构的其他 agent。Claude Code 可以用同一个 `SKILL.md`，但安装路径和直接调用方式不同，见下方 [Codex / Claude Code](#-codex--claude-code)。
 
@@ -36,7 +38,7 @@
 | 研究论文 | 选题、related work、novelty/SOTA 检查、实验矩阵、投稿前完整性审计 |
 | 文献综述 | 构建 literature matrix，按方法、数据集、claim、局限和相关性整理来源 |
 | Rebuttal / revision | 模拟审稿、回应矩阵、证据补强、措辞降调 |
-| 本科论文 / 毕设 | 需求发现、scope ladder、开题/中期/终稿/答辩材料 |
+| 本科论文 / 毕业设计 | 支持开题、中期、终稿、答辩和证据材料整理 |
 | 混合项目 | 先满足毕业要求，再判断是否值得升级为 paper / portfolio |
 
 ## 🎯 能力亮点
@@ -48,7 +50,7 @@
 | 🧭 | Novelty / SOTA 检查：强结论前先核验 prior work |
 | 🔗 | Claim ledger：每个强主张必须映射到证据 |
 | 🛡️ | 完整性检查：区分计划、初步结果、已完成结果，不伪造学校要求 |
-| 🎓 | 本科论文路线：开题、中期、终稿、毕业设计和答辩证据包 |
+| 🎓 | 兼容本科论文 / 毕业设计：开题、中期、终稿、答辩和证据材料整理 |
 
 ## 📦 快速开始
 
