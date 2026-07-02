@@ -1,0 +1,17 @@
+columns:
+  - paper_id
+  - title
+  - year
+  - venue
+  - source_url_or_doi
+  - task_problem
+  - method_family
+  - dataset_benchmark
+  - metrics
+  - main_result
+  - contribution
+  - limitations
+  - relation_to_user_idea
+  - possible_gap
+  - reliability_notes
+  - verification_status

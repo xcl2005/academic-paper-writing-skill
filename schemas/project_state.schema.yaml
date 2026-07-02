@@ -1,0 +1,13 @@
+type: object
+required: [project_type, stage, topic, assumptions, artifacts]
+properties:
+  project_type: {enum: [research_paper, undergraduate_thesis, hybrid_capstone_research]}
+  stage: {type: string}
+  topic: {type: string}
+  target: {type: string}
+  deadline: {type: string}
+  known_inputs: {type: array, items: {type: string}}
+  missing_inputs: {type: array, items: {type: string}}
+  assumptions: {type: array, items: {type: string}}
+  artifacts: {type: array, items: {type: string}}
+  risks: {type: array, items: {type: string}}

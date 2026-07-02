@@ -1,0 +1,181 @@
+skill_name: academic-paper-writing-skill
+legacy_skill_name: academic_research_and_graduation_thesis_skill
+version: 8.0.0-final-candidate
+audience:
+  - Codex
+  - Claude Code
+  - ChatGPT
+  - future_agentic_models
+entrypoint: SKILL.md
+canonical_formats:
+  - markdown
+  - yaml
+  - csv
+export_formats_optional:
+  - xlsx
+  - docx
+  - pdf
+  - pptx
+core_invariants:
+  - no_fabricated_papers
+  - no_fabricated_sota
+  - no_fabricated_results
+  - no_invented_local_requirements
+  - primary_source_first
+  - claim_to_evidence_mapping
+  - integrity_before_persuasion
+  - modular_loading
+  - external_skill_low_coupling
+  - human_review_for_high_stakes_decisions
+  - self_maintenance_allowed_without_breaking_invariants
+external_skill_policy:
+  strategy: delegate_first_validate_always_fallback_if_needed
+  preferred_gateway_module: modules/03_external_skill_gateway.md
+  acceptance_tests_module: modules/17_external_skill_acceptance_tests.md
+  workspace_convention:
+    root: paper_skills_workspace
+    raw_repos: paper_skills_workspace/raw_repos
+    selected_skills: paper_skills_workspace/selected_skills
+    reports: paper_skills_workspace/reports
+    tools: paper_skills_workspace/tools
+    templates: paper_skills_workspace/templates
+  low_coupling_rules:
+    - external_skill_must_not_mutate_core_modules_without_explicit_self_update
+    - external_skill_outputs_go_to_project_workspace
+    - core_invariants_override_external_skill_rules
+    - rejected_candidates_must_be_recorded
+    - fallback_to_internal_workflow_if_no_candidate_passes
+project_types:
+  research_paper:
+    purpose: publishable paper or workshop/journal/conference submission
+    stages:
+      - idea_discovery
+      - literature_review
+      - novelty_verification
+      - roi_scope_decision
+      - experiment_design
+      - implementation
+      - result_analysis
+      - drafting
+      - integrity_audit
+      - simulated_review
+      - rebuttal_revision
+      - submission_packaging
+    default_modules:
+      - modules/00_core_invariants.md
+      - modules/01_agent_orchestrator.md
+      - modules/02_mode_router.md
+      - modules/03_external_skill_gateway.md
+      - modules/05_venue_intelligence.md
+      - modules/06_literature_engine.md
+      - modules/07_novelty_verification_and_scoring.md
+      - modules/08_research_roi_scope.md
+      - modules/09_experiment_matrix_engine.md
+      - modules/10_figure_table_engine.md
+      - modules/11_integrity_reproducibility_guard.md
+      - modules/12_writing_style_adapter.md
+      - modules/13_simulated_review_rebuttal.md
+  undergraduate_thesis:
+    purpose: undergraduate thesis / graduation project / capstone / defense
+    stages:
+      - requirement_discovery
+      - topic_selection
+      - proposal
+      - design
+      - implementation
+      - testing_evaluation
+      - thesis_writing
+      - midterm_check
+      - final_packaging
+      - defense_preparation
+    default_modules:
+      - modules/00_core_invariants.md
+      - modules/01_agent_orchestrator.md
+      - modules/02_mode_router.md
+      - modules/04_requirement_discovery.md
+      - modules/14_undergraduate_thesis_engine.md
+      - modules/11_integrity_reproducibility_guard.md
+      - modules/12_writing_style_adapter.md
+  hybrid_capstone_research:
+    purpose: graduation project first, potential research paper second
+    stages:
+      - requirement_discovery
+      - thesis_mvp
+      - evidence_packaging
+      - research_upgrade_decision
+      - literature_review
+      - novelty_verification
+      - experiment_upgrade
+      - paper_drafting
+    default_modules:
+      - modules/00_core_invariants.md
+      - modules/01_agent_orchestrator.md
+      - modules/02_mode_router.md
+      - modules/03_external_skill_gateway.md
+      - modules/04_requirement_discovery.md
+      - modules/14_undergraduate_thesis_engine.md
+      - modules/06_literature_engine.md
+      - modules/07_novelty_verification_and_scoring.md
+      - modules/08_research_roi_scope.md
+      - modules/09_experiment_matrix_engine.md
+      - modules/11_integrity_reproducibility_guard.md
+modes:
+  literature_matrix:
+    modules:
+      - modules/06_literature_engine.md
+    outputs:
+      - templates/literature_matrix.csv
+  novelty_verification:
+    modules:
+      - modules/07_novelty_verification_and_scoring.md
+    outputs:
+      - templates/novelty_verification.csv
+  experiment_matrix:
+    modules:
+      - modules/09_experiment_matrix_engine.md
+    outputs:
+      - templates/experiment_matrix.csv
+  figure_design:
+    modules:
+      - modules/10_figure_table_engine.md
+    outputs:
+      - templates/figure_brief.md
+  integrity_audit:
+    modules:
+      - modules/11_integrity_reproducibility_guard.md
+    outputs:
+      - templates/integrity_checklist.md
+      - templates/claim_ledger.csv
+  simulated_review_rebuttal:
+    modules:
+      - modules/13_simulated_review_rebuttal.md
+    outputs:
+      - templates/simulated_review.md
+      - templates/rebuttal_matrix.md
+  graduation_requirement_discovery:
+    modules:
+      - modules/04_requirement_discovery.md
+      - modules/14_undergraduate_thesis_engine.md
+    outputs:
+      - templates/requirement_discovery_log.md
+      - templates/assumption_register.md
+      - templates/scope_ladder.md
+      - templates/graduation_evidence_map.csv
+self_update:
+  module: modules/15_self_update_maintenance.md
+  allowed_changes:
+    - simplify_wording
+    - split_modules
+    - merge_duplicate_modules
+    - delete_stale_or_redundant_rules
+    - update_tool_recommendations
+    - update_venue_source_registry
+    - add_new_templates
+    - add_external_skill_adapters
+  protected:
+    - core_invariants
+    - evidence_first_policy
+    - no_fabrication_policy
+    - canonical_format_policy
+    - external_skill_low_coupling_policy
+    - human_review_policy

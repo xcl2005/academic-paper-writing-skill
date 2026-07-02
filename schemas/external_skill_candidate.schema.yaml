@@ -1,0 +1,15 @@
+columns:
+  - name
+  - source_or_path
+  - found_by
+  - version_or_commit
+  - task_relevance
+  - documentation_score
+  - maintenance_score
+  - integrity_score
+  - environment_score
+  - license_safety
+  - total_score
+  - decision
+  - reason
+  - limitations

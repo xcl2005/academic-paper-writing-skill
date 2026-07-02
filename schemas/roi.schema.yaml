@@ -1,0 +1,10 @@
+columns:
+  - idea
+  - data_needed
+  - compute_needed
+  - implementation_time
+  - baseline_cost
+  - risk
+  - expected_contribution
+  - venue_or_thesis_fit
+  - decision

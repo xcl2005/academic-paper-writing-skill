@@ -1,0 +1,38 @@
+<svg width="1100" height="390" viewBox="0 0 1100 390" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Academic writing workflow</title>
+  <desc id="desc">The workflow routes a project through literature, novelty, experiments, claim evidence, integrity checks, and final writing.</desc>
+  <rect width="1100" height="390" rx="24" fill="#F8FAFC"/>
+  <rect x="40" y="34" width="1020" height="322" rx="22" fill="#FFFFFF" stroke="#E2E8F0"/>
+  <g font-family="Inter, Segoe UI, Arial, sans-serif">
+    <text x="66" y="78" fill="#0F172A" font-size="28" font-weight="800">Evidence before prose</text>
+    <text x="66" y="108" fill="#475569" font-size="16">The skill creates structured academic artifacts before final writing.</text>
+  </g>
+  <g transform="translate(74 154)" font-family="Inter, Segoe UI, Arial, sans-serif">
+    <rect width="180" height="86" rx="16" fill="#EFF6FF" stroke="#93C5FD"/>
+    <text x="32" y="36" fill="#1D4ED8" font-size="17" font-weight="800">Literature matrix</text>
+    <text x="35" y="62" fill="#475569" font-size="13">verified sources</text>
+    <path d="M196 43H236" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+    <path d="M229 35L238 43L229 51" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="254" width="180" height="86" rx="16" fill="#ECFDF5" stroke="#86EFAC"/>
+    <text x="286" y="36" fill="#15803D" font-size="17" font-weight="800">Novelty check</text>
+    <text x="289" y="62" fill="#475569" font-size="13">SOTA and gap</text>
+    <path d="M450 43H490" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+    <path d="M483 35L492 43L483 51" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="508" width="180" height="86" rx="16" fill="#FFF7ED" stroke="#FDBA74"/>
+    <text x="538" y="36" fill="#C2410C" font-size="17" font-weight="800">Experiment plan</text>
+    <text x="540" y="62" fill="#475569" font-size="13">metrics and baselines</text>
+    <path d="M704 43H744" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+    <path d="M737 35L746 43L737 51" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="762" width="180" height="86" rx="16" fill="#FDF2F8" stroke="#F9A8D4"/>
+    <text x="794" y="36" fill="#BE185D" font-size="17" font-weight="800">Claim ledger</text>
+    <text x="793" y="62" fill="#475569" font-size="13">evidence mapping</text>
+  </g>
+  <g transform="translate(210 274)" font-family="Inter, Segoe UI, Arial, sans-serif">
+    <rect width="240" height="48" rx="24" fill="#0F172A"/>
+    <text x="45" y="31" fill="#E2E8F0" font-size="16" font-weight="800">Integrity audit</text>
+    <path d="M258 24H320" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+    <path d="M313 16L322 24L313 32" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="338" width="260" height="48" rx="24" fill="#064E3B"/>
+    <text x="386" y="31" fill="#D1FAE5" font-size="16" font-weight="800">Paper or thesis draft</text>
+  </g>
+</svg>

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Academic Paper Writing"
+  short_description: "Plans, verifies, drafts, and revises academic papers and thesis work with evidence checks."
+  default_prompt: "Use $academic-paper-writing-skill to plan, verify, draft, or revise academic paper and graduation thesis work."
+policy:
+  allow_implicit_invocation: true

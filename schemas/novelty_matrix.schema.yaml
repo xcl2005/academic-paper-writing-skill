@@ -1,0 +1,10 @@
+columns:
+  - idea
+  - closest_existing_work
+  - overlap
+  - difference
+  - evidence_needed
+  - novelty_score_1_5
+  - feasibility_score_1_5
+  - duplication_risk
+  - decision

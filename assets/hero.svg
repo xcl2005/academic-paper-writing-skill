@@ -1,0 +1,50 @@
+<svg width="1200" height="420" viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Academic Paper Writing Skill hero image</title>
+  <desc id="desc">A visual summary of evidence-first academic writing for research papers and theses.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="0.42" stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#064E3B"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="150" y1="70" x2="520" y2="350" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#ECFDF5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#020617" flood-opacity="0.36"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="420" rx="28" fill="url(#bg)"/>
+  <g opacity="0.18">
+    <circle cx="963" cy="78" r="86" fill="#38BDF8"/>
+    <circle cx="1062" cy="336" r="102" fill="#F59E0B"/>
+    <circle cx="586" cy="370" r="78" fill="#22C55E"/>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="86" y="62" width="410" height="296" rx="18" fill="url(#paper)"/>
+    <rect x="124" y="104" width="210" height="16" rx="8" fill="#0F172A"/>
+    <rect x="124" y="142" width="304" height="10" rx="5" fill="#CBD5E1"/>
+    <rect x="124" y="166" width="252" height="10" rx="5" fill="#CBD5E1"/>
+    <rect x="124" y="204" width="160" height="42" rx="12" fill="#DBEAFE"/>
+    <text x="145" y="230" fill="#1D4ED8" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="800">LITERATURE</text>
+    <rect x="304" y="204" width="124" height="42" rx="12" fill="#DCFCE7"/>
+    <text x="329" y="230" fill="#15803D" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="800">CLAIMS</text>
+    <rect x="124" y="268" width="304" height="10" rx="5" fill="#CBD5E1"/>
+    <rect x="124" y="292" width="224" height="10" rx="5" fill="#CBD5E1"/>
+  </g>
+  <g>
+    <text x="560" y="132" fill="#F8FAFC" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="48" font-weight="850">Academic Paper</text>
+    <text x="560" y="188" fill="#F8FAFC" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="48" font-weight="850">Writing Skill</text>
+    <text x="563" y="234" fill="#CBD5E1" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">Evidence-first workflows for papers, theses,</text>
+    <text x="563" y="264" fill="#CBD5E1" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20">literature reviews, rebuttals, and defenses.</text>
+    <g transform="translate(562 302)">
+      <rect width="146" height="42" rx="21" fill="#064E3B" stroke="#34D399"/>
+      <text x="25" y="27" fill="#D1FAE5" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="800">NO FAKE PAPERS</text>
+      <rect x="164" width="154" height="42" rx="21" fill="#422006" stroke="#FBBF24"/>
+      <text x="191" y="27" fill="#FEF3C7" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="800">CLAIM LEDGER</text>
+      <rect x="336" width="156" height="42" rx="21" fill="#082F49" stroke="#38BDF8"/>
+      <text x="363" y="27" fill="#E0F2FE" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="14" font-weight="800">MODULAR ROUTES</text>
+    </g>
+  </g>
+</svg>
