@@ -6,35 +6,35 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-README_FILES = [ROOT / "README.md", ROOT / "README_ZH.md"]
+README_ZH = ROOT / "README.md"
+README_EN = ROOT / "README_EN.md"
+LEGACY_ZH = ROOT / "README_ZH.md"
 
 FORBIDDEN_PATTERNS = {
     "Mermaid diagrams": re.compile(r"```mermaid", re.IGNORECASE),
     "large README images": re.compile(r"<img[^>]+width=[\"']?100%[\"']?", re.IGNORECASE),
     "stale hero assets": re.compile(r"assets/(hero|workflow)\.svg|hero\.svg|workflow\.svg", re.IGNORECASE),
-    "diagram residue": re.compile(r"\bchain\b|流程图", re.IGNORECASE),
+    "diagram residue": re.compile(r"workflow\s+diagram|流程图", re.IGNORECASE),
 }
+
+REQUIRED_ZH = [
+    "简体中文",
+    "README_EN.md",
+    "快速开始",
+    "Codex / Claude Code",
+    "完整性规则",
+    "模块路由",
+    "搜索关键词",
+]
 
 REQUIRED_EN = [
     "English",
-    "简体中文",
-    "Install",
-    "Control flow",
-    "Module routing",
-    "Evidence lifecycle",
-    "Invariants",
-    "Search keywords",
-]
-
-REQUIRED_ZH = [
-    "English",
-    "简体中文",
-    "安装",
-    "控制流程",
-    "模块路由",
-    "证据生命周期",
-    "不可破坏的规则",
-    "搜索关键词",
+    "README.md",
+    "Quick Start",
+    "Codex / Claude Code",
+    "Integrity Rules",
+    "Module Routing",
+    "Search Keywords",
 ]
 
 
@@ -43,13 +43,13 @@ def fail(message: str) -> None:
     raise SystemExit(1)
 
 
-def check_file(path: Path, required_terms: list[str]) -> None:
+def check_file(path: Path, required_terms: list[str], min_chars: int) -> None:
     if not path.exists():
         fail(f"{path.name} is missing")
 
     text = path.read_text(encoding="utf-8")
 
-    if len(text) < 4_500:
+    if len(text) < min_chars:
         fail(f"{path.name} is too thin for this skill ({len(text)} chars)")
 
     for label, pattern in FORBIDDEN_PATTERNS.items():
@@ -61,21 +61,26 @@ def check_file(path: Path, required_terms: list[str]) -> None:
         fail(f"{path.name} missing required terms: {', '.join(missing)}")
 
     badge_count = text.count("img.shields.io")
-    if badge_count < 4:
+    if badge_count < 5:
         fail(f"{path.name} should keep a compact badge row")
 
     table_count = text.count("|---")
-    if table_count < 4:
+    if table_count < 5:
         fail(f"{path.name} should document the workflow with tables")
 
 
 def main() -> None:
-    check_file(README_FILES[0], REQUIRED_EN)
-    check_file(README_FILES[1], REQUIRED_ZH)
+    check_file(README_ZH, REQUIRED_ZH, 5_500)
+    check_file(README_EN, REQUIRED_EN, 5_500)
+
+    if LEGACY_ZH.exists():
+        legacy_text = LEGACY_ZH.read_text(encoding="utf-8")
+        if "README.md" not in legacy_text or "README_EN.md" not in legacy_text:
+            fail("README_ZH.md should point readers to README.md and README_EN.md")
 
     assets_dir = ROOT / "assets"
     if assets_dir.exists():
-        fail("assets directory still exists; remove ugly generated README images")
+        fail("assets directory still exists; remove generated README hero images")
 
     print("README quality check passed.")
 

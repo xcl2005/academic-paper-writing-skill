@@ -1,6 +1,6 @@
 ---
 name: academic-paper-writing-skill
-description: Assist with academic research papers, literature reviews, thesis and graduation project writing, proposals, reports, defenses, rebuttals, revisions, claim-evidence checks, citation workflows, and research integrity checks. Use when Codex is asked to plan, write, revise, evaluate, or package academic papers or graduation thesis work.
+description: Assist with academic research papers, literature reviews, thesis and graduation project writing, proposals, reports, defenses, rebuttals, revisions, claim-evidence checks, citation workflows, and research integrity checks. Use when an agent is asked to plan, write, revise, evaluate, or package academic papers or graduation thesis work.
 ---
 # Academic Research & Graduation Thesis Skill
 
