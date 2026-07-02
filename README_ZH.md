@@ -146,7 +146,7 @@ Markdown、YAML、CSV 是工作源格式。Word、PDF、Excel、slides 是导出
 python scripts/validate_readme_quality.py
 ```
 
-检查会阻止 README 中出现大尺寸 banner、Mermaid 图、残留 hero/workflow SVG 引用，以及缺失安装/完整性说明。
+检查会阻止 README 中出现大尺寸 banner、生成式图表、残留 hero/workflow SVG 引用，以及缺失安装/完整性说明。
 
 ## 搜索关键词
 

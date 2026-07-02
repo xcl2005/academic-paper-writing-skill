@@ -150,7 +150,7 @@ This repository includes a README quality gate:
 python scripts/validate_readme_quality.py
 ```
 
-The check blocks oversized README images, Mermaid flowcharts, stale hero assets, and missing install/integrity sections.
+The check blocks oversized README images, generated diagrams, stale hero assets, and missing install/integrity sections.
 
 ## Repository layout
 
