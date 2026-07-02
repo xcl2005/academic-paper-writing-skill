@@ -1,57 +1,75 @@
-<p align="center">
-  <img src="assets/hero.svg" alt="Academic Paper Writing Skill hero" width="100%">
-</p>
+<div align="center">
 
 # Academic Paper Writing Skill
 
-<p>
-  <a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=for-the-badge"></a>
-  <a href="https://github.com/xcl2005/academic-paper-writing-skill/blob/main/LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge"></a>
-  <img alt="Codex skill" src="https://img.shields.io/badge/Codex-Agent%20Skill-24292f?style=for-the-badge">
-  <img alt="Evidence first" src="https://img.shields.io/badge/Policy-Evidence%20First-2EA44F?style=for-the-badge">
-</p>
+**Evidence-first workflows for papers, theses, reviews, rebuttals, and defenses.**
 
-**A modular academic writing skill for research papers, literature reviews, thesis writing, graduation projects, rebuttals, revisions, defenses, and research integrity checks.**
+<a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=flat-square" alt="stars"></a>
+<a href="https://github.com/xcl2005/academic-paper-writing-skill/network/members"><img src="https://img.shields.io/github/forks/xcl2005/academic-paper-writing-skill?style=flat-square" alt="forks"></a>
+<a href="https://github.com/xcl2005/academic-paper-writing-skill/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="license"></a>
+<img src="https://img.shields.io/badge/Codex-Agent%20Skill-111827?style=flat-square" alt="Codex Agent Skill">
+<img src="https://img.shields.io/badge/Policy-No%20Fake%20Papers-0F766E?style=flat-square" alt="No fake papers">
 
-It is built for agents that need to help with serious academic work without hallucinating papers, inventing SOTA, fabricating results, or skipping the claim-to-evidence trail.
+English · [简体中文](README_ZH.md)
 
-**Search keywords:** academic writing AI, research paper workflow, literature review matrix, thesis writing assistant, graduation project, rebuttal assistant, claim evidence mapping, research integrity, no hallucination citations, Codex skill, Agent Skill.
+[Install](#install) · [Why](#why) · [Control Flow](#control-flow) · [Workflows](#workflows) · [Artifacts](#artifacts) · [Examples](examples/)
 
-## Why download it
+</div>
 
-Academic writing is not just prose. A good agent has to manage sources, claims, experiments, requirements, figures, and integrity checks before it writes the final draft. This skill turns that process into a modular workflow.
+## Why
 
-| Academic risk | Built-in guardrail |
+Academic writing is not just prose. A useful agent must track sources, claims, experiments, assumptions, requirements, and integrity risks before drafting.
+
+**Academic Paper Writing Skill** gives Codex a modular route for academic work without fabricated papers, invented SOTA, fake results, or unsupported claims.
+
+## Highlights
+
+| | Capability |
 |---|---|
-| Fake citations | No fabricated papers; sources must be found and verified |
-| Overclaimed novelty | SOTA, benchmarks, venue policies, and tool capabilities must be rechecked |
-| Weak arguments | Every strong claim maps to literature, experiment, implementation, proof, or official requirements |
-| Thesis ambiguity | Unknown school/advisor/rubric requirements stay unknown until discovered |
-| Messy drafting | Matrices and ledgers come before polished prose when evidence matters |
-| Tool sprawl | External skills are allowed, but must not override research-integrity invariants |
+| 📚 | Literature matrices with verified sources |
+| 🧠 | Novelty and SOTA checks before strong claims |
+| 🧪 | Experiment matrices for metrics, baselines, and results |
+| 🔗 | Claim ledgers that map every strong claim to evidence |
+| 🎓 | Undergraduate thesis and graduation project requirement discovery |
+| 🛡️ | Integrity checks before final prose, rebuttal, or defense packaging |
 
-<p align="center">
-  <img src="assets/workflow.svg" alt="Academic writing evidence workflow" width="100%">
-</p>
+## Control flow
 
-## Supported workflows
+This skill is modular because academic tasks vary widely. A literature review, a rebuttal, a thesis proposal, and a full paper package should not load the same instructions.
 
-| Mode | Use it for | Typical outputs |
-|---|---|---|
-| Research paper | Workshop, conference, journal, related work, novelty, experiments, rebuttal, revision | Literature matrix, novelty verification, experiment matrix, claim ledger, simulated review |
-| Undergraduate thesis | Proposal, midterm report, final thesis, graduation project, capstone, defense | Requirement discovery log, scope ladder, graduation evidence map, integrity checklist |
-| Hybrid capstone research | Graduation-first projects that may later become papers or portfolio artifacts | Thesis MVP, evidence package, research upgrade plan |
+| Step | Decision | What happens |
+|---:|---|---|
+| 1 | Select project type | Choose `research_paper`, `undergraduate_thesis`, or `hybrid_capstone_research`. |
+| 2 | Identify stage | Determine whether the user is doing idea discovery, literature review, novelty check, experiment planning, writing, revision, rebuttal, or defense. |
+| 3 | Load minimal modules | Read only the modules needed for the current stage plus core invariants. |
+| 4 | Create structured artifacts | Build matrices and ledgers before final prose when evidence matters. |
+| 5 | Verify claims | Map strong claims to papers, experiments, implementation evidence, tests, proofs, or official requirements. |
+| 6 | Run integrity checks | Separate planned, preliminary, and achieved results; avoid invented local requirements. |
+| 7 | Draft or revise | Write only after the evidence trail is visible enough to inspect. |
+| 8 | Package with human review | Final submission, authorship, ethics, school compliance, and defense decisions require human confirmation. |
 
-## Project links
+### Module routing
 
-- [Examples](examples/) for research-paper, thesis, and rebuttal prompts.
-- [Contributing guide](CONTRIBUTING.md) for academic workflow improvements.
-- [Security policy](SECURITY.md) for privacy and integrity reports.
-- [Skill manifest](skill_manifest.yaml) for routing, modules, modes, and protected invariants.
+| Task | Modules normally loaded |
+|---|---|
+| Literature review | `00_core_invariants`, `01_agent_orchestrator`, `06_literature_engine`, `11_integrity_reproducibility_guard` |
+| Novelty or SOTA check | `07_novelty_verification_and_scoring`, `11_integrity_reproducibility_guard` |
+| Experiment planning | `09_experiment_matrix_engine`, `11_integrity_reproducibility_guard` |
+| Figure/table planning | `10_figure_table_engine` |
+| Rebuttal or simulated review | `13_simulated_review_rebuttal`, `11_integrity_reproducibility_guard` |
+| Undergraduate thesis requirements | `04_requirement_discovery`, `14_undergraduate_thesis_engine`, `11_integrity_reproducibility_guard` |
+
+### Evidence lifecycle
+
+| Artifact | Purpose |
+|---|---|
+| Literature matrix | Track verified sources, claims, methods, datasets, and relevance |
+| Novelty matrix | Compare the user's idea against verified prior work |
+| Experiment matrix | Record metrics, baselines, datasets, ablations, and result status |
+| Claim ledger | Make every strong claim auditable |
+| Integrity checklist | Catch fabricated, exaggerated, or unsupported statements before final prose |
 
 ## Install
-
-Clone directly into your user-wide Codex skills folder:
 
 ```bash
 mkdir -p ~/.agents/skills
@@ -65,47 +83,30 @@ New-Item -ItemType Directory -Force -Path "$HOME\.agents\skills"
 git clone https://github.com/xcl2005/academic-paper-writing-skill.git "$HOME\.agents\skills\academic-paper-writing-skill"
 ```
 
-Restart Codex if the skill does not appear automatically.
+Restart Codex if the skill list does not refresh automatically.
+
+## Workflows
+
+| Mode | Use it for | Outputs |
+|---|---|---|
+| `research_paper` | papers, related work, experiments, rebuttal, revision | literature matrix, novelty check, experiment matrix, claim ledger |
+| `undergraduate_thesis` | proposal, midterm, thesis, defense, graduation project | requirement log, scope ladder, graduation evidence map |
+| `hybrid_capstone_research` | graduation-first projects that may become papers | thesis MVP, evidence package, research upgrade plan |
 
 ## Quick start
 
-Ask Codex:
-
-```text
-$academic-paper-writing-skill help me plan a literature review matrix for my thesis topic
-```
-
-Initialize a project workspace:
-
 ```bash
+# Create a research-paper workspace
 python scripts/init_project.py --out paper_workspace --type research_paper
-```
 
-Validate the skill structure:
+# Create an undergraduate-thesis workspace
+python scripts/init_project.py --out thesis_workspace --type undergraduate_thesis
 
-```bash
+# Validate this skill
 python scripts/validate_skill.py
 ```
 
-## How it works
-
-```mermaid
-flowchart TD
-  A[User academic task] --> B[Select project type]
-  B --> C{Route}
-  C --> D[Research paper]
-  C --> E[Undergraduate thesis]
-  C --> F[Hybrid capstone research]
-  D --> G[Literature, novelty, experiments]
-  E --> H[Requirements, scope, evidence map]
-  F --> I[Graduation first, research upgrade second]
-  G --> J[Claim ledger and integrity checks]
-  H --> J
-  I --> J
-  J --> K[Draft, revise, rebut, or package]
-```
-
-## Included artifacts
+## Artifacts
 
 - `templates/literature_matrix.csv`
 - `templates/novelty_verification.csv`
@@ -114,51 +115,60 @@ flowchart TD
 - `templates/integrity_checklist.md`
 - `templates/rebuttal_matrix.md`
 - `templates/graduation_evidence_map.csv`
-- `templates/requirement_discovery_log.md`
 - `templates/project_state.yaml`
 
-Markdown, YAML, and CSV are the canonical working formats. Word, PDF, Excel, and slides are treated as exports, not the source of truth.
+Markdown, YAML, and CSV are the canonical working formats. Word, PDF, Excel, and slides are exports.
 
-## Non-negotiable invariants
+## Invariants
 
-This skill is strict on academic integrity:
+This skill is strict by design:
 
-- No fabricated papers.
-- No fabricated SOTA.
-- No fabricated results.
-- No invented local requirements.
-- Primary-source first.
-- Claim-to-evidence mapping.
-- Integrity before persuasion.
-- Human review for final submission, authorship, ethics, and school compliance.
+- no fabricated papers;
+- no fabricated SOTA;
+- no fabricated results;
+- no invented local school, advisor, rubric, or defense requirements;
+- primary-source first;
+- claim-to-evidence mapping;
+- human review for final submission, authorship, ethics, and compliance.
+
+## Files worth reading
+
+| File | Purpose |
+|---|---|
+| `SKILL.md` | Entry point and non-negotiable invariants |
+| `skill_manifest.yaml` | Project types, stages, modes, and module routing |
+| `modules/00_core_invariants.md` | Integrity baseline |
+| `modules/06_literature_engine.md` | Literature review workflow |
+| `modules/07_novelty_verification_and_scoring.md` | Novelty and SOTA checks |
+| `modules/14_undergraduate_thesis_engine.md` | Thesis and graduation project route |
+
+## Project quality checks
+
+This repository includes a README quality gate:
+
+```bash
+python scripts/validate_readme_quality.py
+```
+
+The check blocks oversized README images, Mermaid flowcharts, stale hero assets, and missing install/integrity sections.
 
 ## Repository layout
 
 ```text
-academic-paper-writing-skill/
+.
 |-- SKILL.md
 |-- skill_manifest.yaml
 |-- modules/
 |-- templates/
 |-- schemas/
 |-- scripts/
-|-- agents/
-|-- assets/
-`-- CHANGELOG.md
+|-- examples/
+`-- README.md
 ```
 
-## Best for
+## Search keywords
 
-- Students writing undergraduate theses or graduation projects.
-- Researchers drafting papers, related work, experiments, or rebuttals.
-- Advisors or teams who want an evidence-first workflow.
-- Agent builders who need academic writing behavior that is modular, inspectable, and harder to hallucinate through.
-
-## Suggested GitHub topics
-
-For maximum discoverability, use these topics on GitHub:
-
-`codex`, `codex-skills`, `agent-skills`, `academic-writing`, `research-paper`, `literature-review`, `thesis`, `research-integrity`, `claim-evidence`, `ai-agents`
+Academic writing AI, research paper workflow, literature review matrix, thesis writing assistant, graduation project, rebuttal assistant, claim evidence mapping, research integrity, Codex skills, Agent Skills.
 
 ## Version
 
@@ -166,4 +176,4 @@ For maximum discoverability, use these topics on GitHub:
 
 ## License
 
-MIT. Use it, fork it, adapt it, and keep the no-fabrication rules intact.
+MIT
