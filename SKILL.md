@@ -92,6 +92,12 @@ Default priority for hybrid projects:
 Before drafting final prose, run or emulate these checks on the workspace:
 
 ```bash
+python scripts/pre_prose_check.py <workspace>
+```
+
+Fallback lower-level checks:
+
+```bash
 python scripts/validate_evidence_status.py <workspace>
 python scripts/check_claims_before_prose.py <workspace-or-claim-ledger>
 ```

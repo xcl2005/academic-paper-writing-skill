@@ -25,6 +25,7 @@ REQUIRED_FILES = [
     "templates/experiment_matrix.csv",
     "templates/claim_ledger.csv",
     "scripts/demo_academic_workflow.py",
+    "scripts/pre_prose_check.py",
     "scripts/validate_evidence_status.py",
     "scripts/check_claims_before_prose.py",
     "scripts/validate_demo_workspace.py",
@@ -34,6 +35,7 @@ REQUIRED_FILES = [
     "examples/fixtures/claims/supported-claim.csv",
     "examples/generated-demo-workspace/DEMO_MANIFEST.json",
     "examples/generated-demo-workspace/README_NEXT_STEPS.md",
+    "examples/outputs/pre-prose-check.generated.md",
     "examples/outputs/claim-blocker-report.generated.md",
     "schemas/evidence_status.schema.yaml",
 ]
@@ -48,6 +50,7 @@ PROTECTED_PHRASES = [
     "Do not treat demo samples as verified sources",
     "Do not turn `needs_recheck`, `missing_source`, or `unknown` rows into final prose",
     "Pre-Prose Checks",
+    "pre_prose_check.py",
     "validate_evidence_status.py",
     "check_claims_before_prose.py",
     "blocked-output explanation",

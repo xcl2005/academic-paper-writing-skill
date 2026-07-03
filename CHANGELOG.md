@@ -14,6 +14,7 @@
 - Added committed generated thesis demo workspace and claim-blocker report with CI drift checks.
 - Added required status-column checks for evidence CSVs.
 - Added `SKILL.md` pre-prose checks so validation scripts are part of the skill call protocol.
+- Added `scripts/pre_prose_check.py` as a one-command gate that combines evidence-status and claim-to-evidence checks.
 - Added a Chinese unsupported-claim fixture so strong Chinese claims and local requirement claims stay covered by validation.
 - Added issue and pull request templates for integrity risks, thesis workflows, template requests, guardrail improvements, and docs examples.
 - Added filled sample outputs for literature matrices, claim ledgers, novelty checks, thesis scope, thesis evidence maps, and blocked related-work drafting.
