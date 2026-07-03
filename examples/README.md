@@ -9,6 +9,7 @@ Use these examples to see the intended evidence-first workflow. The goal is not 
 - [Output: novelty check sample](outputs/rag-evaluation-novelty-check.sample.md): safer novelty wording and blocked claims.
 - [Output: thesis evidence map sample](outputs/undergraduate-thesis-evidence-map.sample.csv): thesis sections mapped to evidence status.
 - [Output: related work blocked sample](outputs/output-related-work-blocked.sample.md): shows how the skill stops before unsupported prose.
+- [Sample source note](outputs/sample-source-note.md): explains what the demo data does and does not prove.
 - [Literature review matrix demo](literature-review-matrix-demo/README.md): a topic-to-matrix path before related-work prose.
 - [Undergraduate thesis proposal demo](undergraduate-thesis-proposal-demo/README.md): a scope and evidence package without invented school requirements.
 - [Rebuttal response matrix demo](rebuttal-response-matrix-demo/README.md): reviewer comments turned into auditable responses.
@@ -19,6 +20,12 @@ Use these examples to see the intended evidence-first workflow. The goal is not 
 
 ```bash
 python scripts/init_project.py --out paper_workspace --type research_paper
+```
+
+Or run a populated demo workspace:
+
+```bash
+python scripts/demo_academic_workflow.py --mode research_paper --out demo_workspace
 ```
 
 Then fill:

@@ -24,6 +24,8 @@ REQUIRED_FILES = [
     "templates/literature_matrix.csv",
     "templates/experiment_matrix.csv",
     "templates/claim_ledger.csv",
+    "scripts/demo_academic_workflow.py",
+    "examples/outputs/sample-source-note.md",
 ]
 
 PROTECTED_PHRASES = [
@@ -33,6 +35,15 @@ PROTECTED_PHRASES = [
     "No invented local requirements",
     "Claim-to-evidence mapping",
     "External-skill low coupling",
+]
+
+SAMPLE_NOTE_REQUIRED_PHRASES = [
+    "not a complete literature review",
+    "not a submission-ready evidence package",
+    "must be checked",
+    "needs_recheck",
+    "missing_source",
+    "unknown",
 ]
 
 
@@ -90,6 +101,15 @@ def collect_manifest_paths(value) -> list[str]:
     return paths
 
 
+def validate_sample_source_note() -> list[str]:
+    errors: list[str] = []
+    note = (ROOT / "examples" / "outputs" / "sample-source-note.md").read_text(encoding="utf-8").lower()
+    for phrase in SAMPLE_NOTE_REQUIRED_PHRASES:
+        if phrase.lower() not in note:
+            errors.append(f"sample-source-note.md should warn about: {phrase}")
+    return errors
+
+
 def main() -> int:
     errors: list[str] = []
     for rel in REQUIRED_FILES:
@@ -107,6 +127,8 @@ def main() -> int:
     for phrase in PROTECTED_PHRASES:
         if phrase not in skill_text:
             errors.append(f"Protected phrase missing from SKILL.md: {phrase}")
+
+    errors.extend(validate_sample_source_note())
 
     try:
         manifest = read_yaml(ROOT / "skill_manifest.yaml")

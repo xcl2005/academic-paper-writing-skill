@@ -28,6 +28,9 @@ core_invariants:
   - external_skill_low_coupling
   - human_review_for_high_stakes_decisions
   - self_maintenance_allowed_without_breaking_invariants
+demo_scripts:
+  - scripts/demo_academic_workflow.py
+  - examples/outputs/sample-source-note.md
 external_skill_policy:
   strategy: delegate_first_validate_always_fallback_if_needed
   preferred_gateway_module: modules/03_external_skill_gateway.md

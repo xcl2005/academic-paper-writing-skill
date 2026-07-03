@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Install validation deps
+        run: pip install pyyaml
+      - name: Validate skill structure
+        run: python scripts/validate_skill.py
+      - name: Validate README quality
+        run: python scripts/validate_readme_quality.py
+      - name: Generate research paper workspace
+        run: python scripts/init_project.py --out /tmp/paper_workspace --type research_paper
+      - name: Generate undergraduate thesis workspace
+        run: python scripts/init_project.py --out /tmp/thesis_workspace --type undergraduate_thesis
+      - name: Run research demo workspace
+        run: python scripts/demo_academic_workflow.py --mode research_paper --out /tmp/demo_paper_workspace
+      - name: Run thesis demo workspace
+        run: python scripts/demo_academic_workflow.py --mode undergraduate_thesis --out /tmp/demo_thesis_workspace
+

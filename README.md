@@ -13,6 +13,7 @@
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/network/members"><img src="https://img.shields.io/github/forks/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub forks"></a>
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT license"></a>
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/releases"><img src="https://img.shields.io/github/v/release/xcl2005/academic-paper-writing-skill?style=flat-square" alt="Latest release"></a>
+<a href="https://github.com/xcl2005/academic-paper-writing-skill/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/xcl2005/academic-paper-writing-skill/ci.yml?branch=main&style=flat-square" alt="CI status"></a>
 <img src="https://img.shields.io/badge/Agent%20Skills-Codex%20%7C%20Claude-111827?style=flat-square" alt="Agent Skills for Codex and Claude">
 <img src="https://img.shields.io/badge/Integrity-No%20Fake%20Papers-0F766E?style=flat-square" alt="No fake papers">
 <img src="https://img.shields.io/badge/Formats-MD%20%7C%20YAML%20%7C%20CSV-7C3AED?style=flat-square" alt="Markdown YAML CSV">
@@ -57,6 +58,12 @@ Input:
 使用 $academic-paper-writing-skill 帮我把一个 RAG-based academic assistant 题目整理成毕业论文开题范围和证据包，不要编造论文或学校要求。
 ```
 
+Clone 后可以先跑一个离线 demo workspace：
+
+```bash
+python scripts/demo_academic_workflow.py --mode research_paper --out demo_workspace
+```
+
 The skill first creates:
 
 1. `requirement_discovery_log.md`
@@ -73,6 +80,7 @@ See filled output samples:
 - [`examples/outputs/rag-evaluation-claim-ledger.sample.csv`](examples/outputs/rag-evaluation-claim-ledger.sample.csv)
 - [`examples/outputs/rag-evaluation-novelty-check.sample.md`](examples/outputs/rag-evaluation-novelty-check.sample.md)
 - [`examples/outputs/undergraduate-thesis-evidence-map.sample.csv`](examples/outputs/undergraduate-thesis-evidence-map.sample.csv)
+- [`examples/outputs/sample-source-note.md`](examples/outputs/sample-source-note.md)
 
 ## 📦 What you get
 
@@ -169,6 +177,9 @@ python scripts/init_project.py --out thesis_workspace --type undergraduate_thesi
 
 # 验证 skill 结构
 python scripts/validate_skill.py
+
+# 生成可检查的 demo workspace
+python scripts/demo_academic_workflow.py --mode research_paper --out demo_workspace
 ```
 
 ## 🔁 Codex / Claude Code
