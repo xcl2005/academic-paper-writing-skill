@@ -11,6 +11,7 @@ Use these examples to see the intended evidence-first workflow. The goal is not 
 - [Output: related work blocked sample](outputs/output-related-work-blocked.sample.md): shows how the skill stops before unsupported prose.
 - [Sample source note](outputs/sample-source-note.md): explains what the demo data does and does not prove.
 - [Generated thesis demo workspace](generated-demo-workspace/README_NEXT_STEPS.md): committed workspace snapshot from `scripts/demo_academic_workflow.py`.
+- [Generated evidence status summary](outputs/evidence-status-summary.generated.md): workspace-level counts for verified, unknown, blocked, and missing statuses.
 - [Generated pre-prose gate report](outputs/pre-prose-check.generated.md): combined evidence-status and claim-to-evidence gate report.
 - [Generated claim blocker report](outputs/claim-blocker-report.generated.md): pre-prose report from the committed demo workspace.
 - [Fixture: unsupported strong claim](fixtures/claims/unsupported-strong-claim.csv): should be blocked before prose.

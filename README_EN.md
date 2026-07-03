@@ -81,12 +81,14 @@ See filled output samples:
 - [`examples/outputs/undergraduate-thesis-evidence-map.sample.csv`](examples/outputs/undergraduate-thesis-evidence-map.sample.csv)
 - [`examples/outputs/sample-source-note.md`](examples/outputs/sample-source-note.md)
 - [`examples/generated-demo-workspace/README_NEXT_STEPS.md`](examples/generated-demo-workspace/README_NEXT_STEPS.md)
+- [`examples/outputs/evidence-status-summary.generated.md`](examples/outputs/evidence-status-summary.generated.md)
 - [`examples/outputs/pre-prose-check.generated.md`](examples/outputs/pre-prose-check.generated.md)
 - [`examples/outputs/claim-blocker-report.generated.md`](examples/outputs/claim-blocker-report.generated.md)
 
 Machine-check the integrity boundary:
 
 ```bash
+python scripts/summarize_evidence_status.py demo_workspace
 python scripts/pre_prose_check.py demo_workspace --expect-block
 python scripts/validate_demo_workspace.py demo_workspace --mode undergraduate_thesis
 ```

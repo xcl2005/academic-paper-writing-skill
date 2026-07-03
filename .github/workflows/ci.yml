@@ -46,5 +46,7 @@ jobs:
         run: python scripts/check_claims_before_prose.py examples/generated-demo-workspace --expect-block --report examples/outputs/claim-blocker-report.generated.md
       - name: Regenerate pre-prose gate report
         run: python scripts/pre_prose_check.py examples/generated-demo-workspace --expect-block --report examples/outputs/pre-prose-check.generated.md
+      - name: Regenerate evidence status summary
+        run: python scripts/summarize_evidence_status.py examples/generated-demo-workspace --report examples/outputs/evidence-status-summary.generated.md
       - name: Ensure generated academic demos are committed
-        run: git diff --exit-code examples/generated-demo-workspace examples/outputs/claim-blocker-report.generated.md examples/outputs/pre-prose-check.generated.md
+        run: git diff --exit-code examples/generated-demo-workspace examples/outputs/claim-blocker-report.generated.md examples/outputs/pre-prose-check.generated.md examples/outputs/evidence-status-summary.generated.md

@@ -95,6 +95,12 @@ Before drafting final prose, run or emulate these checks on the workspace:
 python scripts/pre_prose_check.py <workspace>
 ```
 
+For a quick status overview before deciding what to fix next:
+
+```bash
+python scripts/summarize_evidence_status.py <workspace>
+```
+
 Fallback lower-level checks:
 
 ```bash

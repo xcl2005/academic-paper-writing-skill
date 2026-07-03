@@ -31,12 +31,14 @@ core_invariants:
 demo_scripts:
   - scripts/demo_academic_workflow.py
   - scripts/pre_prose_check.py
+  - scripts/summarize_evidence_status.py
   - scripts/validate_demo_workspace.py
   - scripts/validate_evidence_status.py
   - scripts/check_claims_before_prose.py
   - schemas/evidence_status.schema.yaml
   - examples/outputs/sample-source-note.md
   - examples/generated-demo-workspace/DEMO_MANIFEST.json
+  - examples/outputs/evidence-status-summary.generated.md
   - examples/outputs/pre-prose-check.generated.md
   - examples/outputs/claim-blocker-report.generated.md
 external_skill_policy:
