@@ -1,0 +1,3 @@
+claim_id,claim,status,evidence_type,evidence_pointer
+C1,本系统显著优于现有 RAG 评测框架,partially_supported,experiment result,none
+C2,学校要求论文必须采用特定章节结构,unknown,official requirement,none

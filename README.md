@@ -81,6 +81,8 @@ See filled output samples:
 - [`examples/outputs/rag-evaluation-novelty-check.sample.md`](examples/outputs/rag-evaluation-novelty-check.sample.md)
 - [`examples/outputs/undergraduate-thesis-evidence-map.sample.csv`](examples/outputs/undergraduate-thesis-evidence-map.sample.csv)
 - [`examples/outputs/sample-source-note.md`](examples/outputs/sample-source-note.md)
+- [`examples/generated-demo-workspace/README_NEXT_STEPS.md`](examples/generated-demo-workspace/README_NEXT_STEPS.md)
+- [`examples/outputs/claim-blocker-report.generated.md`](examples/outputs/claim-blocker-report.generated.md)
 
 Machine-check the integrity boundary:
 

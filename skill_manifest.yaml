@@ -35,6 +35,8 @@ demo_scripts:
   - scripts/check_claims_before_prose.py
   - schemas/evidence_status.schema.yaml
   - examples/outputs/sample-source-note.md
+  - examples/generated-demo-workspace/DEMO_MANIFEST.json
+  - examples/outputs/claim-blocker-report.generated.md
 external_skill_policy:
   strategy: delegate_first_validate_always_fallback_if_needed
   preferred_gateway_module: modules/03_external_skill_gateway.md

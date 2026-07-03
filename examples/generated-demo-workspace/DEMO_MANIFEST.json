@@ -1,0 +1,16 @@
+{
+  "mode": "undergraduate_thesis",
+  "generated_by": "scripts/demo_academic_workflow.py",
+  "files": [
+    "README_NEXT_STEPS.md",
+    "assumption_register.md",
+    "claim_ledger.csv",
+    "drafts/related_work_blocked.md",
+    "evidence/graduation_evidence_map.csv",
+    "evidence/requirement_discovery_log.md",
+    "evidence/scope_ladder.md",
+    "integrity_checklist.md",
+    "project_state.yaml"
+  ],
+  "prose_policy": "blocked until sources, claim ledger, and integrity checks are reviewable"
+}

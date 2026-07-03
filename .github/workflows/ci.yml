@@ -19,9 +19,11 @@ jobs:
       - name: Validate README quality
         run: python scripts/validate_readme_quality.py
       - name: Validate evidence status values
-        run: python scripts/validate_evidence_status.py templates examples/outputs examples/fixtures
+        run: python scripts/validate_evidence_status.py templates examples/outputs examples/fixtures examples/generated-demo-workspace
       - name: Block unsupported strong claims
         run: python scripts/check_claims_before_prose.py examples/fixtures/claims/unsupported-strong-claim.csv --expect-block
+      - name: Block unsupported Chinese strong claims
+        run: python scripts/check_claims_before_prose.py examples/fixtures/claims/chinese-unsupported-claim.csv --expect-block
       - name: Allow supported claim fixture
         run: python scripts/check_claims_before_prose.py examples/fixtures/claims/supported-claim.csv
       - name: Generate research paper workspace
@@ -36,3 +38,11 @@ jobs:
         run: python scripts/demo_academic_workflow.py --mode undergraduate_thesis --out /tmp/demo_thesis_workspace
       - name: Validate thesis demo workspace
         run: python scripts/validate_demo_workspace.py /tmp/demo_thesis_workspace --mode undergraduate_thesis
+      - name: Regenerate committed thesis demo workspace
+        run: python scripts/demo_academic_workflow.py --mode undergraduate_thesis --out examples/generated-demo-workspace --force
+      - name: Validate committed thesis demo workspace
+        run: python scripts/validate_demo_workspace.py examples/generated-demo-workspace --mode undergraduate_thesis
+      - name: Regenerate claim blocker report
+        run: python scripts/check_claims_before_prose.py examples/generated-demo-workspace --expect-block --report examples/outputs/claim-blocker-report.generated.md
+      - name: Ensure generated academic demos are committed
+        run: git diff --exit-code examples/generated-demo-workspace examples/outputs/claim-blocker-report.generated.md

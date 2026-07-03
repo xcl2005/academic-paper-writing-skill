@@ -1,0 +1,4 @@
+claim_id,claim,evidence_type,evidence_pointer,strength,caveat,status
+C1,RAG-based academic assistants need separate source-verification before prose generation,workflow rationale,literature_matrix rows plus integrity checklist,medium,Needs user-provided task context before final wording,partially_supported
+C2,The proposed system outperforms existing RAG evaluation frameworks,experiment result,none,none,No completed experiment or benchmark evidence provided,blocked
+C3,The undergraduate thesis must include a specific chapter format,official requirement,none,none,School template or advisor instruction missing,unknown

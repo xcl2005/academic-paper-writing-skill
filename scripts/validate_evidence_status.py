@@ -13,6 +13,17 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 STATUS_SCHEMA = ROOT / "schemas" / "evidence_status.schema.yaml"
 
+REQUIRED_STATUS_COLUMNS = [
+    ("literature_matrix", "verification_status"),
+    ("literature-matrix", "verification_status"),
+    ("claim_ledger", "status"),
+    ("claim-ledger", "status"),
+    ("experiment_matrix", "result_status"),
+    ("experiment-matrix", "result_status"),
+    ("graduation_evidence_map", "current_status"),
+    ("evidence-map", "current_status"),
+]
+
 
 def load_statuses() -> dict[str, set[str]]:
     data = yaml.safe_load(STATUS_SCHEMA.read_text(encoding="utf-8"))
@@ -40,6 +51,14 @@ def validate_csv(path: Path, statuses: dict[str, set[str]]) -> list[str]:
     with path.open("r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         fieldnames = reader.fieldnames or []
+        lowered_name = path.name.lower()
+        for name_fragment, required_column in REQUIRED_STATUS_COLUMNS:
+            if name_fragment in lowered_name and required_column not in fieldnames:
+                try:
+                    rel = path.relative_to(ROOT)
+                except ValueError:
+                    rel = path
+                errors.append(f"{rel}: missing required status column {required_column!r}")
         checks = status_columns(fieldnames)
         for row_number, row in enumerate(reader, start=2):
             for column, status_group in checks:

@@ -29,8 +29,12 @@ REQUIRED_FILES = [
     "scripts/check_claims_before_prose.py",
     "scripts/validate_demo_workspace.py",
     "examples/outputs/sample-source-note.md",
+    "examples/fixtures/claims/chinese-unsupported-claim.csv",
     "examples/fixtures/claims/unsupported-strong-claim.csv",
     "examples/fixtures/claims/supported-claim.csv",
+    "examples/generated-demo-workspace/DEMO_MANIFEST.json",
+    "examples/generated-demo-workspace/README_NEXT_STEPS.md",
+    "examples/outputs/claim-blocker-report.generated.md",
     "schemas/evidence_status.schema.yaml",
 ]
 
@@ -43,6 +47,10 @@ PROTECTED_PHRASES = [
     "External-skill low coupling",
     "Do not treat demo samples as verified sources",
     "Do not turn `needs_recheck`, `missing_source`, or `unknown` rows into final prose",
+    "Pre-Prose Checks",
+    "validate_evidence_status.py",
+    "check_claims_before_prose.py",
+    "blocked-output explanation",
 ]
 
 SAMPLE_NOTE_REQUIRED_PHRASES = [

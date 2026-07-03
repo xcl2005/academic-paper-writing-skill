@@ -87,6 +87,19 @@ Default priority for hybrid projects:
 
 ---
 
+## Pre-Prose Checks
+
+Before drafting final prose, run or emulate these checks on the workspace:
+
+```bash
+python scripts/validate_evidence_status.py <workspace>
+python scripts/check_claims_before_prose.py <workspace-or-claim-ledger>
+```
+
+If these checks fail, produce a blocked-output explanation instead of final prose. Explain which claim, source, result, or local requirement remains unsupported, then ask for the missing source, advisor note, rubric, experiment result, implementation evidence, or requirement document.
+
+---
+
 ## Default Module Routing
 
 Use the smallest route that fits the task. The full routes below are for substantial project work; lightweight requests should load only the named task modules plus `00_core_invariants.md` and `01_agent_orchestrator.md`.
