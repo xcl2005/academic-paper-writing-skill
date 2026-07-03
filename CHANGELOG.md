@@ -2,6 +2,10 @@
 
 ## 0.1.0 - 2026-07-03
 
+- Added issue and pull request templates for integrity risks, thesis workflows, template requests, guardrail improvements, and docs examples.
+- Added filled sample outputs for literature matrices, claim ledgers, novelty checks, thesis scope, thesis evidence maps, and blocked related-work drafting.
+- Added README `Star this if` / `Not for` blocks to position the skill as evidence review before prose, not ghostwriting.
+- Added social preview copy guidance for GitHub repository sharing.
 - Sharpened public positioning around evidence-first academic AI writing without hallucinated citations, fake evidence, or integrity drift.
 - Added scenario examples for literature-review, undergraduate-thesis proposal, and rebuttal-response workflows.
 - Added README demo, What you get, direct-AI comparison, text workflow, release badge, and example output links.

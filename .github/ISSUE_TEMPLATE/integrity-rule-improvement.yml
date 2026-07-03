@@ -1,0 +1,23 @@
+name: Integrity rule improvement
+description: Suggest a stronger guardrail for evidence-first academic work.
+title: "[Integrity rule] "
+labels: ["research-integrity", "guardrail"]
+body:
+  - type: textarea
+    id: risk
+    attributes:
+      label: What risk should be better handled?
+      placeholder: Unverified SOTA, planned results written as complete, invented advisor requirements, etc.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed_rule
+    attributes:
+      label: Proposed rule or workflow change
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example where this would help
+

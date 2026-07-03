@@ -6,7 +6,7 @@
 
 # Academic Paper Writing Skill
 
-**Evidence-first academic writing without hallucinated citations, fake evidence, or integrity risks.**
+**Evidence-first academic AI workflow that reduces hallucinated citations, fake evidence, unsupported claims, and integrity drift before prose generation.**
 
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub stars"></a>
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/network/members"><img src="https://img.shields.io/github/forks/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub forks"></a>
@@ -29,6 +29,18 @@ This repository is not a single academic-writing prompt, and it is not a wrapper
 It is designed for evidence-first academic AI assistance: build an auditable evidence package first, then draft prose, rebuttals, or defense materials. Undergraduate theses and capstone projects can use the same evidence-first workflow as compatible scenarios.
 
 It works for Codex, Claude Code, and other agents that follow the Agent Skills folder layout. Claude Code can use the same `SKILL.md`; the install path and direct invocation syntax are different. See [Codex / Claude Code](#-codex--claude-code).
+
+## ⭐ Star this if you...
+
+- need academic AI help but do not want fake citations, fake SOTA, or unsupported claims;
+- want literature matrices, claim ledgers, experiment matrices, and integrity checks before prose;
+- support thesis / paper workflows where unknown requirements stay unknown until verified.
+
+## 🚫 Not for
+
+- ghostwriting papers without evidence review;
+- inventing citations, SOTA, experiments, school rules, or advisor requirements;
+- replacing human decisions on authorship, ethics, submission, or school compliance.
 
 ## ✨ Why
 
@@ -53,6 +65,13 @@ The skill first creates:
 5. `integrity_checklist.md`
 
 Only then does it draft proposal prose, related work, or rebuttal text. See the fuller walkthrough in [`examples/undergraduate-thesis-proposal-demo/README.md`](examples/undergraduate-thesis-proposal-demo/README.md).
+
+See filled output samples:
+
+- [`examples/outputs/rag-evaluation-literature-matrix.sample.csv`](examples/outputs/rag-evaluation-literature-matrix.sample.csv)
+- [`examples/outputs/rag-evaluation-claim-ledger.sample.csv`](examples/outputs/rag-evaluation-claim-ledger.sample.csv)
+- [`examples/outputs/rag-evaluation-novelty-check.sample.md`](examples/outputs/rag-evaluation-novelty-check.sample.md)
+- [`examples/outputs/undergraduate-thesis-evidence-map.sample.csv`](examples/outputs/undergraduate-thesis-evidence-map.sample.csv)
 
 ## 📦 What you get
 
@@ -221,6 +240,16 @@ Markdown, YAML, and CSV are the canonical working formats. Word, PDF, Excel, and
 
 ## 🛡️ Integrity Rules
 
+### Integrity-first by default
+
+This skill blocks or qualifies final prose when:
+
+- citations are unverified;
+- novelty claims are not checked against prior work;
+- planned experiments are written as completed results;
+- local thesis requirements are missing but treated as confirmed;
+- strong claims are not mapped to sources, experiments, implementation evidence, or official requirements.
+
 - No fabricated papers.
 - No fabricated SOTA.
 - No fabricated results.
@@ -242,6 +271,8 @@ python scripts/validate_readme_quality.py
 .
 |-- SKILL.md
 |-- skill_manifest.yaml
+|-- .github/
+|-- docs/
 |-- modules/
 |-- templates/
 |-- schemas/

@@ -4,6 +4,11 @@ Use these examples to see the intended evidence-first workflow. The goal is not 
 
 ## Scenario walkthroughs
 
+- [Output: literature matrix sample](outputs/rag-evaluation-literature-matrix.sample.csv): verified, recheck, and missing-source rows.
+- [Output: claim ledger sample](outputs/rag-evaluation-claim-ledger.sample.csv): supported, blocked, and unknown claims.
+- [Output: novelty check sample](outputs/rag-evaluation-novelty-check.sample.md): safer novelty wording and blocked claims.
+- [Output: thesis evidence map sample](outputs/undergraduate-thesis-evidence-map.sample.csv): thesis sections mapped to evidence status.
+- [Output: related work blocked sample](outputs/output-related-work-blocked.sample.md): shows how the skill stops before unsupported prose.
 - [Literature review matrix demo](literature-review-matrix-demo/README.md): a topic-to-matrix path before related-work prose.
 - [Undergraduate thesis proposal demo](undergraduate-thesis-proposal-demo/README.md): a scope and evidence package without invented school requirements.
 - [Rebuttal response matrix demo](rebuttal-response-matrix-demo/README.md): reviewer comments turned into auditable responses.

@@ -1,0 +1,27 @@
+name: Hallucinated citation / unsupported claim risk
+description: Report a case where the workflow may allow unsupported academic claims.
+title: "[Integrity risk] "
+labels: ["research-integrity", "needs-review"]
+body:
+  - type: textarea
+    id: task
+    attributes:
+      label: What was the academic task?
+      placeholder: Literature review, novelty check, thesis proposal, rebuttal, etc.
+    validations:
+      required: true
+  - type: textarea
+    id: unsupported_claim
+    attributes:
+      label: What claim or citation looked unsupported?
+      description: Paste the citation, claim, or generated text that should have been blocked or qualified.
+    validations:
+      required: true
+  - type: textarea
+    id: expected_guardrail
+    attributes:
+      label: What should the skill have done instead?
+      placeholder: Mark as unverified, ask for sources, lower confidence, block prose, etc.
+    validations:
+      required: true
+

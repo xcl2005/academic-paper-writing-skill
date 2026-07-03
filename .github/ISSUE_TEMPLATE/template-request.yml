@@ -1,0 +1,24 @@
+name: Template request
+description: Request a new matrix, checklist, ledger, or workflow template.
+title: "[Template] "
+labels: ["template", "documentation"]
+body:
+  - type: input
+    id: template_name
+    attributes:
+      label: Template name
+      placeholder: reviewer_response_matrix.csv
+    validations:
+      required: true
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case
+      description: Explain when the template should be used.
+    validations:
+      required: true
+  - type: textarea
+    id: fields
+    attributes:
+      label: Suggested fields or sections
+

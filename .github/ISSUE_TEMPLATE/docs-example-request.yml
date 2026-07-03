@@ -1,0 +1,26 @@
+name: Docs / example request
+description: Ask for a clearer README example, filled output, or workflow walkthrough.
+title: "[Docs example] "
+labels: ["documentation", "examples"]
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Literature review
+        - Novelty / SOTA
+        - Experiment matrix
+        - Rebuttal
+        - Undergraduate thesis
+        - Hybrid capstone research
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: request
+    attributes:
+      label: What example would make the skill easier to trust?
+    validations:
+      required: true
+

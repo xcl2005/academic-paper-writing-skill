@@ -1,0 +1,29 @@
+name: Thesis workflow request
+description: Request or refine an undergraduate thesis / capstone workflow.
+title: "[Thesis workflow] "
+labels: ["thesis", "workflow"]
+body:
+  - type: textarea
+    id: context
+    attributes:
+      label: Thesis or capstone context
+      description: Describe the project type, stage, and known constraints.
+    validations:
+      required: true
+  - type: checkboxes
+    id: known_requirements
+    attributes:
+      label: Which requirements are confirmed?
+      options:
+        - label: School template
+        - label: Advisor notes
+        - label: Rubric
+        - label: Deadline
+        - label: Defense requirements
+        - label: None yet
+  - type: textarea
+    id: desired_output
+    attributes:
+      label: Desired output
+      placeholder: Proposal scope, evidence map, outline, defense checklist, etc.
+

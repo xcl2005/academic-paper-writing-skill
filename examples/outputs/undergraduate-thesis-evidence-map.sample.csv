@@ -1,0 +1,8 @@
+section,expected_evidence,current_status,next_action
+Introduction,Problem statement and verified motivation,partial,Confirm target user and thesis requirements
+Related Work,Verified literature matrix,partial,Recheck preprint versions and add official citations
+System Design,Architecture diagram and implementation notes,missing,Create design artifact from actual prototype
+Experiment,Metrics baseline dataset and result status,missing,Define metrics before claiming results
+Integrity Checklist,Unsupported claims and unknown requirements,available,Review before drafting final prose
+Defense,Slides screenshots demo and limitations,missing,Prepare after implementation evidence exists
+
