@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import shutil
 import subprocess
 import sys
@@ -25,24 +26,25 @@ def run_init(out: Path, mode: str) -> None:
     ])
 
 
-def copy_if_exists(src: Path, dst: Path) -> None:
-    if src.exists():
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(src, dst)
+def copy_required(src: Path, dst: Path) -> None:
+    if not src.exists():
+        raise FileNotFoundError(f"Required demo source missing: {src}")
+    dst.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(src, dst)
 
 
 def populate_research_demo(out: Path) -> None:
-    copy_if_exists(EXAMPLE_OUTPUTS / "rag-evaluation-literature-matrix.sample.csv", out / "matrices" / "literature_matrix.csv")
-    copy_if_exists(EXAMPLE_OUTPUTS / "rag-evaluation-novelty-check.sample.md", out / "matrices" / "novelty_check.md")
-    copy_if_exists(EXAMPLE_OUTPUTS / "rag-evaluation-claim-ledger.sample.csv", out / "claim_ledger.csv")
-    copy_if_exists(EXAMPLE_OUTPUTS / "output-related-work-blocked.sample.md", out / "drafts" / "related_work_blocked.md")
+    copy_required(EXAMPLE_OUTPUTS / "rag-evaluation-literature-matrix.sample.csv", out / "matrices" / "literature_matrix.csv")
+    copy_required(EXAMPLE_OUTPUTS / "rag-evaluation-novelty-check.sample.md", out / "matrices" / "novelty_check.md")
+    copy_required(EXAMPLE_OUTPUTS / "rag-evaluation-claim-ledger.sample.csv", out / "claim_ledger.csv")
+    copy_required(EXAMPLE_OUTPUTS / "output-related-work-blocked.sample.md", out / "drafts" / "related_work_blocked.md")
 
 
 def populate_thesis_demo(out: Path) -> None:
-    copy_if_exists(EXAMPLE_OUTPUTS / "undergraduate-thesis-scope-ladder.sample.md", out / "evidence" / "scope_ladder.md")
-    copy_if_exists(EXAMPLE_OUTPUTS / "undergraduate-thesis-evidence-map.sample.csv", out / "evidence" / "graduation_evidence_map.csv")
-    copy_if_exists(EXAMPLE_OUTPUTS / "rag-evaluation-claim-ledger.sample.csv", out / "claim_ledger.csv")
-    copy_if_exists(EXAMPLE_OUTPUTS / "output-related-work-blocked.sample.md", out / "drafts" / "related_work_blocked.md")
+    copy_required(EXAMPLE_OUTPUTS / "undergraduate-thesis-scope-ladder.sample.md", out / "evidence" / "scope_ladder.md")
+    copy_required(EXAMPLE_OUTPUTS / "undergraduate-thesis-evidence-map.sample.csv", out / "evidence" / "graduation_evidence_map.csv")
+    copy_required(EXAMPLE_OUTPUTS / "rag-evaluation-claim-ledger.sample.csv", out / "claim_ledger.csv")
+    copy_required(EXAMPLE_OUTPUTS / "output-related-work-blocked.sample.md", out / "drafts" / "related_work_blocked.md")
 
 
 def write_next_steps(out: Path, mode: str) -> None:
@@ -72,6 +74,21 @@ Unknown requirements stay unknown until confirmed.
     (out / "README_NEXT_STEPS.md").write_text(next_steps, encoding="utf-8")
 
 
+def write_manifest(out: Path, mode: str) -> None:
+    files = sorted(
+        str(path.relative_to(out)).replace("\\", "/")
+        for path in out.rglob("*")
+        if path.is_file()
+    )
+    manifest = {
+        "mode": mode,
+        "generated_by": "scripts/demo_academic_workflow.py",
+        "files": files,
+        "prose_policy": "blocked until sources, claim ledger, and integrity checks are reviewable",
+    }
+    (out / "DEMO_MANIFEST.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Create an academic workflow demo workspace.")
     parser.add_argument("--mode", choices=["research_paper", "undergraduate_thesis"], default="research_paper")
@@ -90,10 +107,10 @@ def main() -> int:
     else:
         populate_thesis_demo(out)
     write_next_steps(out, args.mode)
+    write_manifest(out, args.mode)
     print(f"Wrote demo workspace at {out}")
     return 0
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

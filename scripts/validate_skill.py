@@ -25,7 +25,13 @@ REQUIRED_FILES = [
     "templates/experiment_matrix.csv",
     "templates/claim_ledger.csv",
     "scripts/demo_academic_workflow.py",
+    "scripts/validate_evidence_status.py",
+    "scripts/check_claims_before_prose.py",
+    "scripts/validate_demo_workspace.py",
     "examples/outputs/sample-source-note.md",
+    "examples/fixtures/claims/unsupported-strong-claim.csv",
+    "examples/fixtures/claims/supported-claim.csv",
+    "schemas/evidence_status.schema.yaml",
 ]
 
 PROTECTED_PHRASES = [
@@ -35,6 +41,8 @@ PROTECTED_PHRASES = [
     "No invented local requirements",
     "Claim-to-evidence mapping",
     "External-skill low coupling",
+    "Do not treat demo samples as verified sources",
+    "Do not turn `needs_recheck`, `missing_source`, or `unknown` rows into final prose",
 ]
 
 SAMPLE_NOTE_REQUIRED_PHRASES = [

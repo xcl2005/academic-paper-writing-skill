@@ -1,0 +1,3 @@
+claim_id,claim,status,evidence_type,evidence_pointer
+C1,The literature matrix records source verification before prose generation,supported,workflow evidence,literature_matrix.csv
+C2,The experiment remains planned until benchmark results are available,supported,project-state evidence,project_state.yaml

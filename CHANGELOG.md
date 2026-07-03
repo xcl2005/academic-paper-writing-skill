@@ -6,6 +6,10 @@
 - Added `scripts/demo_academic_workflow.py` for one-command evidence-first demo workspaces.
 - Added sample source notes to make demo data boundaries explicit.
 - Added validation coverage for the demo script and sample-source warning text.
+- Added evidence-status schema and `scripts/validate_evidence_status.py` for machine-checkable source, claim, result, and artifact statuses.
+- Added `scripts/check_claims_before_prose.py` plus claim fixtures to block unsupported strong claims before final prose.
+- Added demo workspace manifests and `scripts/validate_demo_workspace.py` so CI verifies generated demo contents.
+- Added SKILL.md negative triggers for ghostwriting-style requests and demo-sample misuse.
 - Added issue and pull request templates for integrity risks, thesis workflows, template requests, guardrail improvements, and docs examples.
 - Added filled sample outputs for literature matrices, claim ledgers, novelty checks, thesis scope, thesis evidence maps, and blocked related-work drafting.
 - Added README `Star this if` / `Not for` blocks to position the skill as evidence review before prose, not ghostwriting.

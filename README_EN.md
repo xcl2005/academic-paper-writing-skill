@@ -60,14 +60,14 @@ Use $academic-paper-writing-skill to turn a RAG-based academic assistant idea in
 After cloning, run an offline demo workspace first:
 
 ```bash
-python scripts/demo_academic_workflow.py --mode research_paper --out demo_workspace
+python scripts/demo_academic_workflow.py --mode undergraduate_thesis --out demo_workspace
 ```
 
 The skill first creates:
 
-1. `requirement_discovery_log.md`
-2. `literature_matrix.csv`
-3. `novelty_verification.csv`
+1. `evidence/requirement_discovery_log.md`
+2. `evidence/scope_ladder.md`
+3. `evidence/graduation_evidence_map.csv`
 4. `claim_ledger.csv`
 5. `integrity_checklist.md`
 
@@ -80,6 +80,14 @@ See filled output samples:
 - [`examples/outputs/rag-evaluation-novelty-check.sample.md`](examples/outputs/rag-evaluation-novelty-check.sample.md)
 - [`examples/outputs/undergraduate-thesis-evidence-map.sample.csv`](examples/outputs/undergraduate-thesis-evidence-map.sample.csv)
 - [`examples/outputs/sample-source-note.md`](examples/outputs/sample-source-note.md)
+
+Machine-check the integrity boundary:
+
+```bash
+python scripts/validate_evidence_status.py templates examples/outputs examples/fixtures
+python scripts/check_claims_before_prose.py examples/fixtures/claims/unsupported-strong-claim.csv --expect-block
+python scripts/validate_demo_workspace.py demo_workspace --mode undergraduate_thesis
+```
 
 ## 📦 What you get
 
@@ -178,7 +186,7 @@ python scripts/init_project.py --out thesis_workspace --type undergraduate_thesi
 python scripts/validate_skill.py
 
 # Generate an inspectable demo workspace
-python scripts/demo_academic_workflow.py --mode research_paper --out demo_workspace
+python scripts/demo_academic_workflow.py --mode undergraduate_thesis --out demo_workspace
 ```
 
 ## 🔁 Codex / Claude Code

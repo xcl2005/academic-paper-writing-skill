@@ -10,6 +10,8 @@ Use these examples to see the intended evidence-first workflow. The goal is not 
 - [Output: thesis evidence map sample](outputs/undergraduate-thesis-evidence-map.sample.csv): thesis sections mapped to evidence status.
 - [Output: related work blocked sample](outputs/output-related-work-blocked.sample.md): shows how the skill stops before unsupported prose.
 - [Sample source note](outputs/sample-source-note.md): explains what the demo data does and does not prove.
+- [Fixture: unsupported strong claim](fixtures/claims/unsupported-strong-claim.csv): should be blocked before prose.
+- [Fixture: supported claim](fixtures/claims/supported-claim.csv): should pass the claim-to-prose check.
 - [Literature review matrix demo](literature-review-matrix-demo/README.md): a topic-to-matrix path before related-work prose.
 - [Undergraduate thesis proposal demo](undergraduate-thesis-proposal-demo/README.md): a scope and evidence package without invented school requirements.
 - [Rebuttal response matrix demo](rebuttal-response-matrix-demo/README.md): reviewer comments turned into auditable responses.
@@ -40,6 +42,12 @@ Then fill:
 
 ```bash
 python scripts/init_project.py --out thesis_workspace --type undergraduate_thesis
+```
+
+Or run a populated thesis demo workspace:
+
+```bash
+python scripts/demo_academic_workflow.py --mode undergraduate_thesis --out demo_workspace
 ```
 
 Then fill:

@@ -18,12 +18,21 @@ jobs:
         run: python scripts/validate_skill.py
       - name: Validate README quality
         run: python scripts/validate_readme_quality.py
+      - name: Validate evidence status values
+        run: python scripts/validate_evidence_status.py templates examples/outputs examples/fixtures
+      - name: Block unsupported strong claims
+        run: python scripts/check_claims_before_prose.py examples/fixtures/claims/unsupported-strong-claim.csv --expect-block
+      - name: Allow supported claim fixture
+        run: python scripts/check_claims_before_prose.py examples/fixtures/claims/supported-claim.csv
       - name: Generate research paper workspace
         run: python scripts/init_project.py --out /tmp/paper_workspace --type research_paper
       - name: Generate undergraduate thesis workspace
         run: python scripts/init_project.py --out /tmp/thesis_workspace --type undergraduate_thesis
       - name: Run research demo workspace
         run: python scripts/demo_academic_workflow.py --mode research_paper --out /tmp/demo_paper_workspace
+      - name: Validate research demo workspace
+        run: python scripts/validate_demo_workspace.py /tmp/demo_paper_workspace --mode research_paper
       - name: Run thesis demo workspace
         run: python scripts/demo_academic_workflow.py --mode undergraduate_thesis --out /tmp/demo_thesis_workspace
-
+      - name: Validate thesis demo workspace
+        run: python scripts/validate_demo_workspace.py /tmp/demo_thesis_workspace --mode undergraduate_thesis

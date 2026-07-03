@@ -20,6 +20,14 @@ This skill is for Codex, Claude Code, ChatGPT, and future stronger models. It is
 
 ---
 
+## Negative Triggers
+
+Do not use this skill as a direct ghostwriting shortcut when the user asks only to produce final prose without sources, experiment evidence, or requirement context. In that case, first switch to evidence discovery, ask for source or requirement context, or produce a blocked-output explanation.
+
+Do not treat demo samples as verified sources. Do not turn `needs_recheck`, `missing_source`, or `unknown` rows into final prose.
+
+---
+
 ## Non-Negotiable Invariants
 
 These rules must never be removed or weakened, even during self-maintenance.

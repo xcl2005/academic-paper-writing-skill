@@ -1,0 +1,24 @@
+source_status:
+  - verified
+  - needs_recheck
+  - missing_source
+  - user_provided
+  - unknown
+claim_status:
+  - supported
+  - partially_supported
+  - unsupported
+  - needs_recheck
+  - blocked
+  - unknown
+result_status:
+  - planned
+  - preliminary
+  - achieved
+  - not_run
+  - unknown
+artifact_status:
+  - complete
+  - partial
+  - missing
+  - unknown
