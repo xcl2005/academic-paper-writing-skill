@@ -1,8 +1,12 @@
 <div align="center">
 
+<p>
+  <img src="./assets/hero.png" alt="Academic Paper Writing Skill" width="900">
+</p>
+
 # Academic Paper Writing Skill
 
-**Evidence-first workflows for academic papers, literature reviews, rebuttals, and research writing.**
+**Evidence-first academic writing without hallucinated citations, fake evidence, or integrity risks.**
 
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub stars"></a>
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/network/members"><img src="https://img.shields.io/github/forks/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub forks"></a>
@@ -19,9 +23,9 @@
 
 ## 🔥 Positioning
 
-This repository is not a single academic-writing prompt. It is an installable Agent Skill that breaks academic papers, literature reviews, research writing, experiment planning, and rebuttals into verifiable modules. The agent handles sources, evidence, claims, experiments, and integrity risks before final prose.
+This repository is not a single academic-writing prompt, and it is not a wrapper for making unsupported claims sound better. It is an installable Agent Skill that breaks academic papers, literature reviews, research writing, experiment planning, rebuttals, and thesis workflows into verifiable modules. The agent handles sources, evidence, claims, experiments, and integrity risks before final prose.
 
-Undergraduate theses and capstone projects can use the same evidence-first workflow as compatible scenarios.
+The core promise is academic AI assistance without hallucinated citations, fake evidence, or hidden integrity drift. Undergraduate theses and capstone projects can use the same evidence-first workflow as compatible scenarios.
 
 It works for Codex, Claude Code, and other agents that follow the Agent Skills folder layout. Claude Code can use the same `SKILL.md`; the install path and direct invocation syntax are different. See [Codex / Claude Code](#-codex--claude-code).
 

@@ -1,6 +1,11 @@
 # Examples
 
-Use these examples to see the intended evidence-first workflow.
+Use these examples to see the intended evidence-first workflow. The goal is not to generate polished prose first; it is to make claims, sources, experiments, and integrity risks inspectable before writing.
+
+## Scenario walkthroughs
+
+- [Literature review workflow](academic-literature-review-workflow.md): build a source-grounded literature matrix before related-work prose.
+- [Thesis outline workflow](thesis-outline-workflow.md): turn a graduation project idea into a scope, evidence plan, and thesis outline without inventing school requirements.
 
 ## Start a research-paper workspace
 

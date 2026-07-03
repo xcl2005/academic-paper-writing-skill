@@ -6,7 +6,7 @@
 
 # Academic Paper Writing Skill
 
-**面向学术论文、文献综述、rebuttal 与研究写作的证据优先工作流。**
+**证据优先的学术写作 skill：写论文、综述、rebuttal 和毕设前先核验证据，不编引用、不编结果。**
 
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub stars"></a>
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/network/members"><img src="https://img.shields.io/github/forks/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub forks"></a>
@@ -23,9 +23,9 @@
 
 ## 🔥 最新定位
 
-这个仓库不是一段“学术写作提示词”，而是一套可安装的 Agent Skill：它把学术论文、文献综述、研究写作、实验规划和 rebuttal 拆成可验证的模块，让 agent 在写作前先处理来源、证据、claim、实验和完整性风险。
+这个仓库不是一段“学术写作提示词”，也不是帮你把论文说得更漂亮的包装器。它是一套可安装的 Agent Skill：把论文、文献综述、研究写作、实验规划、rebuttal 和毕业设计拆成可验证的模块，让 agent 在写作前先处理来源、证据、claim、实验和完整性风险。
 
-本科论文 / 毕业设计也可以使用这套证据优先流程，作为兼容场景保留。
+核心卖点是 **Academic AI writing without hallucinated citations, fake evidence, or integrity risks**。本科论文 / 毕业设计也可以使用这套证据优先流程，作为兼容场景保留。
 
 适用于 Codex、Claude Code，以及遵循 Agent Skills 目录结构的其他 agent。Claude Code 可以用同一个 `SKILL.md`，但安装路径和直接调用方式不同，见下方 [Codex / Claude Code](#-codex--claude-code)。
 
