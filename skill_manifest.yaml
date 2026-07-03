@@ -1,6 +1,6 @@
 skill_name: academic-paper-writing-skill
 legacy_skill_name: academic_research_and_graduation_thesis_skill
-version: 8.0.0-final-candidate
+version: 0.1.0
 audience:
   - Codex
   - Claude Code

@@ -11,13 +11,14 @@
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub stars"></a>
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/network/members"><img src="https://img.shields.io/github/forks/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub forks"></a>
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT license"></a>
+<a href="https://github.com/xcl2005/academic-paper-writing-skill/releases"><img src="https://img.shields.io/github/v/release/xcl2005/academic-paper-writing-skill?style=flat-square" alt="Latest release"></a>
 <img src="https://img.shields.io/badge/Agent%20Skills-Codex%20%7C%20Claude-111827?style=flat-square" alt="Agent Skills for Codex and Claude">
 <img src="https://img.shields.io/badge/Integrity-No%20Fake%20Papers-0F766E?style=flat-square" alt="No fake papers">
 <img src="https://img.shields.io/badge/Formats-MD%20%7C%20YAML%20%7C%20CSV-7C3AED?style=flat-square" alt="Markdown YAML CSV">
 
 [简体中文](README.md) · English
 
-[Quick Start](#-quick-start) · [Why](#-why) · [Highlights](#-highlights) · [Codex / Claude](#-codex--claude-code) · [Workflows](#-workflows) · [Integrity](#-integrity-rules)
+[Quick Start](#-quick-start) · [Demo](#-demo-evidence-first-workflow) · [What you get](#-what-you-get) · [Why](#-why) · [Workflows](#-workflows) · [Integrity](#-integrity-rules)
 
 </div>
 
@@ -25,7 +26,7 @@
 
 This repository is not a single academic-writing prompt, and it is not a wrapper for making unsupported claims sound better. It is an installable Agent Skill that breaks academic papers, literature reviews, research writing, experiment planning, rebuttals, and thesis workflows into verifiable modules. The agent handles sources, evidence, claims, experiments, and integrity risks before final prose.
 
-The core promise is academic AI assistance without hallucinated citations, fake evidence, or hidden integrity drift. Undergraduate theses and capstone projects can use the same evidence-first workflow as compatible scenarios.
+It is designed for evidence-first academic AI assistance: build an auditable evidence package first, then draft prose, rebuttals, or defense materials. Undergraduate theses and capstone projects can use the same evidence-first workflow as compatible scenarios.
 
 It works for Codex, Claude Code, and other agents that follow the Agent Skills folder layout. Claude Code can use the same `SKILL.md`; the install path and direct invocation syntax are different. See [Codex / Claude Code](#-codex--claude-code).
 
@@ -34,6 +35,45 @@ It works for Codex, Claude Code, and other agents that follow the Agent Skills f
 The fragile part of academic writing is rarely wording. It is broken evidence: unverified papers, exaggerated SOTA claims, planned experiments written as completed results, or invented school/advisor requirements.
 
 **Academic Paper Writing Skill** builds inspectable intermediate artifacts before final prose. It defaults to primary sources, claim-to-evidence mapping, and integrity checks to reduce fake citations, fake results, overclaiming, and thesis requirement drift.
+
+## 🎬 Demo: Evidence-first workflow
+
+Input:
+
+```text
+Use $academic-paper-writing-skill to turn a RAG-based academic assistant idea into a thesis proposal scope and evidence package. Do not invent papers or school requirements.
+```
+
+The skill first creates:
+
+1. `requirement_discovery_log.md`
+2. `literature_matrix.csv`
+3. `novelty_verification.csv`
+4. `claim_ledger.csv`
+5. `integrity_checklist.md`
+
+Only then does it draft proposal prose, related work, or rebuttal text. See the fuller walkthrough in [`examples/undergraduate-thesis-proposal-demo/README.md`](examples/undergraduate-thesis-proposal-demo/README.md).
+
+## 📦 What you get
+
+| Output | Why it exists |
+|---|---|
+| Literature Matrix | Records verified papers, methods, datasets, claims, limitations, and relevance |
+| Novelty Verification | Checks prior work and SOTA before strong novelty claims |
+| Experiment Matrix | Separates metrics, baselines, datasets, ablations, and result status |
+| Claim Ledger | Maps each strong claim to sources, experiments, implementation evidence, or official requirements |
+| Integrity Checklist | Catches fake citations, fake results, overclaiming, and unknown school requirements |
+| Final Draft / Rebuttal | Generated only after the evidence trail is inspectable |
+
+## 🧾 Why not just ask an AI to write the paper?
+
+| Direct AI writing | This skill |
+|---|---|
+| May invent citations | Requires verified source records |
+| May overclaim novelty or SOTA | Runs novelty / SOTA checks first |
+| May fake completed results | Separates planned, preliminary, and achieved results |
+| Writes prose too early | Builds matrices and ledgers before final prose |
+| Hard to audit | Produces inspectable intermediate artifacts |
 
 ## 👨‍💻 Use Cases
 
@@ -125,6 +165,16 @@ python scripts/validate_skill.py
 Claude.ai / Claude API usually require uploading or registering the skill as a custom skill. The GitHub clone paths above are mainly for local Claude Code and Codex workflows.
 
 ## 🧭 Workflows
+
+```text
+Topic / Draft
+  -> Source Verification
+  -> Literature Matrix
+  -> Claim Ledger
+  -> Experiment / Evidence Matrix
+  -> Integrity Check
+  -> Final Draft / Rebuttal
+```
 
 | Mode | Use it for | Outputs |
 |---|---|---|

@@ -4,6 +4,9 @@ Use these examples to see the intended evidence-first workflow. The goal is not 
 
 ## Scenario walkthroughs
 
+- [Literature review matrix demo](literature-review-matrix-demo/README.md): a topic-to-matrix path before related-work prose.
+- [Undergraduate thesis proposal demo](undergraduate-thesis-proposal-demo/README.md): a scope and evidence package without invented school requirements.
+- [Rebuttal response matrix demo](rebuttal-response-matrix-demo/README.md): reviewer comments turned into auditable responses.
 - [Literature review workflow](academic-literature-review-workflow.md): build a source-grounded literature matrix before related-work prose.
 - [Thesis outline workflow](thesis-outline-workflow.md): turn a graduation project idea into a scope, evidence plan, and thesis outline without inventing school requirements.
 

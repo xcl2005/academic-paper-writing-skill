@@ -6,18 +6,20 @@
 
 # Academic Paper Writing Skill
 
+**Evidence-first academic writing without hallucinated citations, fake evidence, or integrity risks.**<br>
 **证据优先的学术写作 skill：写论文、综述、rebuttal 和毕设前先核验证据，不编引用、不编结果。**
 
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub stars"></a>
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/network/members"><img src="https://img.shields.io/github/forks/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub forks"></a>
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT license"></a>
+<a href="https://github.com/xcl2005/academic-paper-writing-skill/releases"><img src="https://img.shields.io/github/v/release/xcl2005/academic-paper-writing-skill?style=flat-square" alt="Latest release"></a>
 <img src="https://img.shields.io/badge/Agent%20Skills-Codex%20%7C%20Claude-111827?style=flat-square" alt="Agent Skills for Codex and Claude">
 <img src="https://img.shields.io/badge/Integrity-No%20Fake%20Papers-0F766E?style=flat-square" alt="No fake papers">
 <img src="https://img.shields.io/badge/Formats-MD%20%7C%20YAML%20%7C%20CSV-7C3AED?style=flat-square" alt="Markdown YAML CSV">
 
 简体中文 · [English](README_EN.md)
 
-[快速开始](#-快速开始) · [为什么需要](#-为什么需要) · [能力亮点](#-能力亮点) · [Codex / Claude](#-codex--claude-code) · [工作流](#-工作流) · [完整性规则](#-完整性规则)
+[快速开始](#-快速开始) · [Demo](#-demo-evidence-first-workflow) · [产物](#-what-you-get) · [为什么需要](#-为什么需要) · [工作流](#-工作流) · [完整性规则](#-完整性规则)
 
 </div>
 
@@ -25,7 +27,7 @@
 
 这个仓库不是一段“学术写作提示词”，也不是帮你把论文说得更漂亮的包装器。它是一套可安装的 Agent Skill：把论文、文献综述、研究写作、实验规划、rebuttal 和毕业设计拆成可验证的模块，让 agent 在写作前先处理来源、证据、claim、实验和完整性风险。
 
-核心卖点是 **Academic AI writing without hallucinated citations, fake evidence, or integrity risks**。本科论文 / 毕业设计也可以使用这套证据优先流程，作为兼容场景保留。
+它面向的是 evidence-first academic AI assistance：先建立可审查的证据包，再写正文、rebuttal 或答辩材料。本科论文 / 毕业设计也可以使用这套证据优先流程，作为兼容场景保留。
 
 适用于 Codex、Claude Code，以及遵循 Agent Skills 目录结构的其他 agent。Claude Code 可以用同一个 `SKILL.md`，但安装路径和直接调用方式不同，见下方 [Codex / Claude Code](#-codex--claude-code)。
 
@@ -34,6 +36,45 @@
 学术写作最容易出问题的地方不是措辞，而是证据链断裂：论文没核验、SOTA 被夸大、实验结果被提前写成已完成、学校模板或导师要求被凭空补全。
 
 **Academic Paper Writing Skill** 的原则是先建立可审查的中间产物，再进入最终 prose。它默认使用 primary sources、claim-to-evidence mapping 和完整性检查，降低虚构引用、虚构结果、过度承诺和毕业要求误判的风险。
+
+## 🎬 Demo: Evidence-first workflow
+
+Input:
+
+```text
+使用 $academic-paper-writing-skill 帮我把一个 RAG-based academic assistant 题目整理成毕业论文开题范围和证据包，不要编造论文或学校要求。
+```
+
+The skill first creates:
+
+1. `requirement_discovery_log.md`
+2. `literature_matrix.csv`
+3. `novelty_verification.csv`
+4. `claim_ledger.csv`
+5. `integrity_checklist.md`
+
+Only then does it draft proposal prose, related work, or rebuttal text. A fuller walkthrough is in [`examples/undergraduate-thesis-proposal-demo/README.md`](examples/undergraduate-thesis-proposal-demo/README.md).
+
+## 📦 What you get
+
+| Output | Why it exists |
+|---|---|
+| Literature Matrix | 先记录已核验论文、方法、数据集、claim、局限和相关性 |
+| Novelty Verification | 在强写创新点前，对照 prior work 和 SOTA |
+| Experiment Matrix | 区分 metric、baseline、dataset、ablation 和结果状态 |
+| Claim Ledger | 让每个强主张都能回到来源、实验、实现证据或官方要求 |
+| Integrity Checklist | 在写作前发现虚构引用、虚构结果、过度承诺和未知学校要求 |
+| Final Draft / Rebuttal | 只在证据链可审查后生成最终 prose |
+
+## 🧾 为什么不直接让 AI 写论文？
+
+| 直接让 AI 写 | 使用这个 skill |
+|---|---|
+| 可能编造引用 | 先建立 verified source records |
+| 可能夸大 novelty / SOTA | 强结论前先做 novelty / SOTA checks |
+| 可能把计划写成已完成结果 | 区分 planned、preliminary、achieved results |
+| 太早进入正文 | 先做 matrices 和 ledgers，再写 prose |
+| 难以审查 | 输出可检查的中间产物 |
 
 ## 👨‍💻 适用场景
 
@@ -125,6 +166,16 @@ python scripts/validate_skill.py
 Claude.ai / Claude API 通常需要把 skill 作为自定义 skill 上传或通过 Skills API 注册；GitHub clone 路径主要面向本地 Claude Code 与 Codex。
 
 ## 🧭 工作流
+
+```text
+Topic / Draft
+  -> Source Verification
+  -> Literature Matrix
+  -> Claim Ledger
+  -> Experiment / Evidence Matrix
+  -> Integrity Check
+  -> Final Draft / Rebuttal
+```
 
 | 模式 | 适用 | 主要输出 |
 |---|---|---|
