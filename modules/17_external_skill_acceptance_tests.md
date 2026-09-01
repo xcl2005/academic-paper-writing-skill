@@ -21,6 +21,10 @@ A candidate must pass most relevant checks:
 [ ] Outputs inspectable files or logs.
 [ ] Does not require modifying this skill's core files.
 [ ] Does not conflict with official venue/school requirements.
+[ ] Required companion skills, shared resources, and runtimes are present.
+[ ] Accepts the capability input contract without broadening permissions.
+[ ] Produces every required output or marks unresolved fields explicitly.
+[ ] Passes the capability-specific acceptance checks in `capability_registry.yaml`.
 ```
 
 ## Scoring Rubric
@@ -70,3 +74,16 @@ For every external skill/tool selected or rejected, record:
 - risk;
 - expected use;
 - override rule if conflict occurs.
+
+## Output Acceptance
+
+After execution, assess the provider output separately from provider installation quality:
+
+- source boundary and protected facts preserved;
+- expected files exist and open;
+- required fields, source pointers, and status labels are present;
+- domain calculations, figures, layout, or package checks were actually run when promised;
+- unresolved items and tool limitations are explicit;
+- the relevant stage gate and artifact-specific validation pass.
+
+A provider can be acceptable for installation yet fail a particular task output. In that case, preserve its output for review, mark the handoff failed, and use the internal fallback or another provider.

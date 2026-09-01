@@ -3,9 +3,16 @@ stage: ""
 topic: ""
 target: ""
 deadline: ""
+source_boundary: ""
+active_capabilities: []
+provider_bindings: {}
+current_gate: ""
+gate_status: "not_started"
 known_inputs: []
 missing_inputs: []
 assumptions: []
 artifacts: []
 risks: []
+decisions: []
+human_confirmations: []
 next_actions: []

@@ -16,6 +16,14 @@ jobs:
         run: pip install pyyaml
       - name: Validate skill structure
         run: python scripts/validate_skill.py
+      - name: Validate capability provider registry
+        run: python scripts/validate_capability_registry.py
+      - name: Resolve provider fallback
+        run: python scripts/resolve_capability.py research_ideation --json
+      - name: Test installed-provider and fallback routing
+        run: python scripts/test_provider_resolution.py
+      - name: Test ready and blocked stage gates
+        run: python scripts/test_stage_gate.py
       - name: Validate README quality
         run: python scripts/validate_readme_quality.py
       - name: Validate evidence status values
@@ -28,6 +36,12 @@ jobs:
         run: python scripts/check_claims_before_prose.py examples/fixtures/claims/supported-claim.csv
       - name: Generate research paper workspace
         run: python scripts/init_project.py --out /tmp/paper_workspace --type research_paper
+      - name: Validate new workspace structure
+        run: |
+          python scripts/check_stage_gate.py /tmp/paper_workspace --gate literature --allow-empty
+          python scripts/check_stage_gate.py /tmp/paper_workspace --gate analysis --allow-empty
+      - name: Confirm incomplete workspace remains blocked
+        run: python scripts/check_stage_gate.py /tmp/paper_workspace --gate literature --expect-block
       - name: Generate undergraduate thesis workspace
         run: python scripts/init_project.py --out /tmp/thesis_workspace --type undergraduate_thesis
       - name: Run research demo workspace

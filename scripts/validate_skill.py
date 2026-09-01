@@ -14,32 +14,57 @@ SKILL_NAME = "academic-paper-writing-skill"
 REQUIRED_FILES = [
     "SKILL.md",
     "skill_manifest.yaml",
+    "capability_registry.yaml",
     "agents/openai.yaml",
     "modules/00_core_invariants.md",
     "modules/01_agent_orchestrator.md",
     "modules/02_mode_router.md",
     "modules/03_external_skill_gateway.md",
     "modules/17_external_skill_acceptance_tests.md",
+    "modules/18_research_ideation_and_question_design.md",
+    "modules/19_study_design_statistics_and_data.md",
+    "modules/20_scholarly_search_screening_and_references.md",
+    "modules/21_research_delivery_and_presentation.md",
+    "modules/22_capability_provider_router.md",
     "templates/project_state.yaml",
     "templates/literature_matrix.csv",
     "templates/experiment_matrix.csv",
     "templates/claim_ledger.csv",
+    "templates/research_idea_portfolio.csv",
+    "templates/search_protocol.md",
+    "templates/screening_log.csv",
+    "templates/statistical_analysis_plan.md",
+    "templates/data_provenance.csv",
+    "templates/terminology_ledger.csv",
+    "templates/paper_reading_note.md",
+    "templates/presentation_brief.md",
+    "templates/submission_package_checklist.md",
+    "templates/capability_handoff.yaml",
     "scripts/demo_academic_workflow.py",
     "scripts/pre_prose_check.py",
     "scripts/summarize_evidence_status.py",
     "scripts/validate_evidence_status.py",
     "scripts/check_claims_before_prose.py",
+    "scripts/check_stage_gate.py",
+    "scripts/resolve_capability.py",
+    "scripts/validate_capability_registry.py",
+    "scripts/test_provider_resolution.py",
+    "scripts/test_stage_gate.py",
     "scripts/validate_demo_workspace.py",
     "examples/outputs/sample-source-note.md",
     "examples/fixtures/claims/chinese-unsupported-claim.csv",
     "examples/fixtures/claims/unsupported-strong-claim.csv",
     "examples/fixtures/claims/supported-claim.csv",
+    "examples/fixtures/provider-skills/scientific-brainstorming/SKILL.md",
     "examples/generated-demo-workspace/DEMO_MANIFEST.json",
     "examples/generated-demo-workspace/README_NEXT_STEPS.md",
     "examples/outputs/evidence-status-summary.generated.md",
     "examples/outputs/pre-prose-check.generated.md",
     "examples/outputs/claim-blocker-report.generated.md",
     "schemas/evidence_status.schema.yaml",
+    "schemas/idea_portfolio.schema.yaml",
+    "schemas/screening_log.schema.yaml",
+    "schemas/data_provenance.schema.yaml",
 ]
 
 PROTECTED_PHRASES = [
@@ -57,7 +82,41 @@ PROTECTED_PHRASES = [
     "validate_evidence_status.py",
     "check_claims_before_prose.py",
     "blocked-output explanation",
+    "Backward compatibility",
+    "capability_registry.yaml",
+    "resolve_capability.py",
 ]
+
+LEGACY_PROJECT_TYPES = {"research_paper", "undergraduate_thesis", "hybrid_capstone_research"}
+LEGACY_MODES = {
+    "literature_matrix",
+    "novelty_verification",
+    "experiment_matrix",
+    "figure_design",
+    "integrity_audit",
+    "simulated_review_rebuttal",
+    "graduation_requirement_discovery",
+}
+LEGACY_PATHS = {
+    "modules/03_external_skill_gateway.md",
+    "modules/04_requirement_discovery.md",
+    "modules/05_venue_intelligence.md",
+    "modules/06_literature_engine.md",
+    "modules/07_novelty_verification_and_scoring.md",
+    "modules/08_research_roi_scope.md",
+    "modules/09_experiment_matrix_engine.md",
+    "modules/10_figure_table_engine.md",
+    "modules/11_integrity_reproducibility_guard.md",
+    "modules/12_writing_style_adapter.md",
+    "modules/13_simulated_review_rebuttal.md",
+    "modules/14_undergraduate_thesis_engine.md",
+    "scripts/pre_prose_check.py",
+    "scripts/summarize_evidence_status.py",
+    "scripts/validate_evidence_status.py",
+    "scripts/check_claims_before_prose.py",
+    "scripts/init_project.py",
+    "scripts/external_skill_gate.py",
+}
 
 SAMPLE_NOTE_REQUIRED_PHRASES = [
     "not a complete literature review",
@@ -132,6 +191,28 @@ def validate_sample_source_note() -> list[str]:
     return errors
 
 
+def validate_backward_compatibility(manifest: dict) -> list[str]:
+    errors: list[str] = []
+    project_types = manifest.get("project_types") or {}
+    modes = manifest.get("modes") or {}
+    if not isinstance(project_types, dict):
+        errors.append("skill_manifest.yaml project_types must be a mapping")
+    else:
+        missing = sorted(LEGACY_PROJECT_TYPES - set(project_types))
+        if missing:
+            errors.append("Missing legacy project types: " + ", ".join(missing))
+    if not isinstance(modes, dict):
+        errors.append("skill_manifest.yaml modes must be a mapping")
+    else:
+        missing = sorted(LEGACY_MODES - set(modes))
+        if missing:
+            errors.append("Missing legacy modes: " + ", ".join(missing))
+    for rel in sorted(LEGACY_PATHS):
+        if not (ROOT / rel).is_file():
+            errors.append(f"Missing backward-compatible path: {rel}")
+    return errors
+
+
 def main() -> int:
     errors: list[str] = []
     for rel in REQUIRED_FILES:
@@ -162,6 +243,12 @@ def main() -> int:
 
     if manifest.get("skill_name") != SKILL_NAME:
         errors.append(f"skill_manifest.yaml skill_name should be {SKILL_NAME!r}")
+
+    version = str(manifest.get("version") or "")
+    if not re.fullmatch(r"\d+\.\d+\.\d+", version):
+        errors.append("skill_manifest.yaml version should use semantic versioning")
+
+    errors.extend(validate_backward_compatibility(manifest))
 
     for rel in sorted(set(collect_manifest_paths(manifest))):
         if not (ROOT / rel).exists():

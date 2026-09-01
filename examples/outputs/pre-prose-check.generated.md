@@ -5,7 +5,7 @@ Decision: **BLOCKED**
 
 ## Evidence Status
 
-Checked CSV files: 2
+Checked CSV files: 6
 Errors: 0
 
 No evidence status errors found.

@@ -12,6 +12,7 @@ This project exists to make academic writing assistance more grounded, modular, 
 - Improve support for undergraduate thesis and graduation project requirements.
 - Add examples that show evidence-first academic workflows.
 - Improve README clarity and installation instructions.
+- Add or improve capability-provider mappings, input/output contracts, and output acceptance tests.
 
 ## Non-negotiable contribution rules
 
@@ -27,7 +28,9 @@ Run:
 
 ```bash
 python scripts/validate_skill.py
-python -m py_compile scripts/*.py
+python scripts/validate_capability_registry.py
+python scripts/validate_readme_quality.py
+python -m compileall -q scripts
 ```
 
 If you change a module, explain:
@@ -36,6 +39,7 @@ If you change a module, explain:
 - which stage it improves;
 - which templates or schemas it uses;
 - how it preserves no-fabrication and claim-to-evidence rules.
+- whether it changes a provider interface, internal fallback, or backward-compatible mode.
 
 ## Good pull request titles
 

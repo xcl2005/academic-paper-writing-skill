@@ -22,3 +22,32 @@ artifact_status:
   - partial
   - missing
   - unknown
+decision_status:
+  - candidate
+  - needs_evidence
+  - shortlisted
+  - selected
+  - deferred
+  - rejected
+screening_status:
+  - identified
+  - duplicate
+  - include
+  - exclude
+  - awaiting_full_text
+  - unresolved
+data_status:
+  - planned
+  - available
+  - restricted
+  - missing
+  - derived
+  - archived
+  - unknown
+analysis_status:
+  - planned
+  - exploratory
+  - confirmatory
+  - completed
+  - blocked
+  - unknown

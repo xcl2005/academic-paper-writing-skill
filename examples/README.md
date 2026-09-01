@@ -37,9 +37,14 @@ python scripts/demo_academic_workflow.py --mode research_paper --out demo_worksp
 
 Then fill:
 
-- `literature_matrix.csv`
-- `novelty_verification.csv`
-- `experiment_matrix.csv`
+- `matrices/research_idea_portfolio.csv`
+- `evidence/search_protocol.md`
+- `matrices/screening_log.csv`
+- `matrices/literature_matrix.csv`
+- `matrices/novelty_verification.csv`
+- `matrices/statistical_analysis_plan.md`
+- `matrices/data_provenance.csv`
+- `matrices/experiment_matrix.csv`
 - `claim_ledger.csv`
 - `integrity_checklist.md`
 
@@ -57,10 +62,13 @@ python scripts/demo_academic_workflow.py --mode undergraduate_thesis --out demo_
 
 Then fill:
 
-- `requirement_discovery_log.md`
+- `evidence/requirement_discovery_log.md`
 - `assumption_register.md`
-- `scope_ladder.md`
-- `graduation_evidence_map.csv`
+- `evidence/scope_ladder.md`
+- `evidence/graduation_evidence_map.csv`
+- `matrices/statistical_analysis_plan.md`
+- `matrices/data_provenance.csv`
+- `reports/presentation_brief.md`
 
 ## Example Codex prompts
 
@@ -74,6 +82,10 @@ $academic-paper-writing-skill check whether my claimed novelty is supported by v
 
 ```text
 $academic-paper-writing-skill create a rebuttal matrix from these reviewer comments.
+```
+
+```text
+$academic-paper-writing-skill resolve the best installed providers for search, statistics, figures, and paper-to-PPT, then preserve each capability handoff and run output acceptance.
 ```
 
 ## Suggested GitHub topics

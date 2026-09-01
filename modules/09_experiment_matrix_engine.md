@@ -17,6 +17,8 @@ Every experiment must map to:
 - expected evidence;
 - failure interpretation.
 
+Before filling the matrix, define the unit of analysis, estimand or evaluation target, data split or sampling plan, and confirmatory versus exploratory status in `templates/statistical_analysis_plan.md` when applicable.
+
 ## Required Experiment Types
 
 For research papers, consider:
@@ -48,3 +50,15 @@ For undergraduate thesis, consider:
 - Include strong recent baselines for research-paper mode.
 - Report variance or confidence intervals when appropriate.
 - Avoid cherry-picking and excessive decimal precision.
+
+## Design and Analysis Standard
+
+- Match randomization, blocking, controls, blinding, repeated measures, clustering, and hierarchy to the scientific design.
+- Justify sample size, repetitions, or seeds with power, precision, minimum detectable effect, stability, or transparent feasibility limits.
+- Fit preprocessing and model selection only on permitted training or development data; audit leakage across samples, subjects, time, sites, and labels.
+- Define primary outcomes and baselines before running confirmatory comparisons.
+- Record all exclusions, failed runs, stopping rules, deviations, and post-hoc analyses.
+- Report effect sizes and uncertainty, not only significance or a single best score.
+- Preserve negative and null results when they change the interpretation or scope.
+
+Route detailed statistical planning and raw-data analysis to `modules/19_study_design_statistics_and_data.md` or a resolved provider.

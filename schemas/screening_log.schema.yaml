@@ -1,0 +1,7 @@
+type: object
+required: [record_id, title, screening_status, verification_status]
+properties:
+  record_id: {type: string}
+  title: {type: string}
+  screening_status: {enum: [identified, duplicate, include, exclude, awaiting_full_text, unresolved]}
+  verification_status: {enum: [verified, needs_recheck, missing_source, user_provided, unknown]}

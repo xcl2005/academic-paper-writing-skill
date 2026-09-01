@@ -14,6 +14,21 @@ COMMON = [
     "claim_ledger.csv",
     "integrity_checklist.md",
     "assumption_register.md",
+    "terminology_ledger.csv",
+]
+COMMON_MATRICES = [
+    "research_idea_portfolio.csv",
+    "screening_log.csv",
+    "statistical_analysis_plan.md",
+    "data_provenance.csv",
+]
+COMMON_EVIDENCE = [
+    "search_protocol.md",
+    "paper_reading_note.md",
+]
+COMMON_REPORTS = [
+    "presentation_brief.md",
+    "submission_package_checklist.md",
 ]
 RESEARCH = [
     "literature_matrix.csv",
@@ -55,6 +70,9 @@ def main() -> int:
         (out / sub).mkdir(exist_ok=True)
 
     copy_files(COMMON, out)
+    copy_files(COMMON_MATRICES, out / "matrices")
+    copy_files(COMMON_EVIDENCE, out / "evidence")
+    copy_files(COMMON_REPORTS, out / "reports")
     if args.type == "research_paper":
         copy_files(RESEARCH, out / "matrices")
     elif args.type == "undergraduate_thesis":

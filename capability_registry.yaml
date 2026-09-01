@@ -1,0 +1,202 @@
+registry_version: 1
+selection_policy:
+  strategy: best_available_provider
+  install_unknown_providers: false
+  preserve_user_choice: true
+  load_selected_skill_completely: true
+  core_invariants_override_provider: true
+  validate_provider_output: true
+  fallback_when_unavailable_or_failed: true
+
+capabilities:
+  research_orchestration:
+    purpose: Coordinate a multi-stage research project, stage gates, artifacts, and handoffs.
+    triggers: [full research workflow, research project, end-to-end paper, project coordination]
+    internal_fallback: modules/01_agent_orchestrator.md
+    providers:
+      - skill: academic-research-suite
+        priority: 10
+        tags: [full-project, multi-stage, codex]
+        selection_when: A substantial project needs its full planner, stage, and runtime conventions.
+    input_contract: [project type, stage, objective, available evidence, constraints, requested deliverable]
+    output_contract: [project state, stage decision, artifact plan, gates, unresolved decisions]
+    acceptance: [no hidden stage completion, evidence boundary preserved, human gates visible]
+
+  research_ideation:
+    purpose: Generate and prioritize research directions with transparent assumptions and adversarial review.
+    triggers: [topic selection, brainstorming, research question, hypothesis, proposal scoping]
+    internal_fallback: modules/18_research_ideation_and_question_design.md
+    providers:
+      - skill: scientific-brainstorming
+        priority: 10
+        tags: [general, evidence-aware, adversarial]
+        selection_when: Early-stage ideation benefits from independent generation, structured evaluation, and decision logs.
+    input_contract: [decision context, field, evidence anchors, resources, constraints, ethics or dual-use boundary]
+    output_contract: [candidate portfolio, assumptions, falsifiable predictions, minimum studies, adversarial review, decision log]
+    acceptance: [ideas labeled as proposals, nearest-work check visible, selection rationale visible]
+
+  scholarly_search:
+    purpose: Search, verify, deduplicate, and manage scholarly records across suitable sources.
+    triggers: [find papers, academic search, DOI lookup, citation verification, BibTeX, RIS, literature monitoring]
+    internal_fallback: modules/20_scholarly_search_screening_and_references.md
+    providers:
+      - skill: nature-academic-search
+        priority: 10
+        tags: [multi-source, citation-audit, reference-management]
+        selection_when: Coordinated multi-source search, citation auditing, identifier conversion, or reference-file management is needed.
+      - skill: paper-lookup
+        priority: 20
+        tags: [multi-source, identifiers, open-access]
+        selection_when: Reproducible API-based lookup across scholarly indexes is needed.
+    input_contract: [question or identifier, search mode, sources, limits, date boundary, desired export]
+    output_contract: [query log, normalized records, provenance, failures, deduplication, coverage limits]
+    acceptance: [identifiers verified, partial retrieval disclosed, no invented metadata]
+
+  literature_review:
+    purpose: Screen, assess, synthesize, and report a body of literature.
+    triggers: [literature review, related work, scoping review, systematic review, meta-analysis]
+    internal_fallback: modules/06_literature_engine.md
+    providers:
+      - skill: literature-review
+        priority: 10
+        tags: [systematic, prisma, synthesis]
+        selection_when: A systematic or comprehensive review needs reproducible search, screening, quality assessment, and formatted synthesis.
+    input_contract: [review question, search records, eligibility criteria, review type, reporting standard]
+    output_contract: [screening record, study matrix, quality assessment, thematic or quantitative synthesis, limitations]
+    acceptance: [review type accurately labeled, included studies traceable, synthesis distinguishes evidence from inference]
+
+  study_design:
+    purpose: Convert a research question into an identifiable, feasible, and ethically bounded design.
+    triggers: [experimental design, observational study, sampling, randomization, controls, preregistration]
+    internal_fallback: modules/19_study_design_statistics_and_data.md
+    providers:
+      - skill: experimental-design
+        priority: 10
+        tags: [randomization, blocking, factorial, observational]
+        selection_when: Detailed design selection, randomization, blocking, controls, or design-of-experiments guidance is needed.
+    input_contract: [question, population, unit, intervention or exposure, outcomes, resources, constraints]
+    output_contract: [design, estimand, sampling, controls, bias risks, sample-size rationale, analysis handoff]
+    acceptance: [unit and estimand defined, bias controls explicit, feasibility and ethics unresolved items visible]
+
+  statistical_analysis:
+    purpose: Plan, execute, audit, and report statistical analyses with diagnostics and uncertainty.
+    triggers: [statistics, hypothesis test, regression, power, effect size, confidence interval, Bayesian analysis]
+    internal_fallback: modules/19_study_design_statistics_and_data.md
+    providers:
+      - skill: statistical-analysis
+        priority: 10
+        tags: [general, frequentist, bayesian, reporting]
+        selection_when: Test or model selection, diagnostics, effect sizes, uncertainty, or reporting needs detailed statistical guidance.
+      - skill: statistical-power
+        priority: 15
+        tags: [sample-size, power, mde, simulation]
+        selection_when: The primary task is prospective sample-size, power, precision, or minimum detectable effect planning.
+    input_contract: [design, estimand, data dictionary or dataset, analysis status, primary and secondary outcomes]
+    output_contract: [analysis plan or runnable code, diagnostics, effect estimates, uncertainty, deviations, reproducibility record]
+    acceptance: [confirmatory and exploratory separated, multiplicity handled, assumptions and missingness addressed, no p-value-only conclusion]
+
+  scientific_visualization:
+    purpose: Create or audit publication-grade figures, tables, and scientific diagrams.
+    triggers: [scientific figure, manuscript plot, multi-panel figure, publication table, schematic]
+    internal_fallback: modules/10_figure_table_engine.md
+    providers:
+      - skill: nature-figure
+        priority: 8
+        tags: [nature, high-impact, python, r, submission]
+        selection_when: A Nature-family or high-impact submission needs journal-aware figure production and export QA.
+      - skill: scientific-visualization
+        priority: 10
+        tags: [general, publication, accessibility, multi-panel]
+        selection_when: A general publication-quality statistical figure needs detailed visual, accessibility, and export standards.
+    input_contract: [claim, data and analysis source, target venue, final size, backend, export requirements]
+    output_contract: [editable source, final exports, caption, source-data trace, QA report]
+    acceptance: [rendered at final size, labels and units readable, uncertainty honest, palette accessible, source trace complete]
+
+  manuscript_drafting:
+    purpose: Draft or rebuild evidence-grounded manuscript sections and submission text.
+    triggers: [write paper, abstract, introduction, methods, results, discussion, initial submission]
+    internal_fallback: modules/12_writing_style_adapter.md
+    providers:
+      - skill: nature-writing
+        priority: 8
+        tags: [nature, high-impact, initial-submission, latex]
+        requires_skills: [nature-shared]
+        selection_when: Nature-style or high-impact initial-submission drafting and package details are requested.
+      - skill: scientific-writing
+        priority: 10
+        tags: [general, imrad, reporting-guidelines, integrity]
+        selection_when: General scientific manuscript structure, reporting guidelines, or evidence-traceable drafting is needed.
+    input_contract: [verified source basis, claim ledger, results, figures, target, article type, language]
+    output_contract: [draft sections, source pointers, author checks, terminology consistency, submission components]
+    acceptance: [numbers and citations traceable, reporting guidance selected, unsupported claims blocked or qualified]
+
+  language_polishing:
+    purpose: Polish, translate, shorten, or restructure existing academic prose while preserving facts.
+    triggers: [polish, academic English, translate, rewrite, shorten, improve clarity]
+    internal_fallback: modules/12_writing_style_adapter.md
+    providers:
+      - skill: nature-polishing
+        priority: 10
+        tags: [english, chinese-to-english, nature, fact-preserving]
+        requires_skills: [nature-shared]
+        selection_when: Sentence- or section-level academic English polishing must preserve technical and factual invariants.
+    input_contract: [source text, target language, target venue or audience, protected facts and terminology]
+    output_contract: [revised text, material-change summary, unresolved author checks]
+    acceptance: [numbers citations equations and claim strength preserved, terminology consistent, no new facts]
+
+  peer_review:
+    purpose: Produce an evidence-bounded pre-submission manuscript assessment.
+    triggers: [review my paper, simulated peer review, manuscript critique, pre-submission audit]
+    internal_fallback: modules/13_simulated_review_rebuttal.md
+    providers:
+      - skill: nature-reviewer
+        priority: 8
+        tags: [nature, multi-reviewer, traceable, blocking-concerns]
+        selection_when: A Nature-style or multi-reviewer pre-submission assessment is requested.
+      - skill: peer-review
+        priority: 10
+        tags: [general, reporting-guidelines, methods, ethics]
+        selection_when: A general evidence-grounded review across methods, statistics, reproducibility, ethics, figures, and citations is needed.
+    input_contract: [manuscript packet, source boundary, target, review scope, confidentiality boundary]
+    output_contract: [summary, stable concern IDs, evidence pointers, severity, actionable revision paths, assessment limits]
+    acceptance: [no invented reviewer identity, concern severity evidence-based, assessment separated from author response]
+
+  reviewer_response:
+    purpose: Build point-by-point responses, revision plans, and post-decision correspondence.
+    triggers: [respond to reviewers, rebuttal, revision letter, cover letter after review]
+    internal_fallback: modules/13_simulated_review_rebuttal.md
+    providers:
+      - skill: nature-response
+        priority: 10
+        tags: [response-letter, revision, evidence-mapping, nature]
+        selection_when: Detailed point-by-point response, revision package, or difficult reviewer-comment handling is needed.
+    input_contract: [decision letter, reviewer comments, manuscript version, evidence, feasible changes, deadline]
+    output_contract: [comment taxonomy, action mapping, response text, exact manuscript changes, unresolved actions, package consistency audit]
+    acceptance: [every comment answered, promises feasible, changes locatable, contradictions removed, tone professional]
+
+  data_and_code_availability:
+    purpose: Prepare data/code availability, repository, identifier, access, and FAIR metadata records.
+    triggers: [data availability, code availability, repository, accession, FAIR, source data]
+    internal_fallback: modules/21_research_delivery_and_presentation.md
+    providers:
+      - skill: nature-data
+        priority: 10
+        tags: [nature, data-availability, fair, repository]
+        selection_when: Journal-ready data availability, repository choice, dataset citation, or FAIR metadata detail is needed.
+    input_contract: [dataset and code inventory, ownership, restrictions, target venue, repository state]
+    output_contract: [asset-to-access mapping, availability statements, repository plan, citations, unresolved identifiers, FAIR audit]
+    acceptance: [no invented DOI or accession, restrictions justified, manuscript and provenance records consistent]
+
+  paper_to_presentation:
+    purpose: Convert a paper or research project into an evidence-led presentation artifact.
+    triggers: [paper to PPT, journal club, group meeting, research presentation, thesis defense]
+    internal_fallback: modules/21_research_delivery_and_presentation.md
+    providers:
+      - skill: nature-paper2ppt
+        priority: 10
+        tags: [pptx, chinese, paper-type-routing, rendered-qa]
+        requires_skills: [nature-shared]
+        selection_when: A paper should become a complete Chinese or research-style PPTX with figure handling, notes, and corrective QA.
+    input_contract: [paper and version, paper type, audience, purpose, language, time, required format]
+    output_contract: [argument spine, slide plan, real artifact when requested, source pointers, speaker notes, rendered QA report]
+    acceptance: [figures complete and readable, terminology stable, citations present, no overflow, artifact opens and renders]

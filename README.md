@@ -1,144 +1,90 @@
 <div align="center">
 
-<p>
-  <img src="./assets/hero.png" alt="Academic Paper Writing Skill" width="900">
-</p>
-
 # Academic Paper Writing Skill
 
-**Evidence-first academic AI workflow that reduces hallucinated citations, fake evidence, unsupported claims, and integrity drift before prose generation.**<br>
-**证据优先的学术写作 skill：写论文、综述、rebuttal 和毕设前先核验证据，降低虚构引用、虚构结果和无证据 claim 风险。**
+**接口式、证据优先的科研工作流：从选题、检索、统计和绘图，到写作、审稿、投稿与论文汇报。**
 
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub stars"></a>
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/network/members"><img src="https://img.shields.io/github/forks/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub forks"></a>
-<a href="https://github.com/xcl2005/academic-paper-writing-skill/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT license"></a>
-<a href="https://github.com/xcl2005/academic-paper-writing-skill/releases"><img src="https://img.shields.io/github/v/release/xcl2005/academic-paper-writing-skill?style=flat-square" alt="Latest release"></a>
 <a href="https://github.com/xcl2005/academic-paper-writing-skill/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/xcl2005/academic-paper-writing-skill/ci.yml?branch=main&style=flat-square" alt="CI status"></a>
-<img src="https://img.shields.io/badge/Agent%20Skills-Codex%20%7C%20Claude-111827?style=flat-square" alt="Agent Skills for Codex and Claude">
-<img src="https://img.shields.io/badge/Integrity-No%20Fake%20Papers-0F766E?style=flat-square" alt="No fake papers">
-<img src="https://img.shields.io/badge/Formats-MD%20%7C%20YAML%20%7C%20CSV-7C3AED?style=flat-square" alt="Markdown YAML CSV">
+<a href="https://github.com/xcl2005/academic-paper-writing-skill/releases"><img src="https://img.shields.io/github/v/release/xcl2005/academic-paper-writing-skill?style=flat-square" alt="Latest release"></a>
+<a href="https://github.com/xcl2005/academic-paper-writing-skill/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT license"></a>
+<img src="https://img.shields.io/badge/Agent%20Skills-Codex%20%7C%20Claude-111827?style=flat-square" alt="Codex and Claude Code">
+<img src="https://img.shields.io/badge/workflow-evidence--first-0F766E?style=flat-square" alt="Evidence first">
+<img src="https://img.shields.io/badge/providers-pluggable-7C3AED?style=flat-square" alt="Pluggable providers">
 
 简体中文 · [English](README_EN.md)
 
-[快速开始](#-快速开始) · [Demo](#-demo-evidence-first-workflow) · [产物](#-what-you-get) · [为什么需要](#-为什么需要) · [工作流](#-工作流) · [完整性规则](#-完整性规则)
+[快速开始](#-快速开始) · [能力接口](#-能力接口) · [工作标准](#-工作标准) · [模块路由](#-模块路由) · [质量检查](#-质量检查)
 
 </div>
 
-## 🔥 最新定位
+## 🔥 这是什么
 
-这个仓库不是一段“学术写作提示词”，也不是帮你把论文说得更漂亮的包装器。它是一套可安装的 Agent Skill：把论文、文献综述、研究写作、实验规划、rebuttal 和毕业设计拆成可验证的模块，让 agent 在写作前先处理来源、证据、claim、实验和完整性风险。
+这不是一段“帮我写论文”的长 prompt，也不是把十几个外部 skill 写死的调用清单。
 
-它面向的是 evidence-first academic AI assistance：先建立可审查的证据包，再写正文、rebuttal 或答辩材料。本科论文 / 毕业设计也可以使用这套证据优先流程，作为兼容场景保留。
+它由三层组成：
 
-适用于 Codex、Claude Code，以及遵循 Agent Skills 目录结构的其他 agent。Claude Code 可以用同一个 `SKILL.md`，但安装路径和直接调用方式不同，见下方 [Codex / Claude Code](#-codex--claude-code)。
-
-## ⭐ Star this if you...
-
-- need academic AI help but do not want fake citations, fake SOTA, or unsupported claims;
-- want literature matrices, claim ledgers, experiment matrices, and integrity checks before prose;
-- support thesis / paper workflows where unknown requirements stay unknown until verified.
-
-## 🚫 Not for
-
-- ghostwriting papers without evidence review;
-- inventing citations, SOTA, experiments, school rules, or advisor requirements;
-- replacing human decisions on authorship, ethics, submission, or school compliance.
-
-## ✨ 为什么需要
-
-学术写作最容易出问题的地方不是措辞，而是证据链断裂：论文没核验、SOTA 被夸大、实验结果被提前写成已完成、学校模板或导师要求被凭空补全。
-
-**Academic Paper Writing Skill** 的原则是先建立可审查的中间产物，再进入最终 prose。它默认使用 primary sources、claim-to-evidence mapping 和完整性检查，降低虚构引用、虚构结果、过度承诺和毕业要求误判的风险。
-
-## 🎬 Demo: Evidence-first workflow
-
-Input:
-
-```text
-使用 $academic-paper-writing-skill 帮我把一个 RAG-based academic assistant 题目整理成毕业论文开题范围和证据包，不要编造论文或学校要求。
-```
-
-Clone 后可以先跑一个离线 demo workspace：
-
-```bash
-python scripts/demo_academic_workflow.py --mode undergraduate_thesis --out demo_workspace
-```
-
-The skill first creates:
-
-1. `evidence/requirement_discovery_log.md`
-2. `evidence/scope_ladder.md`
-3. `evidence/graduation_evidence_map.csv`
-4. `claim_ledger.csv`
-5. `integrity_checklist.md`
-
-Only then does it draft proposal prose, related work, or rebuttal text. A fuller walkthrough is in [`examples/undergraduate-thesis-proposal-demo/README.md`](examples/undergraduate-thesis-proposal-demo/README.md).
-
-See filled output samples:
-
-- [`examples/outputs/rag-evaluation-literature-matrix.sample.csv`](examples/outputs/rag-evaluation-literature-matrix.sample.csv)
-- [`examples/outputs/rag-evaluation-claim-ledger.sample.csv`](examples/outputs/rag-evaluation-claim-ledger.sample.csv)
-- [`examples/outputs/rag-evaluation-novelty-check.sample.md`](examples/outputs/rag-evaluation-novelty-check.sample.md)
-- [`examples/outputs/undergraduate-thesis-evidence-map.sample.csv`](examples/outputs/undergraduate-thesis-evidence-map.sample.csv)
-- [`examples/outputs/sample-source-note.md`](examples/outputs/sample-source-note.md)
-- [`examples/generated-demo-workspace/README_NEXT_STEPS.md`](examples/generated-demo-workspace/README_NEXT_STEPS.md)
-- [`examples/outputs/evidence-status-summary.generated.md`](examples/outputs/evidence-status-summary.generated.md)
-- [`examples/outputs/pre-prose-check.generated.md`](examples/outputs/pre-prose-check.generated.md)
-- [`examples/outputs/claim-blocker-report.generated.md`](examples/outputs/claim-blocker-report.generated.md)
-
-Machine-check the integrity boundary:
-
-```bash
-python scripts/summarize_evidence_status.py demo_workspace
-python scripts/pre_prose_check.py demo_workspace --expect-block
-python scripts/validate_demo_workspace.py demo_workspace --mode undergraduate_thesis
-```
-
-## 📦 What you get
-
-| Output | Why it exists |
+| 层 | 作用 |
 |---|---|
-| Literature Matrix | 先记录已核验论文、方法、数据集、claim、局限和相关性 |
-| Novelty Verification | 在强写创新点前，对照 prior work 和 SOTA |
-| Experiment Matrix | 区分 metric、baseline、dataset、ablation 和结果状态 |
-| Claim Ledger | 让每个强主张都能回到来源、实验、实现证据或官方要求 |
-| Integrity Checklist | 在写作前发现虚构引用、虚构结果、过度承诺和未知学校要求 |
-| Final Draft / Rebuttal | 只在证据链可审查后生成最终 prose |
+| 内部基线 | 保留并增强原有的文献矩阵、novelty/SOTA、ROI、实验矩阵、claim ledger、完整性、本科论文、review/rebuttal 等成熟功能 |
+| 能力接口 | 把选题、检索、统计、绘图、写作、润色、审稿、数据声明、论文转 PPT 定义成稳定的输入/输出契约 |
+| 可插拔 provider | 检测到适合的专业 skill 时读取并采用其完整细节；缺失、失败或不适配时回退内部模块 |
 
-## 🧾 为什么不直接让 AI 写论文？
+因此，项目既能使用成熟专业 skill 的极致细节，又不会永久依赖某一个仓库、名称、工具或期刊风格。
 
-| 直接让 AI 写 | 使用这个 skill |
+## ✨ v2.0
+
+- 新增 13 个科研能力接口和 18 个可选 provider 映射。
+- 新增选题与问题设计、系统检索与筛选、研究设计/统计/数据、投稿与论文汇报四个内部模块。
+- 新增 `capability_registry.yaml`，按任务、目标、语言、格式和已安装状态选择 provider。
+- 新增 `resolve_capability.py`，可查看当前会使用专业 skill 还是内部 fallback。
+- 新增阶段门禁，检查产物是否真正填写并达到 handoff 条件。
+- 保留原有三种项目类型、七个 mode、全部核心模块和 pre-prose 校验。
+
+## 🧩 能力接口
+
+外部 provider 都是可选项，不会静默安装。选中后，agent 必须完整读取对应 `SKILL.md` 及当前流程要求的资源，使用它的详细领域、排版、导出和 QA 标准。
+
+| 能力 | 优先 provider | 内部 fallback | 关键验收 |
+|---|---|---|---|
+| 🧭 全流程统筹 | `academic-research-suite` | agent orchestrator + mode router | 阶段、证据边界、产物和人类决策可追踪 |
+| 💡 选题与科研头脑风暴 | `scientific-brainstorming` | research ideation module | 独立生成、假设、反方压力测试、决策记录 |
+| 🔎 学术检索与引用管理 | `nature-academic-search`, `paper-lookup` | scholarly search module | 查询式、来源、时间、失败、去重和覆盖边界可复现 |
+| 📚 文献综述与证据综合 | `literature-review` | literature engine | 筛选、质量评估、研究矩阵、分歧和局限可追踪 |
+| 🧪 研究设计与统计 | `experimental-design`, `statistical-analysis`, `statistical-power` | study design/statistics module | estimand、效应量、区间、假设、多重比较和诊断完整 |
+| 📊 科研绘图与表格 | `nature-figure`, `scientific-visualization` | figure/table engine | 最终尺寸、色盲可读、数据追溯、可编辑源文件和导出 QA |
+| ✍️ 论文写作 | `nature-writing`, `scientific-writing` | writing adapter | 数字、引用、术语、claim 强度和 reporting guideline 一致 |
+| 📝 润色与翻译 | `nature-polishing` | writing adapter | 不改变事实、公式、引用、结果方向和技术术语 |
+| 🧐 模拟审稿 | `nature-reviewer`, `peer-review` | review/rebuttal engine | concern ID、证据指针、严重度、blocking 判断和修改路径 |
+| 💬 审稿回复 | `nature-response` | review/rebuttal engine | 每条意见映射到证据、准确修改位置或明确未决动作 |
+| 🗃️ 数据与代码可用性 | `nature-data` | delivery + integrity modules | repository、许可、版本、access route 和 FAIR 信息不虚构 |
+| 🎤 论文转汇报 | `nature-paper2ppt` | delivery/presentation module | 真实 PPTX、论证主线、图表裁切、speaker notes 和渲染检查 |
+
+完整定义见 [`capability_registry.yaml`](capability_registry.yaml)，设计说明见 [`docs/CAPABILITY_COVERAGE.md`](docs/CAPABILITY_COVERAGE.md)。
+
+## 🧱 工作标准
+
+能力覆盖只是起点，v2.0 同时吸收成熟科研 skill 的执行标准：
+
+| 环节 | 最低工作标准 |
 |---|---|
-| 可能编造引用 | 先建立 verified source records |
-| 可能夸大 novelty / SOTA | 强结论前先做 novelty / SOTA checks |
-| 可能把计划写成已完成结果 | 区分 planned、preliminary、achieved results |
-| 太早进入正文 | 先做 matrices 和 ledgers，再写 prose |
-| 难以审查 | 输出可检查的中间产物 |
-
-## 👨‍💻 适用场景
-
-| 场景 | 适合做什么 |
-|---|---|
-| 研究论文 | 选题、related work、novelty/SOTA 检查、实验矩阵、投稿前完整性审计 |
-| 文献综述 | 构建 literature matrix，按方法、数据集、claim、局限和相关性整理来源 |
-| Rebuttal / revision | 模拟审稿、回应矩阵、证据补强、措辞降调 |
-| 本科论文 / 毕业设计 | 支持开题、中期、终稿、答辩和证据材料整理 |
-| 混合项目 | 先满足毕业要求，再判断是否值得升级为 paper / portfolio |
-
-## 🎯 能力亮点
-
-| | 能力 |
-|---|---|
-| 🔍 | 文献矩阵：追踪已验证论文、方法、数据集、claim 和相关性 |
-| 🧪 | 实验矩阵：记录 metric、baseline、dataset、ablation 和结果状态 |
-| 🧭 | Novelty / SOTA 检查：强结论前先核验 prior work |
-| 🔗 | Claim ledger：每个强主张必须映射到证据 |
-| 🛡️ | 完整性检查：区分计划、初步结果、已完成结果，不伪造学校要求 |
-| 🎓 | 兼容本科论文 / 毕业设计：开题、中期、终稿、答辩和证据材料整理 |
+| 选题 | idea 先独立生成再收敛；每项包含可证伪预测、最小研究、最近工作、风险与选择理由 |
+| 检索 | 保存数据库、精确查询式、字段/时间限制、运行日期、结果数、失败、去重和排除理由 |
+| 综述 | 明确 rapid / narrative / scoping / systematic；不能用不完整检索冒充系统综述 |
+| 研究设计 | 定义观察、分配和分析单位，estimand、sampling、controls、confounding、missingness 与 bias |
+| 统计 | 预先区分 confirmatory / exploratory；报告 effect size、uncertainty、diagnostics、multiplicity 与 deviation |
+| 绘图 | 绘图前定义 claim、数据、统计标注、最终物理尺寸和输出格式；最终必须 render 后目视检查 |
+| 写作 | drafting 与 polishing 分离；数字、引用、公式、术语和 claim strength 是受保护事实 |
+| 审稿 | reviewer assessment 与 author response 分离；问题必须有稳定 ID、原文指针和证据指针 |
+| 投稿 | manuscript、图表、supplement、references、声明、data/code 和 portal preview 互相一致 |
+| 汇报 | 以论文论证为主线，不照搬章节顺序；figure 是证据，speaker notes 和 package QA 是交付的一部分 |
 
 ## 📦 快速开始
 
-### Codex 用户
+Codex / Claude Code 共用同一个 `SKILL.md`、能力 registry 和内部模块；安装路径与显式调用语法不同。
+
+### Codex
 
 ```bash
 mkdir -p ~/.agents/skills
@@ -152,142 +98,134 @@ New-Item -ItemType Directory -Force -Path "$HOME\.agents\skills"
 git clone https://github.com/xcl2005/academic-paper-writing-skill.git "$HOME\.agents\skills\academic-paper-writing-skill"
 ```
 
-调用方式：
+调用示例：
 
 ```text
-使用 $academic-paper-writing-skill 帮我做这篇论文的文献矩阵和 novelty 检查。
+使用 $academic-paper-writing-skill 帮我从选题开始做一篇可投稿论文。
+先给出候选方向和检索计划，不要编造文献；统计、绘图和最终排版优先调用最合适的已安装专业 skill。
 ```
 
-### Claude Code 用户
+### Claude Code
 
 ```bash
 mkdir -p ~/.claude/skills
 git clone https://github.com/xcl2005/academic-paper-writing-skill.git ~/.claude/skills/academic-paper-writing-skill
 ```
 
-项目级安装：
-
-```bash
-mkdir -p .claude/skills
-git clone https://github.com/xcl2005/academic-paper-writing-skill.git .claude/skills/academic-paper-writing-skill
-```
-
 直接调用：
 
 ```text
-/academic-paper-writing-skill 帮我把毕业设计题目拆成开题报告范围和证据清单
+/academic-paper-writing-skill 帮我审计这篇论文，并为每条主要问题建立证据和修改记录
 ```
 
-### 初始化工作区
+### 检查 provider
 
 ```bash
-# 创建研究论文工作区
-python scripts/init_project.py --out paper_workspace --type research_paper
-
-# 创建本科论文 / 毕业设计工作区
-python scripts/init_project.py --out thesis_workspace --type undergraduate_thesis
-
-# 验证 skill 结构
-python scripts/validate_skill.py
-
-# 生成可检查的 demo workspace
-python scripts/demo_academic_workflow.py --mode undergraduate_thesis --out demo_workspace
+python scripts/resolve_capability.py --list
+python scripts/resolve_capability.py research_ideation --json
+python scripts/resolve_capability.py scientific_visualization --tag nature --json
 ```
 
-## 🔁 Codex / Claude Code
-
-| 项目 | Codex | Claude Code |
-|---|---|---|
-| 共享结构 | `skill-name/SKILL.md`，可带 `modules/`、`templates/`、`scripts/` | 同左 |
-| 用户级路径 | `~/.agents/skills/academic-paper-writing-skill` | `~/.claude/skills/academic-paper-writing-skill` |
-| 项目级路径 | `.agents/skills/academic-paper-writing-skill` | `.claude/skills/academic-paper-writing-skill` |
-| 自动触发 | 依赖 `description` 与当前任务匹配 | 依赖 `description` 与当前任务匹配 |
-| 显式调用 | `$academic-paper-writing-skill ...` | `/academic-paper-writing-skill ...` |
-| README 入口 | 默认中文 `README.md`，英文见 `README_EN.md` | 同一仓库链接即可 |
-
-Claude.ai / Claude API 通常需要把 skill 作为自定义 skill 上传或通过 Skills API 注册；GitHub clone 路径主要面向本地 Claude Code 与 Codex。
+返回 `use_installed_provider` 时会显示具体 `SKILL.md`；返回 `use_internal_fallback` 时继续使用本仓库对应模块。
 
 ## 🧭 工作流
 
-```text
-Topic / Draft
-  -> Source Verification
-  -> Literature Matrix
-  -> Claim Ledger
-  -> Experiment / Evidence Matrix
-  -> Integrity Check
-  -> Final Draft / Rebuttal
-```
+没有固定的长流程。每次调用都按当前任务组合最少能力：
 
-| 模式 | 适用 | 主要输出 |
-|---|---|---|
-| `research_paper` | 论文、related work、实验、rebuttal、revision | literature matrix、novelty check、experiment matrix、claim ledger |
-| `undergraduate_thesis` | 开题、中期、毕业论文、毕业设计、答辩 | requirement log、scope ladder、graduation evidence map |
-| `hybrid_capstone_research` | 先毕业设计，后续升级论文 / 作品集 | thesis MVP、evidence package、research upgrade plan |
-
-### 控制流程
-
-| 步骤 | 决策点 | 行为 |
-|---:|---|---|
-| 1 | 选择项目类型 | 设置 `research_paper`、`undergraduate_thesis` 或 `hybrid_capstone_research` |
-| 2 | 判断阶段 | 识别选题、文献、novelty、实验、写作、revision、rebuttal、答辩或打包 |
-| 3 | 最小模块加载 | 只读当前任务需要的模块，加上 core invariants |
-| 4 | 生成结构化产物 | 需要证据追踪时先做矩阵和 ledger，再写正文 |
-| 5 | 验证强主张 | 将 claim 映射到论文、实验、实现证据、测试、证明或官方要求 |
-| 6 | 完整性检查 | 区分计划、初步结果、已完成结果；不编造学校 / 导师 / rubric 要求 |
-| 7 | 起草或修订 | 在证据记录可检查后，再写最终 prose 或 rebuttal |
-| 8 | 人类复核 | 投稿、署名、伦理、学校合规和答辩结论必须由人确认 |
+| 步骤 | 决策与行为 |
+|---:|---|
+| 1 | 设置 project type、stage、目标、证据边界和缺失输入 |
+| 2 | 从 registry 识别一个或多个 capability |
+| 3 | 保留用户指定 provider；否则按目标标签、已安装状态和优先级解析 |
+| 4 | 读取内部 baseline；若选中 provider，再完整读取其 `SKILL.md` 和相关资源 |
+| 5 | 用 `capability_handoff.yaml` 传递输入、受保护事实、权限和输出契约 |
+| 6 | 生成矩阵、ledger、计划、代码或真实交付文件 |
+| 7 | 执行 capability acceptance、stage gate、pre-prose 或 artifact QA |
+| 8 | 通过后进入下一能力；失败则保留问题、回退或请求必要证据 |
 
 ### 模块路由
 
-| 任务 | 通常加载的模块 |
+| 任务 | 主要内部模块 |
 |---|---|
-| 文献综述 | `00_core_invariants`, `01_agent_orchestrator`, `06_literature_engine`, `11_integrity_reproducibility_guard` |
-| Novelty / SOTA 检查 | `07_novelty_verification_and_scoring`, `11_integrity_reproducibility_guard` |
-| 实验规划 | `09_experiment_matrix_engine`, `11_integrity_reproducibility_guard` |
-| 图表规划 | `10_figure_table_engine` |
-| Rebuttal / 模拟审稿 | `13_simulated_review_rebuttal`, `11_integrity_reproducibility_guard` |
-| 本科论文需求发现 | `04_requirement_discovery`, `14_undergraduate_thesis_engine`, `11_integrity_reproducibility_guard` |
+| 项目统筹 | `01_agent_orchestrator`, `02_mode_router`, `22_capability_provider_router` |
+| 选题 | `18_research_ideation_and_question_design`, `07_novelty_verification_and_scoring`, `08_research_roi_scope` |
+| 检索与综述 | `20_scholarly_search_screening_and_references`, `06_literature_engine` |
+| 研究设计与分析 | `19_study_design_statistics_and_data`, `09_experiment_matrix_engine` |
+| 图表 | `10_figure_table_engine` |
+| 写作与润色 | `12_writing_style_adapter`, `11_integrity_reproducibility_guard` |
+| 审稿与回复 | `13_simulated_review_rebuttal`, `11_integrity_reproducibility_guard` |
+| 投稿与汇报 | `21_research_delivery_and_presentation` |
+| 本科论文 | `04_requirement_discovery`, `14_undergraduate_thesis_engine` |
+| 外部 skill 治理 | `03_external_skill_gateway`, `17_external_skill_acceptance_tests` |
 
 ## 🗂️ 产物
 
 | 文件 | 用途 |
 |---|---|
-| `templates/literature_matrix.csv` | 已验证文献、方法、数据集、claim、相关性 |
-| `templates/novelty_verification.csv` | 将你的 idea 与已有工作对照 |
-| `templates/experiment_matrix.csv` | metric、baseline、dataset、ablation、结果状态 |
-| `templates/claim_ledger.csv` | 让每个强主张可审查 |
-| `templates/integrity_checklist.md` | 写作前发现虚构、夸大或无证据表达 |
-| `templates/graduation_evidence_map.csv` | 毕设 / 本科论文证据包 |
+| `research_idea_portfolio.csv` | 候选选题、证据、预测、最小研究、风险与决策 |
+| `search_protocol.md` / `screening_log.csv` | 可复现检索、筛选、去重和排除记录 |
+| `paper_reading_note.md` / `literature_matrix.csv` | 论文精读、来源边界与跨研究综合 |
+| `novelty_verification.csv` / `roi_matrix.csv` | prior-work 对照、novelty 风险和投入产出判断 |
+| `statistical_analysis_plan.md` | estimand、样本量、模型、假设、区间、多重比较与敏感性分析 |
+| `data_provenance.csv` / `experiment_matrix.csv` | 数据来路、权限、变换、实验状态与复现信息 |
+| `figure_brief.md` / `terminology_ledger.csv` | 科学图表契约和全文术语一致性 |
+| `claim_ledger.csv` / `integrity_checklist.md` | 强主张证据映射与 pre-prose 完整性门禁 |
+| `simulated_review.md` / `rebuttal_matrix.md` | 可追溯审稿和逐条回复 |
+| `submission_package_checklist.md` / `presentation_brief.md` | 投稿包、论文汇报、组会或答辩交付 |
 
-Markdown、YAML 和 CSV 是规范工作格式；Word、PDF、Excel、slides 是导出格式。
+## ✅ 阶段门禁
+
+```bash
+python scripts/init_project.py --out paper_workspace --type research_paper
+python scripts/check_stage_gate.py paper_workspace --gate ideation
+python scripts/check_stage_gate.py paper_workspace --gate literature
+python scripts/check_stage_gate.py paper_workspace --gate analysis
+python scripts/check_stage_gate.py paper_workspace --gate drafting
+python scripts/check_stage_gate.py paper_workspace --gate submission
+python scripts/check_stage_gate.py paper_workspace --gate presentation
+```
+
+门禁失败会列出缺失文件、空表或仍为 `draft` 的产物。失败代表下一步工作，不代表可以补造数据或来源。
+
+## 🔁 原功能兼容
+
+| 保留项 | 状态 |
+|---|---|
+| `research_paper`, `undergraduate_thesis`, `hybrid_capstone_research` | 保留 |
+| Literature Matrix、Novelty Verification、Experiment Matrix、Figure Design | 保留并增强 |
+| Claim Ledger、Integrity Audit、Pre-Prose Gate | 保留 |
+| Simulated Review / Rebuttal | 保留并增强角色分离和证据指针 |
+| Requirement Discovery、Scope Ladder、Graduation Evidence Map | 保留 |
+| External Skill Gateway / Acceptance Tests | 保留并升级为 provider interface |
+| 旧 demo、fixtures、generated reports、CI drift checks | 保留 |
+
+`scripts/validate_skill.py` 会把这些旧 project types、mode、模块和脚本作为 backward-compatibility 契约检查。
 
 ## 🛡️ 完整性规则
 
 ### Integrity-first by default
 
-This skill blocks or qualifies final prose when:
+- 不编造论文、作者、DOI、venue、SOTA、leaderboard、数据、结果或学校要求。
+- 区分 verified fact、paper claim、agent inference、assumption 和 user-provided information。
+- 强 claim 必须映射到来源、数据、分析、实验、实现、测试、证明或官方要求。
+- planned、exploratory、preliminary、achieved 和 externally reported results 必须分开。
+- 不把 rapid scan 说成 systematic review，不把显著性说成实际重要性或因果。
+- 未经授权，不把未发表稿件、peer-review 材料、个人或受限数据交给外部 provider。
+- 投稿、署名、伦理、consent、受限数据、学校合规和最终判断必须由人确认。
 
-- citations are unverified;
-- novelty claims are not checked against prior work;
-- planned experiments are written as completed results;
-- local thesis requirements are missing but treated as confirmed;
-- strong claims are not mapped to sources, experiments, implementation evidence, or official requirements.
-
-- 不编造论文。
-- 不编造 SOTA。
-- 不编造结果。
-- 不编造学校、导师、rubric、模板、答辩或工作量要求。
-- 优先使用 primary sources。
-- 强 claim 必须映射到证据。
-- 投稿、署名、伦理、学校合规必须由人复核。
+当证据状态为 `needs_recheck`、`missing_source`、`unknown`、`unsupported` 或 `blocked` 时，最终 prose 必须降调、保留占位或阻断。
 
 ## 🛠️ 质量检查
 
 ```bash
 python scripts/validate_skill.py
+python scripts/validate_capability_registry.py
 python scripts/validate_readme_quality.py
+python scripts/validate_evidence_status.py templates examples/outputs examples/fixtures examples/generated-demo-workspace
+python scripts/pre_prose_check.py examples/generated-demo-workspace --expect-block
 ```
+
+CI 还会验证初始化工作区、provider fallback、旧 demo、中文强 claim、生成报告漂移和阶段门禁。
 
 ## 📁 仓库结构
 
@@ -295,21 +233,22 @@ python scripts/validate_readme_quality.py
 .
 |-- SKILL.md
 |-- skill_manifest.yaml
-|-- .github/
-|-- docs/
+|-- capability_registry.yaml
+|-- agents/
 |-- modules/
 |-- templates/
 |-- schemas/
 |-- scripts/
 |-- examples/
+|-- docs/
 |-- README.md
 `-- README_EN.md
 ```
 
 ## 🔎 搜索关键词
 
-Academic writing AI, research paper workflow, literature review matrix, thesis writing assistant, graduation project, rebuttal assistant, claim evidence mapping, research integrity, Codex skills, Claude Code skills, Agent Skills.
+Academic writing AI, research workflow, scientific brainstorming, academic search, literature review, systematic review, statistical analysis, scientific visualization, Nature writing, paper polishing, peer review, reviewer response, data availability, paper to PPT, thesis writing assistant, claim evidence mapping, research integrity, Codex skills, Claude Code skills, Agent Skills.
 
 ## 📄 许可证
 
-MIT
+MIT。外部 provider 不随本仓库安装，其代码、内容和许可证仍归各自项目；本仓库只维护接口、路由、内部 fallback 和验收标准。

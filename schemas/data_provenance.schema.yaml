@@ -1,0 +1,7 @@
+type: object
+required: [asset_id, asset_type, data_status, verification_status]
+properties:
+  asset_id: {type: string}
+  asset_type: {type: string}
+  data_status: {enum: [planned, available, restricted, missing, derived, archived, unknown]}
+  verification_status: {enum: [verified, needs_recheck, missing_source, user_provided, unknown]}

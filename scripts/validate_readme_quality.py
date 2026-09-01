@@ -13,7 +13,7 @@ LEGACY_ZH = ROOT / "README_ZH.md"
 FORBIDDEN_PATTERNS = {
     "Mermaid diagrams": re.compile(r"```mermaid", re.IGNORECASE),
     "large README images": re.compile(r"<img[^>]+width=[\"']?100%[\"']?", re.IGNORECASE),
-    "stale hero assets": re.compile(r"assets/(hero|workflow)\.svg|hero\.svg|workflow\.svg", re.IGNORECASE),
+    "stale hero assets": re.compile(r"assets/(hero|workflow)\.(?:svg|png)|hero\.(?:svg|png)|workflow\.(?:svg|png)", re.IGNORECASE),
     "diagram residue": re.compile(r"workflow\s+diagram|流程图", re.IGNORECASE),
 }
 
@@ -25,6 +25,8 @@ REQUIRED_ZH = [
     "完整性规则",
     "模块路由",
     "搜索关键词",
+    "capability_registry.yaml",
+    "provider",
 ]
 
 REQUIRED_EN = [
@@ -35,6 +37,8 @@ REQUIRED_EN = [
     "Integrity Rules",
     "Module Routing",
     "Search Keywords",
+    "capability_registry.yaml",
+    "provider",
 ]
 
 
@@ -78,11 +82,9 @@ def main() -> None:
         if "README.md" not in legacy_text or "README_EN.md" not in legacy_text:
             fail("README_ZH.md should point readers to README.md and README_EN.md")
 
-    assets_dir = ROOT / "assets"
-    hero = assets_dir / "hero.png"
-    readme_text = README_ZH.read_text(encoding="utf-8")
-    if "./assets/hero.png" in readme_text and not hero.exists():
-        fail("README.md references ./assets/hero.png but assets/hero.png is missing")
+    hero = ROOT / "assets" / "hero.png"
+    if hero.exists():
+        fail("the retired large hero image should not be present")
 
     print("README quality check passed.")
 

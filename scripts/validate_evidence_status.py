@@ -22,6 +22,9 @@ REQUIRED_STATUS_COLUMNS = [
     ("experiment-matrix", "result_status"),
     ("graduation_evidence_map", "current_status"),
     ("evidence-map", "current_status"),
+    ("research_idea_portfolio", "decision_status"),
+    ("screening_log", "screening_status"),
+    ("data_provenance", "data_status"),
 ]
 
 
@@ -43,6 +46,14 @@ def status_columns(fieldnames: list[str]) -> list[tuple[str, str]]:
             mapping.append((name, "result_status"))
         elif name == "current_status":
             mapping.append((name, "artifact_status"))
+        elif name == "decision_status":
+            mapping.append((name, "decision_status"))
+        elif name == "screening_status":
+            mapping.append((name, "screening_status"))
+        elif name == "data_status":
+            mapping.append((name, "data_status"))
+        elif name == "analysis_status":
+            mapping.append((name, "analysis_status"))
     return mapping
 
 

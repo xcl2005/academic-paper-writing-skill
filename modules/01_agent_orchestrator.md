@@ -6,10 +6,11 @@ Coordinate the workflow without loading every module.
 
 ## Standard Reasoning Flow
 
-1. Classify the user's request:
+1. Classify the user's project context:
    - research paper;
    - undergraduate thesis;
    - hybrid capstone research;
+   - standalone research task;
    - formatting-only;
    - literature-only;
    - experiment-only;
@@ -23,10 +24,19 @@ Coordinate the workflow without loading every module.
    - deadline;
    - available compute/resources.
 3. Identify unknowns and risks.
-4. Load the minimal modules required.
-5. Create/update `project_state.yaml`.
-6. Produce structured artifacts before final prose when the task is complex.
-7. Run integrity checks before final output.
+4. Detect the capability or capabilities in `capability_registry.yaml`.
+5. Load the minimal internal modules required and resolve any suitable installed provider through `modules/22_capability_provider_router.md`.
+6. Create/update `project_state.yaml` and record active capabilities, provider decisions, assumptions, and artifact status.
+7. Produce structured artifacts before final prose when the task is complex.
+8. Run the relevant stage gate, integrity checks, and artifact-specific QA before final output.
+
+## Orchestration Rules
+
+- A project stage does not force every module to load.
+- A provider is bound to a capability for one task or handoff, not permanently to the whole project.
+- Keep provider handoffs explicit with `templates/capability_handoff.yaml` when more than one capability is involved.
+- Preserve existing evidence artifacts and statuses across handoffs.
+- Do not mark a stage complete because prose or an export exists; check the underlying evidence and acceptance contract.
 
 ## Do Not Over-Ask
 
@@ -40,3 +50,5 @@ Prefer:
 2. matrices and checklists;
 3. concise explanations;
 4. full prose only when the structure is ready.
+
+For provider-backed work, also report the selected provider, fallback status, unresolved checks, and output acceptance result.

@@ -7,10 +7,19 @@
     "claim_ledger.csv",
     "drafts/related_work_blocked.md",
     "evidence/graduation_evidence_map.csv",
+    "evidence/paper_reading_note.md",
     "evidence/requirement_discovery_log.md",
     "evidence/scope_ladder.md",
+    "evidence/search_protocol.md",
     "integrity_checklist.md",
-    "project_state.yaml"
+    "matrices/data_provenance.csv",
+    "matrices/research_idea_portfolio.csv",
+    "matrices/screening_log.csv",
+    "matrices/statistical_analysis_plan.md",
+    "project_state.yaml",
+    "reports/presentation_brief.md",
+    "reports/submission_package_checklist.md",
+    "terminology_ledger.csv"
   ],
   "prose_policy": "blocked until sources, claim ledger, and integrity checks are reviewable"
 }

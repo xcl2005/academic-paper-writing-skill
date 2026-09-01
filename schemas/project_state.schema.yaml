@@ -6,8 +6,16 @@ properties:
   topic: {type: string}
   target: {type: string}
   deadline: {type: string}
+  source_boundary: {type: string}
+  active_capabilities: {type: array, items: {type: string}}
+  provider_bindings: {type: object}
+  current_gate: {type: string}
+  gate_status: {enum: [not_started, in_progress, blocked, ready, complete]}
   known_inputs: {type: array, items: {type: string}}
   missing_inputs: {type: array, items: {type: string}}
   assumptions: {type: array, items: {type: string}}
   artifacts: {type: array, items: {type: string}}
   risks: {type: array, items: {type: string}}
+  decisions: {type: array, items: {type: string}}
+  human_confirmations: {type: array, items: {type: string}}
+  next_actions: {type: array, items: {type: string}}

@@ -16,6 +16,12 @@ Use this order:
 4. **Record decisions**: selected, rejected, and deferred candidates must be recorded.
 5. **Keep low coupling**: external skills produce artifacts in the project workspace; they do not silently mutate this skill's core files.
 
+For known research capabilities, consult `capability_registry.yaml` before generic discovery. Reuse an installed, compatible provider when available. Search or installation is needed only when the registry has no usable provider and the expected quality gain justifies it.
+
+## Provider Interface
+
+`modules/22_capability_provider_router.md` owns runtime provider selection. The external skill gateway owns discovery, installation, update, and lifecycle decisions. A provider selected for use must be read completely and receive a normalized `templates/capability_handoff.yaml` contract.
+
 ## When to Invoke External Installer
 
 Invoke before tasks involving:
@@ -88,6 +94,8 @@ A candidate external skill/tool can be used only if it passes:
 6. **Output fit**: produces Markdown/YAML/CSV/artifacts that can be inspected.
 7. **Coupling fit**: does not require modifying this skill's core modules.
 8. **Override fit**: accepts that this skill's invariants override its own weaker rules.
+9. **Interface fit**: can receive the capability input contract and produce an output that can be checked against the registry acceptance criteria.
+10. **Companion fit**: any shared packages, reference folders, runtimes, or backend dependencies required by the provider are present.
 
 If a candidate fails, record it as rejected and explain why.
 
@@ -141,3 +149,4 @@ After using external skills, output or save:
 - what was installed or reused;
 - what limitations remain;
 - which internal modules are still responsible for final judgment.
+- which capability was bound to which provider and whether output acceptance passed.

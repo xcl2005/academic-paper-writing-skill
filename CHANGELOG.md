@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.0 - 2026-09-02
+
+- Added a capability-provider interface so specialist skills can supply full domain, formatting, export, and QA detail without becoming fixed dependencies.
+- Added `capability_registry.yaml` with 13 capabilities and optional mappings for scientific brainstorming, academic search, literature review, research orchestration, study design, statistics, figures, writing, polishing, peer review, reviewer response, data availability, and paper-to-presentation work.
+- Added deterministic provider resolution and registry validation scripts.
+- Added internal fallback modules for research ideation, scholarly search/screening/reference management, study design/statistics/data analysis, and research delivery/presentation.
+- Strengthened existing literature, experiment, figure, integrity, writing, review, rebuttal, and external-skill modules with mature execution and QA standards.
+- Added idea, search, screening, analysis-plan, data-provenance, terminology, paper-reading, submission, presentation, and capability-handoff templates.
+- Added stage gates for ideation, literature, analysis, drafting, submission, and presentation.
+- Added backward-compatibility validation for the original project types, modes, modules, scripts, demos, evidence statuses, and pre-prose behavior.
+- Rebuilt the bilingual README around compact capability tables and removed the retired large hero image.
+
 ## 0.1.0 - 2026-07-03
 
 - Added CI workflow and validation badge.

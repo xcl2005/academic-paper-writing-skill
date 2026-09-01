@@ -1,0 +1,13 @@
+capability: ""
+provider: ""
+selection_reason: ""
+source_boundary: ""
+inputs: []
+protected_facts: []
+constraints: []
+permissions: []
+output_contract: []
+output_paths: []
+acceptance_checks: []
+status: planned
+unresolved: []

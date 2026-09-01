@@ -1,19 +1,19 @@
 # Roadmap
 
-## v0.2.0
+## Delivered in v2.0.0
 
-- One-command research workflow demo.
-- CI validation badge.
-- Schema validation for CSV/YAML templates.
-- Strong-claim detector sample.
-- Source-status labels: `verified`, `needs_recheck`, `user_provided`, `unknown`.
+- Capability-provider registry with internal fallbacks.
+- Research ideation, reproducible search, statistics/data, submission, and presentation interfaces.
+- Stage gates and backward-compatibility validation.
+- One-command research workspaces, demos, evidence-status validation, and strong-claim blocking.
+- Bilingual documentation and CI coverage.
 
-## v0.3.0
+## Next
 
-- Rebuttal matrix demo.
-- Undergraduate thesis requirement-discovery demo.
-- Export examples for Markdown and Word-ready outlines.
-- More integrity-audit examples.
+- Realistic provider-backed integration fixtures that do not require network access.
+- More domain-specific study-design and statistical acceptance profiles.
+- Rendered figure and presentation QA adapters for installed artifact providers.
+- Additional systematic-review, data-availability, and revision-package examples.
 
 ## Not Planned
 
@@ -21,4 +21,3 @@
 - Claiming SOTA without source verification.
 - Guaranteeing publication, acceptance, grades, or supervisor approval.
 - Replacing human ethical, authorship, or school compliance review.
-
