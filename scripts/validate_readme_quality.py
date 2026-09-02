@@ -30,7 +30,7 @@ REQUIRED_ZH = [
     "README_EN.md",
     "快速开始",
     "一次典型任务",
-    "核心能力",
+    "核心功能",
     "证据优先",
     "专业 Skill 一览",
     "K-Dense-AI/scientific-agent-skills",
@@ -47,7 +47,7 @@ REQUIRED_EN = [
     "README.md",
     "Quick Start",
     "A typical task",
-    "Core capabilities",
+    "Core features",
     "Evidence first",
     "Specialist skill directory",
     "K-Dense-AI/scientific-agent-skills",
@@ -101,8 +101,9 @@ def check_file(path: Path, required_terms: list[str]) -> None:
     if not 3 <= badge_count <= 6:
         fail(f"{path.name} should keep a compact header badge row, found {badge_count}")
 
-    if not re.search(r"assets/hero\.png[^>]+width=[\"']860[\"']", text, re.IGNORECASE):
-        fail(f"{path.name} should render assets/hero.png at the reviewed 860px width")
+    width_match = re.search(r"assets/hero\.png[^>]+width=[\"'](\d+)[\"']", text, re.IGNORECASE)
+    if not width_match or not 0 < int(width_match.group(1)) <= 900:
+        fail(f"{path.name} should give the project artwork a bounded display width")
 
     if len(re.findall(r"^# ", text, re.MULTILINE)) != 1:
         fail(f"{path.name} should have one project title")

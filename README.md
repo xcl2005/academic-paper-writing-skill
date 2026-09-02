@@ -3,7 +3,7 @@
 <div align="center">
 
 <p>
-  <img src="./assets/hero.png" alt="Academic Paper Writing Skill research workflow" width="860">
+  <img src="./assets/hero.png" alt="Academic Paper Writing Skill research workflow" width="640">
 </p>
 
 # Academic Paper Writing Skill
@@ -21,11 +21,70 @@
 
 **简体中文** · [English](README_EN.md)
 
-[快速开始](#-快速开始) · [核心能力](#-核心能力) · [Skill 一览](#-专业-skill-一览) · [工作方式](#-一次典型任务) · [证据优先](#-证据优先) · [示例](#-模板与示例)
+[核心功能](#-核心功能) · [Skill 一览](#-专业-skill-一览) · [快速开始](#-快速开始) · [工作方式](#-一次典型任务) · [证据优先](#-证据优先) · [示例](#-模板与示例)
 
 <sub>如果它让你的研究工作更可靠，欢迎点一个 Star，让更多研究者找到它。</sub>
 
 </div>
+
+## ⚡ 核心功能
+
+| 能力 | 解决什么问题 |
+|---|---|
+| 📚 **文献矩阵与 Claim Ledger** | 核验引用、精读与综合文献，把每个强主张连到可检查的证据 |
+| 💡 **Novelty / SOTA 与 ROI** | 对照已有工作验证创新点，评估投入产出、研究风险与最小可行范围 |
+| 🧪 **实验矩阵与统计分析** | 组织数据集、基线、指标和消融，区分计划与结果，检查分析假设和不确定性 |
+| ✍️ **写作、图表与完整性检查** | 保护事实、术语和结论强度，检查图表与导出效果，无证据结论在正文前阻断 |
+| 🧐 **模拟审稿与 Rebuttal** | 给问题分级，逐条映射证据、准确修改位置和回复状态 |
+| 🎓 **本科论文、毕设与研究交付** | 核验学校要求，管理范围与证据包，准备开题、中期、终稿、投稿、答辩和汇报 |
+
+从一个研究方向、几篇论文、数据、草稿或审稿意见都可以开始。下面的专业 Skill 为这些核心流程提供按需选择的领域细节。
+
+## 🌐 专业 Skill 一览
+
+**18 个可选 Skill，来自 3 个开源仓库。** 每个 Skill 对应明确的科研板块，点击名称可查看它的完整说明；名称下方是来源仓库。
+
+> Star 是**来源仓库**的动态热度，不是单个 Skill 的独立 Star，也不代表已全部安装。这里展示的是已配置的可选 provider 接口。
+
+### 选题、检索与综述
+
+| 板块 | Skill / 来源 | 标签 | 仓库 Stars |
+|---|---|---|---|
+| 统筹 | [academic-research-suite](https://github.com/Imbad0202/academic-research-skills-codex/blob/main/skills/academic-research-suite/SKILL.md)<br><sub>[Academic Research Suite](https://github.com/Imbad0202/academic-research-skills-codex)</sub> | 阶段管理 · 项目编排 | [![GitHub stars](https://img.shields.io/github/stars/Imbad0202/academic-research-skills-codex?style=flat-square&label=stars)](https://github.com/Imbad0202/academic-research-skills-codex/stargazers) |
+| 选题 | [scientific-brainstorming](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/scientific-brainstorming/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | 假设 · 反方评估 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+| 检索 | [nature-academic-search](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-academic-search/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 多源检索 · 引用核验 | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+| 检索 | [paper-lookup](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/paper-lookup/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | DOI · 开放获取 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+| 综述 | [literature-review](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/literature-review/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | 系统综述 · PRISMA | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+
+### 研究设计、统计与绘图
+
+| 板块 | Skill / 来源 | 标签 | 仓库 Stars |
+|---|---|---|---|
+| 设计 | [experimental-design](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/experimental-design/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | 对照 · 随机化 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+| 统计 | [statistical-analysis](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/statistical-analysis/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | 模型 · 诊断 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+| 统计 | [statistical-power](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/statistical-power/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | 样本量 · 检验效能 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+| 绘图 | [nature-figure](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-figure/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 期刊图表 · 导出 | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+| 绘图 | [scientific-visualization](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/scientific-visualization/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | 多面板 · 可读性 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+
+### 论文写作与润色
+
+| 板块 | Skill / 来源 | 标签 | 仓库 Stars |
+|---|---|---|---|
+| 写作 | [nature-writing](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-writing/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 投稿初稿 · LaTeX | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+| 写作 | [scientific-writing](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/scientific-writing/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | IMRaD · 报告规范 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+| 润色 | [nature-polishing](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-polishing/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 学术英语 · 保真 | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+
+### 审稿、回复与交付
+
+| 板块 | Skill / 来源 | 标签 | 仓库 Stars |
+|---|---|---|---|
+| 审稿 | [nature-reviewer](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-reviewer/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 多视角 · 阻断项 | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+| 审稿 | [peer-review](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/peer-review/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | 方法 · 复现性 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+| 回复 | [nature-response](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-response/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 逐条回复 · 修改定位 | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+| 数据 | [nature-data](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-data/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 可用性声明 · FAIR | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+| 汇报 | [nature-paper2ppt](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-paper2ppt/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 论文转 PPT · 渲染 | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+
+完整输入、输出和验收契约见 [`capability_registry.yaml`](capability_registry.yaml)。第三方 Skill 保持独立安装、独立版本和独立许可证，本仓库不复制或捆绑其代码。
 
 ## 为什么值得使用
 
@@ -119,18 +178,6 @@ Skill 不会立刻拼出一篇看似完整的论文。它会按当前证据和�
 
 流程会随任务变化。只做综述时不会强行进入实验；只有审稿意见时也不会重新跑完整选题流程。
 
-## 🧩 核心能力
-
-| | 能力 | 质量标准 |
-|---|---|---|
-| 💡 | **选题与科研头脑风暴** | 独立生成候选问题，记录假设、可证伪预测、最小研究、风险与选择理由 |
-| 🔎 | **学术检索与引用管理** | 保存数据库、查询式、日期、限制、失败和去重记录；优先核验 primary sources |
-| 📚 | **论文精读与文献综述** | 区分 narrative、rapid、scoping 与 systematic review，保留筛选和质量评估边界 |
-| 🧪 | **研究设计与统计分析** | 明确观察、分配和分析单位，报告效应量、区间、假设、诊断、多重比较与缺失数据 |
-| 📊 | **科研绘图与数据追溯** | 先定义 figure claim 和最终尺寸，再检查色盲可读性、源数据、可编辑文件与导出效果 |
-| ✍️ | **论文写作、润色与翻译** | 保护数字、公式、引用、术语和 claim 强度，按目标期刊或报告规范组织文本 |
-| 🧐 | **模拟审稿与逐条回复** | 分离 reviewer assessment 与 author response，为每个问题建立稳定 ID 和证据指针 |
-| 📦 | **投稿、数据声明与论文汇报** | 核对 manuscript、supplement、references、data/code、portal preview，并支持 paper-to-PPT |
 
 ## 🛡️ 证据优先
 
@@ -145,51 +192,6 @@ Skill 不会立刻拼出一篇看似完整的论文。它会按当前证据和�
 > [!IMPORTANT]
 > 本项目不会替你编造论文、DOI、SOTA、实验结果、数据仓库、学校要求或审稿回复中的完成事项。它也不替代研究者、导师、统计师、伦理委员会或期刊编辑的专业判断。
 
-## 🌐 专业 Skill 一览
-
-**18 个可选 Skill，来自 3 个开源仓库。** 每个 Skill 对应明确的科研板块，点击名称可查看它的完整说明；名称下方是来源仓库。
-
-> Star 是**来源仓库**的动态热度，不是单个 Skill 的独立 Star，也不代表已全部安装。这里展示的是已配置的可选 provider 接口。
-
-### 选题、检索与综述
-
-| 板块 | Skill / 来源 | 标签 | 仓库 Stars |
-|---|---|---|---|
-| 统筹 | [academic-research-suite](https://github.com/Imbad0202/academic-research-skills-codex/blob/main/skills/academic-research-suite/SKILL.md)<br><sub>[Academic Research Suite](https://github.com/Imbad0202/academic-research-skills-codex)</sub> | 阶段管理 · 项目编排 | [![GitHub stars](https://img.shields.io/github/stars/Imbad0202/academic-research-skills-codex?style=flat-square&label=stars)](https://github.com/Imbad0202/academic-research-skills-codex/stargazers) |
-| 选题 | [scientific-brainstorming](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/scientific-brainstorming/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | 假设 · 反方评估 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
-| 检索 | [nature-academic-search](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-academic-search/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 多源检索 · 引用核验 | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
-| 检索 | [paper-lookup](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/paper-lookup/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | DOI · 开放获取 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
-| 综述 | [literature-review](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/literature-review/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | 系统综述 · PRISMA | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
-
-### 研究设计、统计与绘图
-
-| 板块 | Skill / 来源 | 标签 | 仓库 Stars |
-|---|---|---|---|
-| 设计 | [experimental-design](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/experimental-design/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | 对照 · 随机化 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
-| 统计 | [statistical-analysis](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/statistical-analysis/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | 模型 · 诊断 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
-| 统计 | [statistical-power](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/statistical-power/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | 样本量 · 检验效能 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
-| 绘图 | [nature-figure](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-figure/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 期刊图表 · 导出 | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
-| 绘图 | [scientific-visualization](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/scientific-visualization/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | 多面板 · 可读性 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
-
-### 论文写作与润色
-
-| 板块 | Skill / 来源 | 标签 | 仓库 Stars |
-|---|---|---|---|
-| 写作 | [nature-writing](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-writing/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 投稿初稿 · LaTeX | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
-| 写作 | [scientific-writing](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/scientific-writing/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | IMRaD · 报告规范 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
-| 润色 | [nature-polishing](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-polishing/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 学术英语 · 保真 | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
-
-### 审稿、回复与交付
-
-| 板块 | Skill / 来源 | 标签 | 仓库 Stars |
-|---|---|---|---|
-| 审稿 | [nature-reviewer](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-reviewer/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 多视角 · 阻断项 | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
-| 审稿 | [peer-review](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/peer-review/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | 方法 · 复现性 | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
-| 回复 | [nature-response](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-response/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 逐条回复 · 修改定位 | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
-| 数据 | [nature-data](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-data/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 可用性声明 · FAIR | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
-| 汇报 | [nature-paper2ppt](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-paper2ppt/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | 论文转 PPT · 渲染 | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
-
-完整输入、输出和验收契约见 [`capability_registry.yaml`](capability_registry.yaml)。第三方 Skill 保持独立安装、独立版本和独立许可证，本仓库不复制或捆绑其代码。
 
 ## 🔌 可插拔的专业能力
 
