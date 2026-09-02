@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import csv
-from datetime import date
+from datetime import date, datetime, timedelta, timezone
 from functools import lru_cache
 from pathlib import Path
 import re
@@ -134,7 +134,9 @@ def review_errors(row: dict, label: str) -> list[str]:
     errors = missing_values(row, ["reviewed_by", "reviewed_at"], label)
     try:
         checked = date.fromisoformat(row.get("reviewed_at", ""))
-        if checked > date.today():
+        # A date-only review may come from any timezone, including UTC+14.
+        latest_calendar_date = (datetime.now(timezone.utc) + timedelta(hours=14)).date()
+        if checked > latest_calendar_date:
             errors.append(f"{label}: review date is in the future")
     except (ValueError, TypeError):
         errors.append(f"{label}: reviewed_at must be an ISO date (YYYY-MM-DD)")

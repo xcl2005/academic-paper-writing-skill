@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import csv
-from datetime import date
+from datetime import date, datetime, timezone
 import json
 from pathlib import Path
 import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import yaml
 import check_stage_gate as stage
@@ -66,6 +67,12 @@ class WorkspaceCase(unittest.TestCase):
 
 
 class ClaimTests(WorkspaceCase):
+    def test_date_only_review_across_timezones(self):
+        with patch.object(wc, "datetime") as clock:
+            clock.now.return_value = datetime(2026, 9, 2, 21, 0, tzinfo=timezone.utc)
+            self.assertFalse(wc.review_errors({"reviewed_by": "test reviewer", "reviewed_at": "2026-09-03"}, "review"))
+            self.assertTrue(wc.review_errors({"reviewed_by": "test reviewer", "reviewed_at": "2026-09-04"}, "review"))
+
     def test_positive_control(self):
         self.assertEqual(self.decision(), "ready_for_human_review")
 

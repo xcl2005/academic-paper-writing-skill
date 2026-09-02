@@ -45,10 +45,11 @@ def candidate_roots(agent: str = "auto") -> list[Path]:
     unique: list[Path] = []
     seen: set[str] = set()
     for root in roots:
-        key = str(root.resolve()) if root.exists() else str(root)
+        resolved = root.resolve()
+        key = os.path.normcase(str(resolved))
         if key not in seen:
             seen.add(key)
-            unique.append(root)
+            unique.append(resolved)
     return unique
 
 

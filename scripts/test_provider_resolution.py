@@ -67,8 +67,8 @@ class ProviderTests(unittest.TestCase):
         with patch.object(Path, "home", return_value=home), patch.object(Path, "cwd", return_value=cwd), patch.dict(os.environ, {}, clear=True):
             roots = resolver.candidate_roots()
             for expected in [cwd / ".claude/skills", home / ".claude/skills", cwd / ".agents/skills", home / ".agents/skills", home / ".codex/skills"]:
-                self.assertIn(expected, roots)
-            self.assertEqual(resolver.candidate_roots("claude")[0], cwd / ".claude/skills")
+                self.assertIn(expected.resolve(), roots)
+            self.assertEqual(resolver.candidate_roots("claude")[0], (cwd / ".claude/skills").resolve())
 
     def test_duplicate_precedence_is_visible(self):
         self.install()
