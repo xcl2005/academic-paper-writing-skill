@@ -21,7 +21,7 @@ Built for Codex, Claude Code, and Agent Skills-compatible agents, from topic ide
 
 [简体中文](README.md) · **English**
 
-[Quick Start](#-quick-start) · [Typical Task](#-a-typical-task) · [Capabilities](#-core-capabilities) · [Evidence First](#-evidence-first) · [Specialist Skills](#-pluggable-specialist-skills) · [Examples](#-templates-and-examples)
+[Quick Start](#-quick-start) · [Capabilities](#-core-capabilities) · [Skill Directory](#-specialist-skill-directory) · [Workflow](#-a-typical-task) · [Evidence First](#-evidence-first) · [Examples](#-templates-and-examples)
 
 <sub>If this workflow makes your research more reliable, consider starring the repository so more researchers can find it.</sub>
 
@@ -148,46 +148,61 @@ The goal is not merely to make prose sound academic. The research record must be
 > [!IMPORTANT]
 > This project does not invent papers, DOIs, SOTA results, experimental outcomes, repository identifiers, institutional requirements, or completed rebuttal actions. It does not replace the judgment of researchers, supervisors, statisticians, ethics boards, or editors.
 
-## 🌐 Integrated specialist-skill ecosystem
+## 🌐 Specialist skill directory
 
-Three research-skill repositories and 18 optional providers map into one workflow. The table highlights representative skills with dynamically updated Star badges; expand the section below for the complete mappings.
+**18 optional skills from 3 open-source repositories.** Each skill maps to a specific research area. Click its name to read the full instructions; the source repository is linked underneath.
 
-| Repository | Representative skills | Tags | Stars | Workflow areas |
-|---|---|---|---:|---|
-| [Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)<br><sub>K-Dense-AI</sub> | `scientific-brainstorming`<br>`literature-review`<br>`statistical-analysis` | `research` `statistics` | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) | Ideation, search, review, design, statistics, figures, writing, peer review |
-| [Nature Skills](https://github.com/Yuan1z0825/nature-skills)<br><sub>Yuan1z0825</sub> | `nature-writing`<br>`nature-figure`<br>`nature-paper2ppt` | `submission` `writing` `PPT` | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) | Search, figures, writing, polishing, review, responses, data, talks |
-| [Academic Research Suite](https://github.com/Imbad0202/academic-research-skills-codex)<br><sub>Imbad0202</sub> | `academic-research-suite` | `planning` `Codex` | [![GitHub stars](https://img.shields.io/github/stars/Imbad0202/academic-research-skills-codex?style=flat-square&label=stars)](https://github.com/Imbad0202/academic-research-skills-codex/stargazers) | Project planning, stage management, handoffs |
+> Stars are dynamic counts for the **source repository**, not independent counts for each skill. These are configured optional provider interfaces, not a claim that all skills are installed.
 
-“Integrated” means capability contracts and provider routing. Third-party code is neither copied nor bundled; every repository retains its own installation, license, and release lifecycle.
+### Plan, search, and synthesize
+
+| Area | Skill / source | Tags | Repository stars |
+|---|---|---|---|
+| Planning | [academic-research-suite](https://github.com/Imbad0202/academic-research-skills-codex/blob/main/skills/academic-research-suite/SKILL.md)<br><sub>[Academic Research Suite](https://github.com/Imbad0202/academic-research-skills-codex)</sub> | stages · orchestration | [![GitHub stars](https://img.shields.io/github/stars/Imbad0202/academic-research-skills-codex?style=flat-square&label=stars)](https://github.com/Imbad0202/academic-research-skills-codex/stargazers) |
+| Ideation | [scientific-brainstorming](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/scientific-brainstorming/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | hypotheses · critique | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+| Search | [nature-academic-search](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-academic-search/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | multi-source · citations | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+| Lookup | [paper-lookup](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/paper-lookup/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | DOI · open access | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+| Review | [literature-review](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/literature-review/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | systematic · PRISMA | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+
+### Design, analyze, and visualize
+
+| Area | Skill / source | Tags | Repository stars |
+|---|---|---|---|
+| Design | [experimental-design](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/experimental-design/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | controls · randomization | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+| Statistics | [statistical-analysis](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/statistical-analysis/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | models · diagnostics | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+| Power | [statistical-power](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/statistical-power/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | sample size · power | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+| Figures | [nature-figure](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-figure/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | journal figures · export | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+| Plots | [scientific-visualization](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/scientific-visualization/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | panels · accessibility | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+
+### Draft and polish
+
+| Area | Skill / source | Tags | Repository stars |
+|---|---|---|---|
+| Drafting | [nature-writing](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-writing/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | submission · LaTeX | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+| Writing | [scientific-writing](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/scientific-writing/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | IMRaD · reporting | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+| Polishing | [nature-polishing](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-polishing/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | academic English · fidelity | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+
+### Review and deliver
+
+| Area | Skill / source | Tags | Repository stars |
+|---|---|---|---|
+| Review | [nature-reviewer](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-reviewer/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | perspectives · blockers | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+| Review | [peer-review](https://github.com/K-Dense-AI/scientific-agent-skills/blob/main/skills/peer-review/SKILL.md)<br><sub>[Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)</sub> | methods · reproducibility | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) |
+| Response | [nature-response](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-response/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | point-by-point · revisions | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+| Data | [nature-data](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-data/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | availability · FAIR | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+| Slides | [nature-paper2ppt](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-paper2ppt/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | paper-to-PPT · render QA | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
+
+See [`capability_registry.yaml`](capability_registry.yaml) for complete input, output, and acceptance contracts. Third-party skills retain their own installation, release lifecycle, and license; this repository does not copy or bundle their code.
 
 ## 🔌 Pluggable specialist skills
 
-You do not need to install every specialist skill to begin: each capability has a built-in workflow. When a suitable specialist Agent Skill is already available, selection happens per **current capability**, without permanently binding the project to one external repository.
+You do not need to install every specialist to begin: each capability has a built-in workflow. Selection is made for the **current task**, without permanently binding the project to one repository or journal style.
 
 1. An explicit user-selected provider wins.
 2. Otherwise, selection considers the task, target format, language, and installed skills.
-3. Specialist output must pass the capability acceptance contract; unavailable, unsuitable, or failed providers fall back to the built-in workflow.
-4. Unknown third-party skills are never installed silently, and unpublished manuscripts or restricted data are not sent to external services without authorization.
-
-<details>
-<summary><b>View capability-to-provider mappings</b></summary>
-
-| Research capability | Optional specialist-skill examples |
-|---|---|
-| Research orchestration | `academic-research-suite` |
-| Ideation | `scientific-brainstorming` |
-| Scholarly search | `nature-academic-search`, `paper-lookup` |
-| Literature review | `literature-review` |
-| Study design and statistics | `experimental-design`, `statistical-analysis`, `statistical-power` |
-| Scientific visualization | `nature-figure`, `scientific-visualization` |
-| Drafting and polishing | `nature-writing`, `scientific-writing`, `nature-polishing` |
-| Peer review and responses | `nature-reviewer`, `peer-review`, `nature-response` |
-| Data and code availability | `nature-data` |
-| Paper to presentation | `nature-paper2ppt` |
-
-See [`capability_registry.yaml`](capability_registry.yaml) for complete input, output, acceptance, and fallback contracts. These third-party skills are not distributed with this repository; their own licenses and usage conditions apply.
-
-</details>
+3. The selected skill's full instructions supply the domain, formatting, export, and QA details.
+4. Output must pass the capability acceptance contract; unavailable, unsuitable, or failed providers fall back to the built-in workflow.
+5. Third-party skills are never installed silently, and unpublished manuscripts or restricted data are not sent to external services without authorization.
 
 ## 🗂️ What you get
 

@@ -6,6 +6,8 @@ import sys
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
+import yaml
+
 
 ROOT = Path(__file__).resolve().parents[1]
 README_ZH = ROOT / "README.md"
@@ -30,7 +32,7 @@ REQUIRED_ZH = [
     "一次典型任务",
     "核心能力",
     "证据优先",
-    "已接入的专业 Skill 生态",
+    "专业 Skill 一览",
     "K-Dense-AI/scientific-agent-skills",
     "Yuan1z0825/nature-skills",
     "Imbad0202/academic-research-skills-codex",
@@ -47,7 +49,7 @@ REQUIRED_EN = [
     "A typical task",
     "Core capabilities",
     "Evidence first",
-    "Integrated specialist-skill ecosystem",
+    "Specialist skill directory",
     "K-Dense-AI/scientific-agent-skills",
     "Yuan1z0825/nature-skills",
     "Imbad0202/academic-research-skills-codex",
@@ -111,6 +113,16 @@ def check_file(path: Path, required_terms: list[str]) -> None:
             fail(f"{path.name} has unbalanced {tag} sections")
 
     check_local_links(path, text)
+    registry = yaml.safe_load((ROOT / "capability_registry.yaml").read_text(encoding="utf-8"))
+    providers = {
+        provider["skill"]
+        for capability in registry["capabilities"].values()
+        for provider in capability["providers"]
+    }
+    linked_skills = set(re.findall(r"\[([a-z0-9-]+)\]\(https://github\.com/[^)]+/SKILL\.md\)", text))
+    missing_providers = sorted(providers - linked_skills)
+    if missing_providers:
+        fail(f"{path.name} omits provider detail links: {', '.join(missing_providers)}")
 
 
 def check_hero() -> None:
@@ -138,7 +150,7 @@ def main() -> None:
         if "README.md" not in legacy_text or "README_EN.md" not in legacy_text:
             fail("README_ZH.md should point readers to README.md and README_EN.md")
 
-    print("README structure, bilingual navigation, local links, and artwork checks passed. Visual QA is separate.")
+    print("README structure, bilingual navigation, provider coverage, local links, and artwork checks passed. Visual QA is separate.")
 
 
 if __name__ == "__main__":

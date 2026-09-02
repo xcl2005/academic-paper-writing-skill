@@ -4,7 +4,7 @@
 
 - Rewrote both public READMEs around user problems, realistic tasks, capabilities, evidence controls, prompt recipes, and deliverables instead of release notes and internal module routing.
 - Restored the original project artwork as a constrained README visual anchor.
-- Added a live-star ecosystem table for the three specialist-skill repositories currently mapped through the capability registry.
+- Added a grouped directory for all 18 optional specialist skills, with direct instruction links, repository sources, tags, workflow areas, and dynamic repository-star badges.
 
 ## 2.0.0 - 2026-09-02
 
