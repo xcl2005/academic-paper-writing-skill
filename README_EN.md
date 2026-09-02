@@ -1,182 +1,272 @@
+[//]: # "Academic Paper Writing Skill is an evidence-first Agent Skill for research ideation, academic search, literature review, statistics, scientific writing, peer review, rebuttals, theses, and paper-to-presentation workflows."
+
 <div align="center">
+
+<p>
+  <img src="./assets/hero.png" alt="Academic Paper Writing Skill research workflow" width="860">
+</p>
 
 # Academic Paper Writing Skill
 
-**An evidence-first, capability-routed research workflow from ideation and search to statistics, writing, review, submission, and presentation.**
+**Turn research from one-shot generation into a traceable, reviewable, deliverable workflow.**<br>
+Built for Codex, Claude Code, and Agent Skills-compatible agents, from topic ideation and scholarly search to statistics, figures, manuscripts, peer review, submission, and paper-to-presentation work.
 
-<a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub stars"></a>
-<a href="https://github.com/xcl2005/academic-paper-writing-skill/network/members"><img src="https://img.shields.io/github/forks/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub forks"></a>
-<a href="https://github.com/xcl2005/academic-paper-writing-skill/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/xcl2005/academic-paper-writing-skill/ci.yml?branch=main&style=flat-square" alt="CI status"></a>
-<a href="https://github.com/xcl2005/academic-paper-writing-skill/releases"><img src="https://img.shields.io/github/v/release/xcl2005/academic-paper-writing-skill?style=flat-square" alt="Latest release"></a>
-<a href="https://github.com/xcl2005/academic-paper-writing-skill/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT license"></a>
-<img src="https://img.shields.io/badge/Agent%20Skills-Codex%20%7C%20Claude-111827?style=flat-square" alt="Codex and Claude Code">
-<img src="https://img.shields.io/badge/workflow-evidence--first-0F766E?style=flat-square" alt="Evidence first">
-<img src="https://img.shields.io/badge/providers-pluggable-7C3AED?style=flat-square" alt="Pluggable providers">
+<p>
+  <a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=flat-square&color=F2B134" alt="GitHub stars"></a>
+  <a href="https://github.com/xcl2005/academic-paper-writing-skill/releases"><img src="https://img.shields.io/github/v/release/xcl2005/academic-paper-writing-skill?style=flat-square&color=167D9A" alt="Latest release"></a>
+  <a href="https://github.com/xcl2005/academic-paper-writing-skill/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/xcl2005/academic-paper-writing-skill/ci.yml?branch=main&style=flat-square" alt="CI status"></a>
+  <a href="https://github.com/xcl2005/academic-paper-writing-skill/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-2F6F5E?style=flat-square" alt="MIT license"></a>
+  <img src="https://img.shields.io/badge/Agent%20Skills-Codex%20%7C%20Claude-24292F?style=flat-square" alt="Codex and Claude Code Agent Skill">
+</p>
 
-[简体中文](README.md) · English
+[简体中文](README.md) · **English**
 
-[Quick Start](#-quick-start) · [Capability Interfaces](#-capability-interfaces) · [Working Standards](#-working-standards) · [Module Routing](#-module-routing) · [Quality Checks](#-quality-checks)
+[Quick Start](#-quick-start) · [Typical Task](#-a-typical-task) · [Capabilities](#-core-capabilities) · [Evidence First](#-evidence-first) · [Specialist Skills](#-pluggable-specialist-skills) · [Examples](#-templates-and-examples)
+
+<sub>If this workflow makes your research more reliable, consider starring the repository so more researchers can find it.</sub>
 
 </div>
 
-## 🔥 What It Is
+## Why use it
 
-This is neither one long “write my paper” prompt nor a fixed sequence of external skills.
+Language models can produce fluent paragraphs in seconds. The hard part is making every conclusion survive scrutiny: Are the papers real? Was the search broad enough? Were the experiments actually run? Does the statistical method match the design? Can each figure be traced to data? Are the manuscript and submission files consistent?
 
-It has three layers:
+**Academic Paper Writing Skill** does not treat “write a paper” as one generation step. It organizes evidence for the current research stage, records unknowns, selects appropriate specialist capabilities, and checks critical artifacts before prose or final delivery.
 
-| Layer | Role |
-|---|---|
-| Internal baseline | Preserves and strengthens the established literature matrix, novelty/SOTA, ROI, experiment matrix, claim ledger, integrity, thesis, review, and rebuttal workflows |
-| Capability interfaces | Give ideation, search, statistics, figures, writing, polishing, review, data availability, and paper-to-PPT stable input/output contracts |
-| Pluggable providers | Load a specialist skill's complete detail when it is installed and suitable; fall back internally when it is unavailable, incomplete, or fails acceptance |
+| What you have | What you can ask it to do | What you receive |
+|---|---|---|
+| A broad research direction | Generate candidate questions, falsifiable predictions, minimum studies, and risk comparisons | Idea portfolio, decision record, search plan |
+| Papers or keywords | Build a search protocol, screening trail, reading notes, and evidence synthesis | Literature matrix, research gaps, citation boundary |
+| Data, an experiment idea, or results | Define estimands, samples, models, diagnostics, and sensitivity analyses | Study design, statistical analysis plan, experiment matrix |
+| A draft, figures, or reviewer comments | Audit claims, revise prose, simulate review, and answer comments | Traceable manuscript, figure brief, rebuttal matrix |
+| A nearly finished paper | Audit the submission package and turn the argument into a talk | Submission checklist, presentation brief, PPT requirements |
 
-The project can use specialist depth without permanently binding every research task to one repository, skill name, toolchain, or journal style.
+## 🚀 Quick Start
 
-## ✨ v2.0
-
-- Adds 13 research capability interfaces and 18 optional provider mappings.
-- Adds internal modules for research ideation, reproducible scholarly search, study design/statistics/data, and submission/presentation delivery.
-- Adds `capability_registry.yaml` to resolve providers by task, target, language, format, and installed state.
-- Adds `resolve_capability.py` to show whether a task uses a specialist provider or internal fallback.
-- Adds stage gates that check whether artifacts are populated and ready for handoff.
-- Preserves all three original project types, seven original modes, core modules, demos, and pre-prose checks.
-
-## 🧩 Capability Interfaces
-
-Providers are optional and are never installed silently. When one is selected, the agent must read its complete `SKILL.md` and required workflow resources, then apply its detailed domain, layout, export, and QA standards.
-
-| Capability | Preferred provider | Internal fallback | Key acceptance |
-|---|---|---|---|
-| 🧭 Research orchestration | `academic-research-suite` | agent orchestrator + mode router | Stages, evidence boundaries, artifacts, and human gates remain traceable |
-| 💡 Ideation and question design | `scientific-brainstorming` | research ideation module | Independent generation, assumptions, adversarial review, and decision log |
-| 🔎 Scholarly search and references | `nature-academic-search`, `paper-lookup` | scholarly search module | Queries, sources, dates, failures, deduplication, and coverage are reproducible |
-| 📚 Literature review and synthesis | `literature-review` | literature engine | Screening, appraisal, study matrix, disagreements, and limitations are traceable |
-| 🧪 Study design and statistics | `experimental-design`, `statistical-analysis`, `statistical-power` | study design/statistics module | Estimand, effects, intervals, assumptions, multiplicity, and diagnostics are explicit |
-| 📊 Scientific figures and tables | `nature-figure`, `scientific-visualization` | figure/table engine | Final-size QA, accessibility, source trace, editable source, and export checks |
-| ✍️ Manuscript drafting | `nature-writing`, `scientific-writing` | writing adapter | Numbers, citations, terminology, claim strength, and reporting guidance agree |
-| 📝 Polishing and translation | `nature-polishing` | writing adapter | Facts, equations, citations, result direction, and technical terms are preserved |
-| 🧐 Simulated peer review | `nature-reviewer`, `peer-review` | review/rebuttal engine | Concern IDs, evidence pointers, severity, blocking status, and revision paths |
-| 💬 Reviewer response | `nature-response` | review/rebuttal engine | Every comment maps to evidence, an exact revision, or an explicit unresolved action |
-| 🗃️ Data and code availability | `nature-data` | delivery + integrity modules | Repository, licence, version, access route, and FAIR fields are not invented |
-| 🎤 Paper to presentation | `nature-paper2ppt` | delivery/presentation module | Real PPTX, argument spine, figure handling, speaker notes, and rendered QA |
-
-See [`capability_registry.yaml`](capability_registry.yaml) for the executable interface definitions and [`docs/CAPABILITY_COVERAGE.md`](docs/CAPABILITY_COVERAGE.md) for the design audit.
-
-## 🧱 Working Standards
-
-Feature names are not enough. v2.0 also adopts the execution standards that make mature research skills useful:
-
-| Stage | Minimum standard |
-|---|---|
-| Ideation | Generate independently before convergence; each idea has a falsifiable prediction, minimum study, nearest work, risks, and decision rationale |
-| Search | Preserve databases, exact queries, field/date limits, run dates, result counts, failures, deduplication, and exclusion reasons |
-| Review | Label rapid, narrative, scoping, or systematic work accurately; incomplete retrieval cannot borrow systematic-review authority |
-| Study design | Define observation, assignment, and analysis units, the estimand, sampling, controls, confounding, missingness, and bias |
-| Statistics | Separate confirmatory and exploratory work; report effect size, uncertainty, diagnostics, multiplicity, and deviations |
-| Figures | Define claim, data, statistical annotation, physical size, and exports before styling; render and inspect the final output |
-| Writing | Keep drafting separate from polishing; numbers, citations, equations, terminology, and claim strength are protected facts |
-| Review/response | Keep reviewer assessment separate from author response; every concern has a stable ID and source/evidence pointer |
-| Submission | Reconcile manuscript, figures, supplement, references, declarations, data/code, and portal or rendered previews |
-| Presentation | Use the scientific argument as the spine; figures are evidence, and speaker notes plus package QA are part of delivery |
-
-## 📦 Quick Start
-
-Codex / Claude Code share the same `SKILL.md`, capability registry, and internal modules; their install paths and explicit invocation syntax differ.
-
-### Codex
+### 1. Install for Codex
 
 ```bash
 mkdir -p ~/.agents/skills
-git clone https://github.com/xcl2005/academic-paper-writing-skill.git ~/.agents/skills/academic-paper-writing-skill
+git clone https://github.com/xcl2005/academic-paper-writing-skill.git \
+  ~/.agents/skills/academic-paper-writing-skill
 ```
 
-Windows PowerShell:
+<details>
+<summary><b>Windows PowerShell</b></summary>
 
 ```powershell
 New-Item -ItemType Directory -Force -Path "$HOME\.agents\skills"
-git clone https://github.com/xcl2005/academic-paper-writing-skill.git "$HOME\.agents\skills\academic-paper-writing-skill"
+git clone https://github.com/xcl2005/academic-paper-writing-skill.git `
+  "$HOME\.agents\skills\academic-paper-writing-skill"
 ```
 
-Example:
+</details>
+
+### 2. Describe a real research task
 
 ```text
-Use $academic-paper-writing-skill to take this project from topic selection to a submission-ready paper.
-Start with candidate directions and a search protocol. Do not invent sources, and use the best installed specialist for statistics, figures, and final formatting.
+Use $academic-paper-writing-skill to turn “evaluating RAG systems for scholarly QA” into an executable study.
+Start with candidate questions and a search plan. Separate verified facts, paper claims, and inference;
+do not invent citations or experimental results.
 ```
 
-### Claude Code
+You do not need to remember internal modules or a fixed command sequence. Start from a topic, a collection of papers, a dataset, a draft, reviewer comments, or formal thesis requirements.
+
+<details>
+<summary><b>Install for Claude Code</b></summary>
+
+User-level installation:
 
 ```bash
 mkdir -p ~/.claude/skills
-git clone https://github.com/xcl2005/academic-paper-writing-skill.git ~/.claude/skills/academic-paper-writing-skill
+git clone https://github.com/xcl2005/academic-paper-writing-skill.git \
+  ~/.claude/skills/academic-paper-writing-skill
 ```
 
-Direct invocation:
-
-```text
-/academic-paper-writing-skill audit this manuscript and create an evidence-backed revision record for every major concern
-```
-
-### Inspect Providers
+Project-level installation:
 
 ```bash
-python scripts/resolve_capability.py --list
-python scripts/resolve_capability.py research_ideation --json
-python scripts/resolve_capability.py scientific_visualization --tag nature --json
+mkdir -p .claude/skills
+git clone https://github.com/xcl2005/academic-paper-writing-skill.git \
+  .claude/skills/academic-paper-writing-skill
 ```
 
-`use_installed_provider` returns the selected `SKILL.md`; `use_internal_fallback` keeps the task inside this repository's corresponding module.
+Invocation example:
 
-## 🧭 Workflows
+```text
+/academic-paper-writing-skill Audit this manuscript and map every major issue to evidence,
+an exact revision location, and an unresolved action when necessary.
+```
 
-There is no mandatory long sequence. Each request composes the smallest useful capability set:
+</details>
 
-| Step | Decision and behavior |
-|---:|---|
-| 1 | Set project type, stage, target, source boundary, and missing inputs |
-| 2 | Detect one or more capabilities from the registry |
-| 3 | Preserve a user-selected provider; otherwise resolve by target tags, installed state, and priority |
-| 4 | Read the internal baseline; if a provider is selected, also read its complete skill and required resources |
-| 5 | Pass inputs, protected facts, permissions, and outputs through `capability_handoff.yaml` |
-| 6 | Produce matrices, ledgers, plans, code, or the requested real artifact |
-| 7 | Run capability acceptance, stage gate, pre-prose gate, or artifact QA |
-| 8 | Continue only after acceptance; otherwise preserve blockers, fall back, or request necessary evidence |
+## 🧭 A typical task
 
-### Module Routing
+Suppose you ask:
 
-| Task | Primary internal modules |
+```text
+I want to study citation reliability in multilingual RAG. Help me narrow the question,
+review the literature, design the experiment, and plan the paper. No experiment has been run yet,
+and every unverified paper must stay explicitly marked as unverified.
+```
+
+The skill will not immediately assemble a paper-shaped answer. It selects the capabilities needed for the current evidence and goal, while leaving reviewable artifacts behind:
+
+| Stage | What it does | Reviewable output |
+|---|---|---|
+| Frame the problem | Clarify the population, scope, assumptions, unknowns, and stopping conditions | Idea portfolio, project state, decision log |
+| Build the evidence base | Preserve exact queries, sources, screening reasons, paper claims, and limitations | Search protocol, screening log, literature matrix |
+| Design the study | Define units, estimands, controls, bias risks, samples, metrics, and analysis | Study design, analysis plan, experiment matrix |
+| Organize the argument | Connect prose, figures, and conclusions to sources, data, or analyses | Claim ledger, figure brief, terminology ledger |
+| Review the delivery | Run stage gates, simulated peer review, submission checks, or rendered presentation QA | Integrity report, rebuttal matrix, submission package |
+
+The route adapts to the task. A literature review does not force an experiment stage, and a reviewer-response task does not restart topic ideation.
+
+## 🧩 Core capabilities
+
+| | Capability | Quality bar |
+|---|---|---|
+| 💡 | **Research ideation** | Generate independent candidate questions with assumptions, falsifiable predictions, minimum studies, risks, and explicit selection rationale |
+| 🔎 | **Scholarly search and references** | Preserve databases, queries, dates, limits, failures, and deduplication; verify primary sources when available |
+| 📚 | **Paper reading and literature review** | Distinguish narrative, rapid, scoping, and systematic reviews while preserving screening and quality-assessment boundaries |
+| 🧪 | **Study design and statistics** | Define observation, assignment, and analysis units; report effects, uncertainty, diagnostics, multiplicity, and missing-data decisions |
+| 📊 | **Scientific figures and data traceability** | Define the figure claim and final dimensions before checking accessibility, source data, editable files, and exports |
+| ✍️ | **Drafting, polishing, and translation** | Protect numbers, equations, citations, terminology, and claim strength while following the target venue or reporting guideline |
+| 🧐 | **Simulated peer review and rebuttals** | Separate reviewer assessment from author response, with stable concern IDs and evidence pointers |
+| 📦 | **Submission, data statements, and presentations** | Reconcile manuscript, supplements, references, data/code, portal preview, and paper-to-PPT delivery |
+
+## 🛡️ Evidence first
+
+The goal is not merely to make prose sound academic. The research record must be strong enough to support the prose.
+
+- **Traceable sources:** Keep verified facts, author claims, agent inference, assumptions, and user-provided information distinct.
+- **Supported strong claims:** Novelty, SOTA, causal, effect, and compliance claims must map to sources, data, analysis, experiments, implementation evidence, or official requirements.
+- **Honest research status:** Keep planned, exploratory, preliminary, achieved, and externally reported results separate.
+- **Explicit blocking:** Missing sources, conflicting evidence, empty critical records, or unresolved statuses trigger qualification, placeholders, or a stop before final prose.
+- **Human decisions remain human:** Authorship, submission, ethics, consent, restricted data, institutional compliance, and final conclusions require human confirmation.
+
+> [!IMPORTANT]
+> This project does not invent papers, DOIs, SOTA results, experimental outcomes, repository identifiers, institutional requirements, or completed rebuttal actions. It does not replace the judgment of researchers, supervisors, statisticians, ethics boards, or editors.
+
+## 🌐 Integrated specialist-skill ecosystem
+
+Three research-skill repositories and 18 optional providers map into one workflow. The table highlights representative skills with dynamically updated Star badges; expand the section below for the complete mappings.
+
+| Repository | Representative skills | Tags | Stars | Workflow areas |
+|---|---|---|---:|---|
+| [Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)<br><sub>K-Dense-AI</sub> | `scientific-brainstorming`<br>`literature-review`<br>`statistical-analysis` | `research` `statistics` | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) | Ideation, search, review, design, statistics, figures, writing, peer review |
+| [Nature Skills](https://github.com/Yuan1z0825/nature-skills)<br><sub>Yuan1z0825</sub> | `nature-writing`<br>`nature-figure`<br>`nature-paper2ppt` | `submission` `writing` `PPT` | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) | Search, figures, writing, polishing, review, responses, data, talks |
+| [Academic Research Suite](https://github.com/Imbad0202/academic-research-skills-codex)<br><sub>Imbad0202</sub> | `academic-research-suite` | `planning` `Codex` | [![GitHub stars](https://img.shields.io/github/stars/Imbad0202/academic-research-skills-codex?style=flat-square&label=stars)](https://github.com/Imbad0202/academic-research-skills-codex/stargazers) | Project planning, stage management, handoffs |
+
+“Integrated” means capability contracts and provider routing. Third-party code is neither copied nor bundled; every repository retains its own installation, license, and release lifecycle.
+
+## 🔌 Pluggable specialist skills
+
+You do not need to install every specialist skill to begin: each capability has a built-in workflow. When a suitable specialist Agent Skill is already available, selection happens per **current capability**, without permanently binding the project to one external repository.
+
+1. An explicit user-selected provider wins.
+2. Otherwise, selection considers the task, target format, language, and installed skills.
+3. Specialist output must pass the capability acceptance contract; unavailable, unsuitable, or failed providers fall back to the built-in workflow.
+4. Unknown third-party skills are never installed silently, and unpublished manuscripts or restricted data are not sent to external services without authorization.
+
+<details>
+<summary><b>View capability-to-provider mappings</b></summary>
+
+| Research capability | Optional specialist-skill examples |
 |---|---|
-| Project coordination | `01_agent_orchestrator`, `02_mode_router`, `22_capability_provider_router` |
-| Ideation | `18_research_ideation_and_question_design`, `07_novelty_verification_and_scoring`, `08_research_roi_scope` |
-| Search and synthesis | `20_scholarly_search_screening_and_references`, `06_literature_engine` |
-| Study design and analysis | `19_study_design_statistics_and_data`, `09_experiment_matrix_engine` |
-| Figures and tables | `10_figure_table_engine` |
-| Writing and polishing | `12_writing_style_adapter`, `11_integrity_reproducibility_guard` |
-| Review and response | `13_simulated_review_rebuttal`, `11_integrity_reproducibility_guard` |
-| Submission and presentation | `21_research_delivery_and_presentation` |
-| Undergraduate thesis | `04_requirement_discovery`, `14_undergraduate_thesis_engine` |
-| External skill governance | `03_external_skill_gateway`, `17_external_skill_acceptance_tests` |
+| Research orchestration | `academic-research-suite` |
+| Ideation | `scientific-brainstorming` |
+| Scholarly search | `nature-academic-search`, `paper-lookup` |
+| Literature review | `literature-review` |
+| Study design and statistics | `experimental-design`, `statistical-analysis`, `statistical-power` |
+| Scientific visualization | `nature-figure`, `scientific-visualization` |
+| Drafting and polishing | `nature-writing`, `scientific-writing`, `nature-polishing` |
+| Peer review and responses | `nature-reviewer`, `peer-review`, `nature-response` |
+| Data and code availability | `nature-data` |
+| Paper to presentation | `nature-paper2ppt` |
 
-## 🗂️ Artifacts
+See [`capability_registry.yaml`](capability_registry.yaml) for complete input, output, acceptance, and fallback contracts. These third-party skills are not distributed with this repository; their own licenses and usage conditions apply.
 
-| File | Purpose |
+</details>
+
+## 🗂️ What you get
+
+| Artifact | Purpose |
 |---|---|
-| `research_idea_portfolio.csv` | Candidate topics, evidence, predictions, minimum studies, risks, and decisions |
-| `search_protocol.md` / `screening_log.csv` | Reproducible retrieval, screening, deduplication, and exclusions |
-| `paper_reading_note.md` / `literature_matrix.csv` | Close reading, source boundaries, and cross-study synthesis |
-| `novelty_verification.csv` / `roi_matrix.csv` | Prior-work comparison, novelty risk, and scope/ROI decisions |
-| `statistical_analysis_plan.md` | Estimand, sample size, model, assumptions, intervals, multiplicity, and sensitivity analyses |
-| `data_provenance.csv` / `experiment_matrix.csv` | Data lineage, permissions, transformations, experiment status, and reproducibility |
-| `figure_brief.md` / `terminology_ledger.csv` | Scientific figure contract and terminology consistency |
-| `claim_ledger.csv` / `integrity_checklist.md` | Claim evidence and the pre-prose integrity boundary |
-| `simulated_review.md` / `rebuttal_matrix.md` | Traceable assessment and point-by-point response |
-| `submission_package_checklist.md` / `presentation_brief.md` | Submission package, journal club, group meeting, or defense delivery |
+| `research_idea_portfolio.csv` | Compare candidate questions, predictions, minimum studies, nearest work, risks, and selection rationale |
+| `search_protocol.md` / `screening_log.csv` | Reproduce database searches, deduplication, eligibility criteria, and screening decisions |
+| `paper_reading_note.md` / `literature_matrix.csv` | Capture paper-level evidence and synthesize methods, findings, conflicts, and limitations across studies |
+| `statistical_analysis_plan.md` / `experiment_matrix.csv` | Fix estimands, sample-size logic, models, metrics, diagnostics, ablations, and result status |
+| `data_provenance.csv` / `figure_brief.md` | Trace data sources, permissions, transformations, figure claims, dimensions, and export requirements |
+| `claim_ledger.csv` / `integrity_checklist.md` | Map strong claims to evidence and find blockers before writing or submission |
+| `simulated_review.md` / `rebuttal_matrix.md` | Track review concerns, severity, evidence, exact revision locations, and response status |
+| `submission_package_checklist.md` / `presentation_brief.md` | Reconcile submission files and turn the paper argument into a lab, defense, or conference talk |
 
-## ✅ Stage Gates
+Markdown, YAML, and CSV are the canonical reviewable formats. DOCX, PDF, XLSX, and PPTX can be final delivery formats; actual retrieval, computation, and export depend on the tools available to the agent.
+
+## 💬 Prompt recipes
+
+### Start from a broad direction
+
+```text
+Use $academic-paper-writing-skill to propose six independent research questions about AI-assisted peer review.
+For each, give a falsifiable prediction, minimum viable study, closest prior work, failure risks,
+and a transparent selection rationale. Do not draft the paper yet.
+```
+
+### Run a reproducible literature review
+
+```text
+Use $academic-paper-writing-skill to design a scoping review for this topic.
+Preserve databases, exact queries, search dates, eligibility criteria, deduplication, and screening logs.
+Do not treat papers without accessible full text as fully verified.
+```
+
+### Audit a manuscript
+
+```text
+Use $academic-paper-writing-skill to audit the citations, statistics, figures, and strong claims in this draft.
+Classify issues as blocking, major, or minor, and provide a source location, evidence pointer,
+and minimum corrective action for each one.
+```
+
+### Respond to reviewers
+
+```text
+Use $academic-paper-writing-skill to build a point-by-point rebuttal matrix.
+Do not describe planned changes as completed. Every response must point to evidence,
+an exact manuscript location, or an explicit unresolved action.
+```
+
+## 📚 Templates and examples
+
+- [Undergraduate thesis proposal evidence workflow](examples/undergraduate-thesis-proposal-demo/README.md)
+- [Literature matrix sample](examples/outputs/rag-evaluation-literature-matrix.sample.csv)
+- [Claim ledger sample](examples/outputs/rag-evaluation-claim-ledger.sample.csv)
+- [Novelty-check sample](examples/outputs/rag-evaluation-novelty-check.sample.md)
+- [Related-work sample blocked by the evidence gate](examples/outputs/output-related-work-blocked.sample.md)
+- [Capability coverage and design sources](docs/CAPABILITY_COVERAGE.md)
+
+Generate a fully offline, reviewable demo workspace:
+
+```bash
+python scripts/demo_academic_workflow.py \
+  --mode undergraduate_thesis \
+  --out demo_workspace
+```
+
+Initialize your own project:
 
 ```bash
 python scripts/init_project.py --out paper_workspace --type research_paper
+python scripts/init_project.py --out thesis_workspace --type undergraduate_thesis
+```
+
+## ✅ Stage gates
+
+When a project needs a clear handoff, verify that the stage is substantively complete rather than merely checking that files exist:
+
+```bash
 python scripts/check_stage_gate.py paper_workspace --gate ideation
 python scripts/check_stage_gate.py paper_workspace --gate literature
 python scripts/check_stage_gate.py paper_workspace --gate analysis
@@ -185,70 +275,45 @@ python scripts/check_stage_gate.py paper_workspace --gate submission
 python scripts/check_stage_gate.py paper_workspace --gate presentation
 ```
 
-A failed gate lists missing files, empty records, or artifacts still marked `draft`. Failure is a work queue, not permission to fabricate data or sources.
+Failures identify missing files, empty records, unresolved statuses, or blocking evidence so the next work cycle has a concrete target.
 
-## 🔁 Backward Compatibility
+## 🔒 Integrity boundary
 
-| Preserved capability | Status |
-|---|---|
-| `research_paper`, `undergraduate_thesis`, `hybrid_capstone_research` | Preserved |
-| Literature Matrix, Novelty Verification, Experiment Matrix, Figure Design | Preserved and strengthened |
-| Claim Ledger, Integrity Audit, Pre-Prose Gate | Preserved |
-| Simulated Review / Rebuttal | Preserved with stronger role separation and evidence pointers |
-| Requirement Discovery, Scope Ladder, Graduation Evidence Map | Preserved |
-| External Skill Gateway / Acceptance Tests | Preserved and extended into provider interfaces |
-| Existing demos, fixtures, generated reports, and CI drift checks | Preserved |
+Good fits: research planning, paper reading, literature and systematic reviews, experimental and statistical design, scientific figures, manuscript drafting and revision, rebuttals, submission checks, theses, capstones, defenses, and research presentations.
 
-`scripts/validate_skill.py` treats the original project types, modes, modules, and scripts as a backward-compatibility contract.
+Not a fit: evidence-free ghostwriting, fabricated citations or data, hidden limitations, bypassed ethics or institutional requirements, or replacing the author’s responsibility for the final manuscript and submission.
 
-## 🛡️ Integrity Rules
+For unpublished manuscripts, peer-review material, personal information, restricted data, or confidential projects, establish the permitted tools and data boundary before using external providers.
 
-### Integrity-first by default
+## 🧪 Project validation
 
-- Do not fabricate papers, authors, identifiers, venues, SOTA, leaderboards, data, results, or local requirements.
-- Separate verified fact, paper claim, agent inference, assumption, and user-provided information.
-- Map every strong claim to a source, data, analysis, experiment, implementation, test, proof, or official requirement.
-- Keep planned, exploratory, preliminary, achieved, and externally reported results distinct.
-- Do not call a rapid scan systematic, or turn significance into practical importance or causality.
-- Do not send unpublished manuscripts, peer-review materials, personal data, or restricted data to an external provider without authorization.
-- Final submission, authorship, ethics, consent, restricted-data, and school-compliance decisions remain human decisions.
-
-When evidence is `needs_recheck`, `missing_source`, `unknown`, `unsupported`, or `blocked`, final prose must be qualified, left as an explicit placeholder, or blocked.
-
-## 🛠️ Quality Checks
+<details>
+<summary><b>Run maintainer checks</b></summary>
 
 ```bash
 python scripts/validate_skill.py
 python scripts/validate_capability_registry.py
+python scripts/test_provider_resolution.py
+python scripts/test_stage_gate.py
 python scripts/validate_readme_quality.py
-python scripts/validate_evidence_status.py templates examples/outputs examples/fixtures examples/generated-demo-workspace
 python scripts/pre_prose_check.py examples/generated-demo-workspace --expect-block
 ```
 
-CI also checks initialized workspaces, provider fallback, legacy demos, unsupported Chinese claims, generated-report drift, and stage gates.
+GitHub Actions also checks workspace initialization, evidence statuses, strong-claim blocking, provider fallback, stage gates, and generated-example drift.
 
-## 📁 Repository Layout
+</details>
 
-```text
-.
-|-- SKILL.md
-|-- skill_manifest.yaml
-|-- capability_registry.yaml
-|-- agents/
-|-- modules/
-|-- templates/
-|-- schemas/
-|-- scripts/
-|-- examples/
-|-- docs/
-|-- README.md
-`-- README_EN.md
-```
+## 🤝 Contributing
 
-## 🔎 Search Keywords
+[Issues](https://github.com/xcl2005/academic-paper-writing-skill/issues) and [pull requests](https://github.com/xcl2005/academic-paper-writing-skill/pulls) are welcome. High-value contributions include:
 
-Academic writing AI, research workflow, scientific brainstorming, academic search, literature review, systematic review, statistical analysis, scientific visualization, Nature writing, paper polishing, peer review, reviewer response, data availability, paper to PPT, thesis writing assistant, claim evidence mapping, research integrity, Codex skills, Claude Code skills, Agent Skills.
+- reproducible, de-identified research cases;
+- acceptance standards for new disciplines, venues, or reporting guidelines;
+- tests for search, statistics, figures, citations, and export quality;
+- capability adapters for new specialist skills instead of permanent hard-coded dependencies.
+
+Read [`CONTRIBUTING.md`](CONTRIBUTING.md) and [`SECURITY.md`](SECURITY.md) before contributing.
 
 ## 📄 License
 
-MIT. External providers are not installed or redistributed by this repository; their code, content, and licences remain with their respective projects. This repository maintains interfaces, routing, internal fallbacks, and acceptance checks.
+[MIT](LICENSE). Optional third-party skills are not installed with this repository; their code, content, and licenses remain with their respective projects.

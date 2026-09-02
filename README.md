@@ -1,182 +1,265 @@
+[//]: # "Academic Paper Writing Skill is an evidence-first Agent Skill for research ideation, academic search, literature review, statistics, scientific writing, peer review, rebuttals, theses, and paper-to-presentation workflows."
+
 <div align="center">
+
+<p>
+  <img src="./assets/hero.png" alt="Academic Paper Writing Skill research workflow" width="860">
+</p>
 
 # Academic Paper Writing Skill
 
-**接口式、证据优先的科研工作流：从选题、检索、统计和绘图，到写作、审稿、投稿与论文汇报。**
+**把科研从一次性生成，变成可追溯、可检查、可交付的工作流。**<br>
+面向 Codex、Claude Code 和兼容 Agent Skills 的智能体，覆盖选题、检索、综述、研究设计、统计、绘图、写作、审稿、投稿与论文汇报。
 
-<a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub stars"></a>
-<a href="https://github.com/xcl2005/academic-paper-writing-skill/network/members"><img src="https://img.shields.io/github/forks/xcl2005/academic-paper-writing-skill?style=flat-square" alt="GitHub forks"></a>
-<a href="https://github.com/xcl2005/academic-paper-writing-skill/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/xcl2005/academic-paper-writing-skill/ci.yml?branch=main&style=flat-square" alt="CI status"></a>
-<a href="https://github.com/xcl2005/academic-paper-writing-skill/releases"><img src="https://img.shields.io/github/v/release/xcl2005/academic-paper-writing-skill?style=flat-square" alt="Latest release"></a>
-<a href="https://github.com/xcl2005/academic-paper-writing-skill/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" alt="MIT license"></a>
-<img src="https://img.shields.io/badge/Agent%20Skills-Codex%20%7C%20Claude-111827?style=flat-square" alt="Codex and Claude Code">
-<img src="https://img.shields.io/badge/workflow-evidence--first-0F766E?style=flat-square" alt="Evidence first">
-<img src="https://img.shields.io/badge/providers-pluggable-7C3AED?style=flat-square" alt="Pluggable providers">
+<p>
+  <a href="https://github.com/xcl2005/academic-paper-writing-skill/stargazers"><img src="https://img.shields.io/github/stars/xcl2005/academic-paper-writing-skill?style=flat-square&color=F2B134" alt="GitHub stars"></a>
+  <a href="https://github.com/xcl2005/academic-paper-writing-skill/releases"><img src="https://img.shields.io/github/v/release/xcl2005/academic-paper-writing-skill?style=flat-square&color=167D9A" alt="Latest release"></a>
+  <a href="https://github.com/xcl2005/academic-paper-writing-skill/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/xcl2005/academic-paper-writing-skill/ci.yml?branch=main&style=flat-square" alt="CI status"></a>
+  <a href="https://github.com/xcl2005/academic-paper-writing-skill/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-2F6F5E?style=flat-square" alt="MIT license"></a>
+  <img src="https://img.shields.io/badge/Agent%20Skills-Codex%20%7C%20Claude-24292F?style=flat-square" alt="Codex and Claude Code Agent Skill">
+</p>
 
-简体中文 · [English](README_EN.md)
+**简体中文** · [English](README_EN.md)
 
-[快速开始](#-快速开始) · [能力接口](#-能力接口) · [工作标准](#-工作标准) · [模块路由](#-模块路由) · [质量检查](#-质量检查)
+[快速开始](#-快速开始) · [一次典型任务](#-一次典型任务) · [核心能力](#-核心能力) · [证据优先](#-证据优先) · [可插拔能力](#-可插拔的专业能力) · [示例](#-模板与示例)
+
+<sub>如果它让你的研究工作更可靠，欢迎点一个 Star，让更多研究者找到它。</sub>
 
 </div>
 
-## 🔥 这是什么
+## 为什么值得使用
 
-这不是一段“帮我写论文”的长 prompt，也不是把十几个外部 skill 写死的调用清单。
+大模型很容易写出流畅段落，真正困难的是让每个结论经得起追问：文献是否真实、检索是否充分、实验是否真的完成、统计是否匹配设计、图表是否能追溯到数据、投稿材料是否彼此一致。
 
-它由三层组成：
+**Academic Paper Writing Skill** 不把“生成一篇论文”当成单次写作任务。它会根据你当前的研究阶段组织证据、记录未知项、调用合适的专业能力，并在进入正文或交付前检查关键产物。
 
-| 层 | 作用 |
-|---|---|
-| 内部基线 | 保留并增强原有的文献矩阵、novelty/SOTA、ROI、实验矩阵、claim ledger、完整性、本科论文、review/rebuttal 等成熟功能 |
-| 能力接口 | 把选题、检索、统计、绘图、写作、润色、审稿、数据声明、论文转 PPT 定义成稳定的输入/输出契约 |
-| 可插拔 provider | 检测到适合的专业 skill 时读取并采用其完整细节；缺失、失败或不适配时回退内部模块 |
+| 你现在有什么 | 可以直接交给它的任务 | 你会得到什么 |
+|---|---|---|
+| 一个模糊方向 | 生成候选问题、可证伪预测、最小研究与风险比较 | 选题组合、决策记录、检索计划 |
+| 一批论文或关键词 | 建立检索协议、筛选记录、精读笔记与证据综合 | 文献矩阵、研究空白、引用边界 |
+| 数据、实验设想或已有结果 | 明确 estimand、样本、模型、诊断和敏感性分析 | 研究设计、统计分析计划、实验矩阵 |
+| 草稿、图表或审稿意见 | 核验 claim、修订表达、模拟审稿并逐条回应 | 可追溯稿件、图表 brief、rebuttal matrix |
+| 一篇接近完成的论文 | 检查投稿包并提炼成组会、答辩或会议汇报 | submission checklist、presentation brief、PPT 交付要求 |
 
-因此，项目既能使用成熟专业 skill 的极致细节，又不会永久依赖某一个仓库、名称、工具或期刊风格。
+## 🚀 快速开始
 
-## ✨ v2.0
-
-- 新增 13 个科研能力接口和 18 个可选 provider 映射。
-- 新增选题与问题设计、系统检索与筛选、研究设计/统计/数据、投稿与论文汇报四个内部模块。
-- 新增 `capability_registry.yaml`，按任务、目标、语言、格式和已安装状态选择 provider。
-- 新增 `resolve_capability.py`，可查看当前会使用专业 skill 还是内部 fallback。
-- 新增阶段门禁，检查产物是否真正填写并达到 handoff 条件。
-- 保留原有三种项目类型、七个 mode、全部核心模块和 pre-prose 校验。
-
-## 🧩 能力接口
-
-外部 provider 都是可选项，不会静默安装。选中后，agent 必须完整读取对应 `SKILL.md` 及当前流程要求的资源，使用它的详细领域、排版、导出和 QA 标准。
-
-| 能力 | 优先 provider | 内部 fallback | 关键验收 |
-|---|---|---|---|
-| 🧭 全流程统筹 | `academic-research-suite` | agent orchestrator + mode router | 阶段、证据边界、产物和人类决策可追踪 |
-| 💡 选题与科研头脑风暴 | `scientific-brainstorming` | research ideation module | 独立生成、假设、反方压力测试、决策记录 |
-| 🔎 学术检索与引用管理 | `nature-academic-search`, `paper-lookup` | scholarly search module | 查询式、来源、时间、失败、去重和覆盖边界可复现 |
-| 📚 文献综述与证据综合 | `literature-review` | literature engine | 筛选、质量评估、研究矩阵、分歧和局限可追踪 |
-| 🧪 研究设计与统计 | `experimental-design`, `statistical-analysis`, `statistical-power` | study design/statistics module | estimand、效应量、区间、假设、多重比较和诊断完整 |
-| 📊 科研绘图与表格 | `nature-figure`, `scientific-visualization` | figure/table engine | 最终尺寸、色盲可读、数据追溯、可编辑源文件和导出 QA |
-| ✍️ 论文写作 | `nature-writing`, `scientific-writing` | writing adapter | 数字、引用、术语、claim 强度和 reporting guideline 一致 |
-| 📝 润色与翻译 | `nature-polishing` | writing adapter | 不改变事实、公式、引用、结果方向和技术术语 |
-| 🧐 模拟审稿 | `nature-reviewer`, `peer-review` | review/rebuttal engine | concern ID、证据指针、严重度、blocking 判断和修改路径 |
-| 💬 审稿回复 | `nature-response` | review/rebuttal engine | 每条意见映射到证据、准确修改位置或明确未决动作 |
-| 🗃️ 数据与代码可用性 | `nature-data` | delivery + integrity modules | repository、许可、版本、access route 和 FAIR 信息不虚构 |
-| 🎤 论文转汇报 | `nature-paper2ppt` | delivery/presentation module | 真实 PPTX、论证主线、图表裁切、speaker notes 和渲染检查 |
-
-完整定义见 [`capability_registry.yaml`](capability_registry.yaml)，设计说明见 [`docs/CAPABILITY_COVERAGE.md`](docs/CAPABILITY_COVERAGE.md)。
-
-## 🧱 工作标准
-
-能力覆盖只是起点，v2.0 同时吸收成熟科研 skill 的执行标准：
-
-| 环节 | 最低工作标准 |
-|---|---|
-| 选题 | idea 先独立生成再收敛；每项包含可证伪预测、最小研究、最近工作、风险与选择理由 |
-| 检索 | 保存数据库、精确查询式、字段/时间限制、运行日期、结果数、失败、去重和排除理由 |
-| 综述 | 明确 rapid / narrative / scoping / systematic；不能用不完整检索冒充系统综述 |
-| 研究设计 | 定义观察、分配和分析单位，estimand、sampling、controls、confounding、missingness 与 bias |
-| 统计 | 预先区分 confirmatory / exploratory；报告 effect size、uncertainty、diagnostics、multiplicity 与 deviation |
-| 绘图 | 绘图前定义 claim、数据、统计标注、最终物理尺寸和输出格式；最终必须 render 后目视检查 |
-| 写作 | drafting 与 polishing 分离；数字、引用、公式、术语和 claim strength 是受保护事实 |
-| 审稿 | reviewer assessment 与 author response 分离；问题必须有稳定 ID、原文指针和证据指针 |
-| 投稿 | manuscript、图表、supplement、references、声明、data/code 和 portal preview 互相一致 |
-| 汇报 | 以论文论证为主线，不照搬章节顺序；figure 是证据，speaker notes 和 package QA 是交付的一部分 |
-
-## 📦 快速开始
-
-Codex / Claude Code 共用同一个 `SKILL.md`、能力 registry 和内部模块；安装路径与显式调用语法不同。
-
-### Codex
+### 1. 安装到 Codex
 
 ```bash
 mkdir -p ~/.agents/skills
-git clone https://github.com/xcl2005/academic-paper-writing-skill.git ~/.agents/skills/academic-paper-writing-skill
+git clone https://github.com/xcl2005/academic-paper-writing-skill.git \
+  ~/.agents/skills/academic-paper-writing-skill
 ```
 
-Windows PowerShell:
+<details>
+<summary><b>Windows PowerShell</b></summary>
 
 ```powershell
 New-Item -ItemType Directory -Force -Path "$HOME\.agents\skills"
-git clone https://github.com/xcl2005/academic-paper-writing-skill.git "$HOME\.agents\skills\academic-paper-writing-skill"
+git clone https://github.com/xcl2005/academic-paper-writing-skill.git `
+  "$HOME\.agents\skills\academic-paper-writing-skill"
+```
+
+</details>
+
+### 2. 直接描述研究任务
+
+```text
+使用 $academic-paper-writing-skill 帮我把“面向科研问答的 RAG 评测”发展成一篇可执行的研究计划。
+先给出候选问题和检索方案，区分已核验事实、论文原文主张与推断；不要编造引用或实验结果。
+```
+
+不需要记住内部模块或固定命令。你可以从选题、已有论文、数据、草稿、审稿意见或学校要求中的任意位置开始。
+
+<details>
+<summary><b>安装到 Claude Code</b></summary>
+
+用户级安装：
+
+```bash
+mkdir -p ~/.claude/skills
+git clone https://github.com/xcl2005/academic-paper-writing-skill.git \
+  ~/.claude/skills/academic-paper-writing-skill
+```
+
+项目级安装：
+
+```bash
+mkdir -p .claude/skills
+git clone https://github.com/xcl2005/academic-paper-writing-skill.git \
+  .claude/skills/academic-paper-writing-skill
 ```
 
 调用示例：
 
 ```text
-使用 $academic-paper-writing-skill 帮我从选题开始做一篇可投稿论文。
-先给出候选方向和检索计划，不要编造文献；统计、绘图和最终排版优先调用最合适的已安装专业 skill。
+/academic-paper-writing-skill 审计这篇论文，并把每条主要问题映射到证据、修改位置和待办动作。
 ```
 
-### Claude Code
+</details>
 
-```bash
-mkdir -p ~/.claude/skills
-git clone https://github.com/xcl2005/academic-paper-writing-skill.git ~/.claude/skills/academic-paper-writing-skill
-```
+## 🧭 一次典型任务
 
-直接调用：
+假设你提出：
 
 ```text
-/academic-paper-writing-skill 帮我审计这篇论文，并为每条主要问题建立证据和修改记录
+我想研究多语言 RAG 的引用可靠性。请帮我完成选题收敛、文献综述、实验设计和论文框架；
+目前没有实验结果，所有未核验文献都要明确标记。
 ```
 
-### 检查 provider
+Skill 不会立刻拼出一篇看似完整的论文。它会按当前证据和目标选择必要能力，并留下可检查的中间产物：
+
+| 阶段 | 它会做什么 | 可检查输出 |
+|---|---|---|
+| 界定问题 | 澄清研究对象、范围、假设、未知项和停止条件 | idea portfolio、project state、decision log |
+| 建立证据 | 保存精确查询式、来源、筛选理由、论文 claim 和局限 | search protocol、screening log、literature matrix |
+| 设计研究 | 明确单位、estimand、对照、偏差、样本、指标与分析计划 | study design、analysis plan、experiment matrix |
+| 组织表达 | 把段落、图表和结论连接到来源、数据或分析 | claim ledger、figure brief、terminology ledger |
+| 审查交付 | 执行阶段门禁、模拟审稿、投稿包或汇报渲染检查 | integrity report、rebuttal matrix、submission package |
+
+流程会随任务变化。只做综述时不会强行进入实验；只有审稿意见时也不会重新跑完整选题流程。
+
+## 🧩 核心能力
+
+| | 能力 | 质量标准 |
+|---|---|---|
+| 💡 | **选题与科研头脑风暴** | 独立生成候选问题，记录假设、可证伪预测、最小研究、风险与选择理由 |
+| 🔎 | **学术检索与引用管理** | 保存数据库、查询式、日期、限制、失败和去重记录；优先核验 primary sources |
+| 📚 | **论文精读与文献综述** | 区分 narrative、rapid、scoping 与 systematic review，保留筛选和质量评估边界 |
+| 🧪 | **研究设计与统计分析** | 明确观察、分配和分析单位，报告效应量、区间、假设、诊断、多重比较与缺失数据 |
+| 📊 | **科研绘图与数据追溯** | 先定义 figure claim 和最终尺寸，再检查色盲可读性、源数据、可编辑文件与导出效果 |
+| ✍️ | **论文写作、润色与翻译** | 保护数字、公式、引用、术语和 claim 强度，按目标期刊或报告规范组织文本 |
+| 🧐 | **模拟审稿与逐条回复** | 分离 reviewer assessment 与 author response，为每个问题建立稳定 ID 和证据指针 |
+| 📦 | **投稿、数据声明与论文汇报** | 核对 manuscript、supplement、references、data/code、portal preview，并支持 paper-to-PPT |
+
+## 🛡️ 证据优先
+
+这个 skill 的重点不是让文字更像论文，而是让研究记录足以支撑文字。
+
+- **来源可追溯**：区分已核验事实、论文作者的主张、agent 推断、假设和用户提供的信息。
+- **强结论有依据**：novelty、SOTA、因果、效果和合规性结论必须连接到来源、数据、分析、实验或官方要求。
+- **研究状态不混淆**：planned、exploratory、preliminary、achieved 和 externally reported results 分开记录。
+- **不完整就明确阻断**：缺少来源、证据冲突、关键表格为空或状态未确认时，降调、保留占位或停止最终 prose。
+- **人类保留最终决定**：投稿、署名、伦理、consent、受限数据、学校合规和最终结论需要人工确认。
+
+> [!IMPORTANT]
+> 本项目不会替你编造论文、DOI、SOTA、实验结果、数据仓库、学校要求或审稿回复中的完成事项。它也不替代研究者、导师、统计师、伦理委员会或期刊编辑的专业判断。
+
+## 🌐 已接入的专业 Skill 生态
+
+三个科研 Skill 仓库、18 个可选 provider，按能力映射到同一套工作流。下表展示代表 Skill，Star 徽章动态更新；完整映射见下方折叠区。
+
+| 仓库 | 代表 Skill | 标签 | Stars | 对应板块 |
+|---|---|---|---:|---|
+| [Scientific Agent Skills](https://github.com/K-Dense-AI/scientific-agent-skills)<br><sub>K-Dense-AI</sub> | `scientific-brainstorming`<br>`literature-review`<br>`statistical-analysis` | `通用科研` `统计` | [![GitHub stars](https://img.shields.io/github/stars/K-Dense-AI/scientific-agent-skills?style=flat-square&label=stars)](https://github.com/K-Dense-AI/scientific-agent-skills/stargazers) | 选题、检索、综述、设计、统计、绘图、写作、审稿 |
+| [Nature Skills](https://github.com/Yuan1z0825/nature-skills)<br><sub>Yuan1z0825</sub> | `nature-writing`<br>`nature-figure`<br>`nature-paper2ppt` | `投稿` `表达` `PPT` | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=stars)](https://github.com/Yuan1z0825/nature-skills/stargazers) | 检索、图表、写作、润色、审稿、回复、数据、汇报 |
+| [Academic Research Suite](https://github.com/Imbad0202/academic-research-skills-codex)<br><sub>Imbad0202</sub> | `academic-research-suite` | `统筹` `Codex` | [![GitHub stars](https://img.shields.io/github/stars/Imbad0202/academic-research-skills-codex?style=flat-square&label=stars)](https://github.com/Imbad0202/academic-research-skills-codex/stargazers) | 项目规划、阶段管理、任务交接 |
+
+这里的“接入”指能力契约和 provider 路由，不代表复制或捆绑第三方代码。每个仓库仍保持独立安装、独立许可证和独立版本。
+
+## 🔌 可插拔的专业能力
+
+不必先装齐这些 Skill 才能开始，本仓库为每项能力都提供内置流程。若环境中已有更专门的 Agent Skill，它会按**当前能力**选择，而不是把整个项目永久绑定到某一个外部仓库。
+
+1. 用户明确指定的 provider 优先。
+2. 未指定时，根据任务、目标格式、语言和已安装状态选择。
+3. 专业输出必须通过当前能力的验收；不可用、不适配或验收失败时使用内置能力。
+4. 不会静默安装第三方 skill，也不会把未发表稿件或受限数据擅自发送给外部服务。
+
+<details>
+<summary><b>查看 capability 与可选 specialist skill</b></summary>
+
+| 科研能力 | 可选 specialist skill 示例 |
+|---|---|
+| 全流程统筹 | `academic-research-suite` |
+| 选题 | `scientific-brainstorming` |
+| 学术检索 | `nature-academic-search`, `paper-lookup` |
+| 文献综述 | `literature-review` |
+| 研究设计与统计 | `experimental-design`, `statistical-analysis`, `statistical-power` |
+| 科研绘图 | `nature-figure`, `scientific-visualization` |
+| 写作与润色 | `nature-writing`, `scientific-writing`, `nature-polishing` |
+| 模拟审稿与回复 | `nature-reviewer`, `peer-review`, `nature-response` |
+| 数据与代码可用性 | `nature-data` |
+| 论文转汇报 | `nature-paper2ppt` |
+
+完整输入、输出、验收和 fallback 契约见 [`capability_registry.yaml`](capability_registry.yaml)。这些第三方 skill 不随本仓库分发，各自许可证和使用条件仍然适用。
+
+</details>
+
+## 🗂️ 你会得到什么
+
+| 产物 | 用途 |
+|---|---|
+| `research_idea_portfolio.csv` | 比较候选问题、预测、最小研究、最近工作、风险和选择理由 |
+| `search_protocol.md` / `screening_log.csv` | 复现数据库检索、去重、纳排标准和筛选决定 |
+| `paper_reading_note.md` / `literature_matrix.csv` | 记录单篇论文证据，并跨研究综合方法、结果、冲突和局限 |
+| `statistical_analysis_plan.md` / `experiment_matrix.csv` | 固化 estimand、样本量、模型、指标、诊断、消融与结果状态 |
+| `data_provenance.csv` / `figure_brief.md` | 追踪数据来源、权限、变换、图表 claim、尺寸和导出要求 |
+| `claim_ledger.csv` / `integrity_checklist.md` | 将强主张映射到证据，并在写作或投稿前发现阻断项 |
+| `simulated_review.md` / `rebuttal_matrix.md` | 保存审稿问题、严重度、证据、准确修改位置与回应状态 |
+| `submission_package_checklist.md` / `presentation_brief.md` | 核对投稿文件，并把论文论证转化为组会、答辩或会议汇报 |
+
+Markdown、YAML 和 CSV 是便于审查与版本控制的规范格式；DOCX、PDF、XLSX 和 PPTX 可以作为最终交付格式，实际检索、计算与文件导出取决于智能体当前可用的工具。
+
+## 💬 常用提示词
+
+### 从模糊方向开始
+
+```text
+使用 $academic-paper-writing-skill 围绕“AI 辅助同行评审”提出 6 个彼此独立的研究问题。
+对每个问题给出可证伪预测、最小可行研究、关键 prior work、失败风险和选择理由；先不要写论文正文。
+```
+
+### 做可复现的文献综述
+
+```text
+使用 $academic-paper-writing-skill 为这个主题设计 scoping review。
+保存数据库、精确查询式、检索日期、纳排标准、去重与筛选日志；无法访问全文的论文不要假装已经核验。
+```
+
+### 审计已有稿件
+
+```text
+使用 $academic-paper-writing-skill 检查这份稿件的引用、统计、图表和强主张。
+按 blocking / major / minor 分级，并为每个问题给出原文位置、证据指针和最小修复动作。
+```
+
+### 回复审稿意见
+
+```text
+使用 $academic-paper-writing-skill 建立逐条 rebuttal matrix。
+不要把计划修改写成已经完成；每条回复必须指向证据、准确修改位置，或明确列为待办。
+```
+
+## 📚 模板与示例
+
+- [本科论文开题证据工作流](examples/undergraduate-thesis-proposal-demo/README.md)
+- [文献矩阵示例](examples/outputs/rag-evaluation-literature-matrix.sample.csv)
+- [Claim ledger 示例](examples/outputs/rag-evaluation-claim-ledger.sample.csv)
+- [Novelty 检查示例](examples/outputs/rag-evaluation-novelty-check.sample.md)
+- [被证据门禁阻断的 related work 示例](examples/outputs/output-related-work-blocked.sample.md)
+- [完整能力覆盖与设计依据](docs/CAPABILITY_COVERAGE.md)
+
+也可以生成一个完全离线、可检查的示例工作区：
 
 ```bash
-python scripts/resolve_capability.py --list
-python scripts/resolve_capability.py research_ideation --json
-python scripts/resolve_capability.py scientific_visualization --tag nature --json
+python scripts/demo_academic_workflow.py \
+  --mode undergraduate_thesis \
+  --out demo_workspace
 ```
 
-返回 `use_installed_provider` 时会显示具体 `SKILL.md`；返回 `use_internal_fallback` 时继续使用本仓库对应模块。
-
-## 🧭 工作流
-
-没有固定的长流程。每次调用都按当前任务组合最少能力：
-
-| 步骤 | 决策与行为 |
-|---:|---|
-| 1 | 设置 project type、stage、目标、证据边界和缺失输入 |
-| 2 | 从 registry 识别一个或多个 capability |
-| 3 | 保留用户指定 provider；否则按目标标签、已安装状态和优先级解析 |
-| 4 | 读取内部 baseline；若选中 provider，再完整读取其 `SKILL.md` 和相关资源 |
-| 5 | 用 `capability_handoff.yaml` 传递输入、受保护事实、权限和输出契约 |
-| 6 | 生成矩阵、ledger、计划、代码或真实交付文件 |
-| 7 | 执行 capability acceptance、stage gate、pre-prose 或 artifact QA |
-| 8 | 通过后进入下一能力；失败则保留问题、回退或请求必要证据 |
-
-### 模块路由
-
-| 任务 | 主要内部模块 |
-|---|---|
-| 项目统筹 | `01_agent_orchestrator`, `02_mode_router`, `22_capability_provider_router` |
-| 选题 | `18_research_ideation_and_question_design`, `07_novelty_verification_and_scoring`, `08_research_roi_scope` |
-| 检索与综述 | `20_scholarly_search_screening_and_references`, `06_literature_engine` |
-| 研究设计与分析 | `19_study_design_statistics_and_data`, `09_experiment_matrix_engine` |
-| 图表 | `10_figure_table_engine` |
-| 写作与润色 | `12_writing_style_adapter`, `11_integrity_reproducibility_guard` |
-| 审稿与回复 | `13_simulated_review_rebuttal`, `11_integrity_reproducibility_guard` |
-| 投稿与汇报 | `21_research_delivery_and_presentation` |
-| 本科论文 | `04_requirement_discovery`, `14_undergraduate_thesis_engine` |
-| 外部 skill 治理 | `03_external_skill_gateway`, `17_external_skill_acceptance_tests` |
-
-## 🗂️ 产物
-
-| 文件 | 用途 |
-|---|---|
-| `research_idea_portfolio.csv` | 候选选题、证据、预测、最小研究、风险与决策 |
-| `search_protocol.md` / `screening_log.csv` | 可复现检索、筛选、去重和排除记录 |
-| `paper_reading_note.md` / `literature_matrix.csv` | 论文精读、来源边界与跨研究综合 |
-| `novelty_verification.csv` / `roi_matrix.csv` | prior-work 对照、novelty 风险和投入产出判断 |
-| `statistical_analysis_plan.md` | estimand、样本量、模型、假设、区间、多重比较与敏感性分析 |
-| `data_provenance.csv` / `experiment_matrix.csv` | 数据来路、权限、变换、实验状态与复现信息 |
-| `figure_brief.md` / `terminology_ledger.csv` | 科学图表契约和全文术语一致性 |
-| `claim_ledger.csv` / `integrity_checklist.md` | 强主张证据映射与 pre-prose 完整性门禁 |
-| `simulated_review.md` / `rebuttal_matrix.md` | 可追溯审稿和逐条回复 |
-| `submission_package_checklist.md` / `presentation_brief.md` | 投稿包、论文汇报、组会或答辩交付 |
-
-## ✅ 阶段门禁
+初始化自己的项目：
 
 ```bash
 python scripts/init_project.py --out paper_workspace --type research_paper
+python scripts/init_project.py --out thesis_workspace --type undergraduate_thesis
+```
+
+## ✅ 阶段检查
+
+当项目需要明确 handoff 时，可以检查当前阶段是否真的完成，而不是只检查文件是否存在：
+
+```bash
 python scripts/check_stage_gate.py paper_workspace --gate ideation
 python scripts/check_stage_gate.py paper_workspace --gate literature
 python scripts/check_stage_gate.py paper_workspace --gate analysis
@@ -185,70 +268,45 @@ python scripts/check_stage_gate.py paper_workspace --gate submission
 python scripts/check_stage_gate.py paper_workspace --gate presentation
 ```
 
-门禁失败会列出缺失文件、空表或仍为 `draft` 的产物。失败代表下一步工作，不代表可以补造数据或来源。
+失败信息会指出缺失文件、空记录、未确认状态或阻断证据，供下一轮工作继续处理。
 
-## 🔁 原功能兼容
+## 🔒 完整性边界
 
-| 保留项 | 状态 |
-|---|---|
-| `research_paper`, `undergraduate_thesis`, `hybrid_capstone_research` | 保留 |
-| Literature Matrix、Novelty Verification、Experiment Matrix、Figure Design | 保留并增强 |
-| Claim Ledger、Integrity Audit、Pre-Prose Gate | 保留 |
-| Simulated Review / Rebuttal | 保留并增强角色分离和证据指针 |
-| Requirement Discovery、Scope Ladder、Graduation Evidence Map | 保留 |
-| External Skill Gateway / Acceptance Tests | 保留并升级为 provider interface |
-| 旧 demo、fixtures、generated reports、CI drift checks | 保留 |
+适合：研究规划、论文精读、文献综述、实验和统计设计、科研绘图、论文写作与修订、rebuttal、投稿检查、本科论文、毕业设计、答辩和论文汇报。
 
-`scripts/validate_skill.py` 会把这些旧 project types、mode、模块和脚本作为 backward-compatibility 契约检查。
+不适合：无证据代写、伪造引用或数据、隐藏研究局限、规避伦理与学校要求、替代作者对最终稿件和提交内容负责。
 
-## 🛡️ 完整性规则
+涉及未发表手稿、同行评审材料、个人信息、受限数据或保密项目时，请先确认允许使用的工具和数据边界。
 
-### Integrity-first by default
+## 🧪 项目验证
 
-- 不编造论文、作者、DOI、venue、SOTA、leaderboard、数据、结果或学校要求。
-- 区分 verified fact、paper claim、agent inference、assumption 和 user-provided information。
-- 强 claim 必须映射到来源、数据、分析、实验、实现、测试、证明或官方要求。
-- planned、exploratory、preliminary、achieved 和 externally reported results 必须分开。
-- 不把 rapid scan 说成 systematic review，不把显著性说成实际重要性或因果。
-- 未经授权，不把未发表稿件、peer-review 材料、个人或受限数据交给外部 provider。
-- 投稿、署名、伦理、consent、受限数据、学校合规和最终判断必须由人确认。
-
-当证据状态为 `needs_recheck`、`missing_source`、`unknown`、`unsupported` 或 `blocked` 时，最终 prose 必须降调、保留占位或阻断。
-
-## 🛠️ 质量检查
+<details>
+<summary><b>运行维护者检查</b></summary>
 
 ```bash
 python scripts/validate_skill.py
 python scripts/validate_capability_registry.py
+python scripts/test_provider_resolution.py
+python scripts/test_stage_gate.py
 python scripts/validate_readme_quality.py
-python scripts/validate_evidence_status.py templates examples/outputs examples/fixtures examples/generated-demo-workspace
 python scripts/pre_prose_check.py examples/generated-demo-workspace --expect-block
 ```
 
-CI 还会验证初始化工作区、provider fallback、旧 demo、中文强 claim、生成报告漂移和阶段门禁。
+GitHub Actions 会同时验证工作区初始化、证据状态、强 claim 阻断、provider fallback、阶段门禁和示例产物漂移。
 
-## 📁 仓库结构
+</details>
 
-```text
-.
-|-- SKILL.md
-|-- skill_manifest.yaml
-|-- capability_registry.yaml
-|-- agents/
-|-- modules/
-|-- templates/
-|-- schemas/
-|-- scripts/
-|-- examples/
-|-- docs/
-|-- README.md
-`-- README_EN.md
-```
+## 🤝 贡献
 
-## 🔎 搜索关键词
+欢迎提交 [Issue](https://github.com/xcl2005/academic-paper-writing-skill/issues) 或 [Pull Request](https://github.com/xcl2005/academic-paper-writing-skill/pulls)。优先欢迎以下贡献：
 
-Academic writing AI, research workflow, scientific brainstorming, academic search, literature review, systematic review, statistical analysis, scientific visualization, Nature writing, paper polishing, peer review, reviewer response, data availability, paper to PPT, thesis writing assistant, claim evidence mapping, research integrity, Codex skills, Claude Code skills, Agent Skills.
+- 可复现、去标识化的真实科研案例；
+- 新学科、期刊或报告规范的验收标准；
+- 检索、统计、图表、引用与导出质量测试；
+- 新 specialist skill 的 capability adapter，而不是永久硬编码依赖。
+
+提交前请阅读 [`CONTRIBUTING.md`](CONTRIBUTING.md) 和 [`SECURITY.md`](SECURITY.md)。
 
 ## 📄 许可证
 
-MIT。外部 provider 不随本仓库安装，其代码、内容和许可证仍归各自项目；本仓库只维护接口、路由、内部 fallback 和验收标准。
+[MIT](LICENSE)。可选第三方 skill 不随本仓库安装，其代码、内容和许可证归各自项目。

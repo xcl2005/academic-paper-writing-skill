@@ -1,5 +1,5 @@
 # Social Preview
 
-No custom social-preview image is shipped with this release. The README uses a compact text title and badge row only.
+The README uses `assets/hero.png` as its visual anchor, followed by the project name, value proposition, five compact status badges, language links, and reader-oriented navigation. Keep the image at the reviewed `860px` README width so it remains crisp without crowding the surrounding content.
 
-If a future preview is added, evaluate it separately from the README. Use the repository name as the primary signal, keep it legible at GitHub's small card size, and avoid dense workflow text or decorative scientific claims.
+GitHub's repository social-preview image is a separate surface. If a custom preview is added there, evaluate it at card size, use the repository name as the primary signal, and avoid dense workflow text or unsupported scientific claims.

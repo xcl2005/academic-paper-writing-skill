@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Rewrote both public READMEs around user problems, realistic tasks, capabilities, evidence controls, prompt recipes, and deliverables instead of release notes and internal module routing.
+- Restored the original project artwork as a constrained README visual anchor.
+- Added a live-star ecosystem table for the three specialist-skill repositories currently mapped through the capability registry.
+
 ## 2.0.0 - 2026-09-02
 
 - Added a capability-provider interface so specialist skills can supply full domain, formatting, export, and QA detail without becoming fixed dependencies.
