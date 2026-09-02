@@ -65,11 +65,16 @@ def fail(message: str) -> None:
 
 
 def check_local_links(path: Path, text: str) -> None:
+    anchors = set(re.findall(r'<a\s+(?:id|name)=[\"\']([^\"\']+)[\"\']', text))
     targets = re.findall(r'\]\(([^)]+)\)|(?:src|href)=[\"\']([^\"\']+)[\"\']', text)
     for markdown_target, html_target in targets:
         target = markdown_target or html_target
         parsed = urlsplit(target.strip("<>"))
-        if parsed.scheme or parsed.netloc or not parsed.path:
+        if parsed.scheme or parsed.netloc:
+            continue
+        if not parsed.path:
+            if parsed.fragment and unquote(parsed.fragment) not in anchors:
+                fail(f"{path.name} has a missing explicit navigation anchor: {target}")
             continue
         local_path = path.parent / unquote(parsed.path)
         if not local_path.exists():

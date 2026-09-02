@@ -21,11 +21,13 @@
 
 **简体中文** · [English](README_EN.md)
 
-[核心功能](#-核心功能) · [Skill 一览](#-专业-skill-一览) · [快速开始](#-快速开始) · [工作方式](#-一次典型任务) · [证据优先](#-证据优先) · [示例](#-模板与示例)
+[核心功能](#core-features) · [Skill 一览](#skill-directory) · [快速开始](#quick-start) · [工作方式](#workflow) · [证据优先](#evidence-first) · [示例](#examples)
 
 <sub>如果它让你的研究工作更可靠，欢迎点一个 Star，让更多研究者找到它。</sub>
 
 </div>
+
+<a id="core-features"></a>
 
 ## ⚡ 核心功能
 
@@ -39,6 +41,8 @@
 | 🎓 **本科论文、毕设与研究交付** | 核验学校要求，管理范围与证据包，准备开题、中期、终稿、投稿、答辩和汇报 |
 
 从一个研究方向、几篇论文、数据、草稿或审稿意见都可以开始。下面的专业 Skill 为这些核心流程提供按需选择的领域细节。
+
+<a id="skill-directory"></a>
 
 ## 🌐 专业 Skill 一览
 
@@ -100,6 +104,8 @@
 | 草稿、图表或审稿意见 | 核验 claim、修订表达、模拟审稿并逐条回应 | 可追溯稿件、图表 brief、rebuttal matrix |
 | 一篇接近完成的论文 | 检查投稿包并提炼成组会、答辩或会议汇报 | submission checklist、presentation brief、PPT 交付要求 |
 
+<a id="quick-start"></a>
+
 ## 🚀 快速开始
 
 ### 1. 安装到 Codex
@@ -157,6 +163,8 @@ git clone https://github.com/xcl2005/academic-paper-writing-skill.git \
 
 </details>
 
+<a id="workflow"></a>
+
 ## 🧭 一次典型任务
 
 假设你提出：
@@ -178,6 +186,8 @@ Skill 不会立刻拼出一篇看似完整的论文。它会按当前证据和�
 
 流程会随任务变化。只做综述时不会强行进入实验；只有审稿意见时也不会重新跑完整选题流程。
 
+
+<a id="evidence-first"></a>
 
 ## 🛡️ 证据优先
 
@@ -247,6 +257,8 @@ Markdown、YAML 和 CSV 是便于审查与版本控制的规范格式；DOCX、P
 使用 $academic-paper-writing-skill 建立逐条 rebuttal matrix。
 不要把计划修改写成已经完成；每条回复必须指向证据、准确修改位置，或明确列为待办。
 ```
+
+<a id="examples"></a>
 
 ## 📚 模板与示例
 

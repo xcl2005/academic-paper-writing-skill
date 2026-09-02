@@ -21,11 +21,13 @@ Built for Codex, Claude Code, and Agent Skills-compatible agents, from topic ide
 
 [简体中文](README.md) · **English**
 
-[Core Features](#-core-features) · [Skill Directory](#-specialist-skill-directory) · [Quick Start](#-quick-start) · [Workflow](#-a-typical-task) · [Evidence First](#-evidence-first) · [Examples](#-templates-and-examples)
+[Core Features](#core-features) · [Skill Directory](#skill-directory) · [Quick Start](#quick-start) · [Workflow](#workflow) · [Evidence First](#evidence-first) · [Examples](#examples)
 
 <sub>If this workflow makes your research more reliable, consider starring the repository so more researchers can find it.</sub>
 
 </div>
+
+<a id="core-features"></a>
 
 ## ⚡ Core features
 
@@ -39,6 +41,8 @@ Built for Codex, Claude Code, and Agent Skills-compatible agents, from topic ide
 | 🎓 **Theses, Capstones, and Research Delivery** | Verify institutional requirements, manage scope and evidence, and prepare proposals, submissions, defenses, and talks |
 
 Start from a research direction, a few papers, data, a draft, or reviewer comments. The specialist skills below add task-specific detail to these core workflows.
+
+<a id="skill-directory"></a>
 
 ## 🌐 Specialist skill directory
 
@@ -100,6 +104,8 @@ Language models can produce fluent paragraphs in seconds. The hard part is makin
 | A draft, figures, or reviewer comments | Audit claims, revise prose, simulate review, and answer comments | Traceable manuscript, figure brief, rebuttal matrix |
 | A nearly finished paper | Audit the submission package and turn the argument into a talk | Submission checklist, presentation brief, PPT requirements |
 
+<a id="quick-start"></a>
+
 ## 🚀 Quick Start
 
 ### 1. Install for Codex
@@ -159,6 +165,8 @@ an exact revision location, and an unresolved action when necessary.
 
 </details>
 
+<a id="workflow"></a>
+
 ## 🧭 A typical task
 
 Suppose you ask:
@@ -181,6 +189,8 @@ The skill will not immediately assemble a paper-shaped answer. It selects the ca
 
 The route adapts to the task. A literature review does not force an experiment stage, and a reviewer-response task does not restart topic ideation.
 
+
+<a id="evidence-first"></a>
 
 ## 🛡️ Evidence first
 
@@ -254,6 +264,8 @@ Use $academic-paper-writing-skill to build a point-by-point rebuttal matrix.
 Do not describe planned changes as completed. Every response must point to evidence,
 an exact manuscript location, or an explicit unresolved action.
 ```
+
+<a id="examples"></a>
 
 ## 📚 Templates and examples
 
