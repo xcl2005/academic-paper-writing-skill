@@ -1,6 +1,8 @@
 skill_name: academic-paper-writing-skill
 legacy_skill_name: academic_research_and_graduation_thesis_skill
-version: 2.0.0
+version: 2.1.0
+workspace_schema_version: 2
+provider_contract_version: 1
 audience:
   - Codex
   - Claude Code
@@ -39,9 +41,8 @@ core_invariants:
   - human_review_for_high_stakes_decisions
   - backward_compatibility
 
-always_load:
+shared_invariants:
   - modules/00_core_invariants.md
-  - modules/01_agent_orchestrator.md
 
 provider_interface:
   router: modules/22_capability_provider_router.md
@@ -225,7 +226,7 @@ modes:
 
 stage_gates:
   script: scripts/check_stage_gate.py
-  gates: [ideation, literature, analysis, drafting, submission, presentation]
+  gates: [ideation, literature, analysis, drafting, submission, presentation, proposal, midterm, final, defense]
 
 demo_scripts:
   - scripts/demo_academic_workflow.py

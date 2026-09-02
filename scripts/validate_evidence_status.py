@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 import yaml
+import workspace_contract as wc
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -58,7 +59,10 @@ def status_columns(fieldnames: list[str]) -> list[tuple[str, str]]:
 
 
 def validate_csv(path: Path, statuses: dict[str, set[str]]) -> list[str]:
-    errors: list[str] = []
+    table = wc.read_table(path)
+    if table["kind"] or table["errors"]:
+        return table["errors"]
+    errors: list[str] = list(table["errors"])
     with path.open("r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f)
         fieldnames = reader.fieldnames or []
@@ -87,13 +91,7 @@ def validate_csv(path: Path, statuses: dict[str, set[str]]) -> list[str]:
 
 
 def iter_csv(paths: list[Path]) -> list[Path]:
-    files: list[Path] = []
-    for path in paths:
-        if path.is_dir():
-            files.extend(sorted(path.rglob("*.csv")))
-        elif path.suffix.lower() == ".csv":
-            files.append(path)
-    return [p for p in files if ".git" not in p.parts]
+    return sorted(set(path for target in paths for path in wc.csv_files(target)))
 
 
 def main() -> int:
@@ -103,7 +101,9 @@ def main() -> int:
 
     statuses = load_statuses()
     csv_files = iter_csv([Path(p) for p in args.paths])
-    errors: list[str] = []
+    errors = [f"Input does not exist: {path}" for path in args.paths if not Path(path).exists()]
+    if not csv_files:
+        errors.append("No CSV files were checked.")
     for path in csv_files:
         errors.extend(validate_csv(path.resolve(), statuses))
 

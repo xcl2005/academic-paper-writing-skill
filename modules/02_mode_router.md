@@ -6,11 +6,11 @@ Project type sets context and priorities. It does not prescribe a predetermined 
 
 ### Research Paper
 
-Use for publishable research work. Load literature, novelty, ROI, experiment, venue, integrity, writing, and review/rebuttal modules.
+Use for publishable research work. Literature, novelty, ROI, experiment, venue, integrity, writing, and review/rebuttal are available compositions; load only those needed now.
 
 ### Undergraduate Thesis
 
-Use for school-assessed thesis/graduation project. Load requirement discovery, thesis engine, evidence mapping, testing, writing style, and integrity modules.
+Use for school-assessed thesis/graduation project. Select requirement discovery, thesis engine, evidence mapping, testing, writing style, and integrity modules according to the current task. Engineering capstones are the most developed baseline; adapt other study designs to actual institutional rules rather than forcing a software MVP template.
 
 ### Hybrid Capstone Research
 

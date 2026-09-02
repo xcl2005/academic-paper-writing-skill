@@ -1,6 +1,11 @@
 type: object
 required: [project_type, stage, topic, assumptions, artifacts]
 properties:
+  workspace_schema_version: {enum: [2]}
+  skill_version: {type: string}
+  study_design: {type: string}
+  gate_reviews: {type: object}
+  gate_exemptions: {type: object}
   project_type: {enum: [research_paper, undergraduate_thesis, hybrid_capstone_research]}
   stage: {type: string}
   topic: {type: string}

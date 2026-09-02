@@ -27,10 +27,8 @@ This project exists to make academic writing assistance more grounded, modular, 
 Run:
 
 ```bash
-python scripts/validate_skill.py
-python scripts/validate_capability_registry.py
-python scripts/validate_readme_quality.py
-python -m compileall -q scripts
+python -m pip install -r requirements.txt
+python scripts/check.py
 ```
 
 If you change a module, explain:
@@ -40,6 +38,13 @@ If you change a module, explain:
 - which templates or schemas it uses;
 - how it preserves no-fabrication and claim-to-evidence rules.
 - whether it changes a provider interface, internal fallback, or backward-compatible mode.
+
+`schemas/workspace_contract.yaml` owns CSV columns and row rules. After changing it,
+run `python scripts/sync_contract_assets.py --write`, update migration behavior and
+positive/negative tests, then review `python scripts/check.py --update-generated`.
+The default check never rewrites tracked outputs. Do not store test `SKILL.md` files
+under installable directories; materialize `.fixture` resources only in temporary roots.
+Document workspace migrations, CLI changes, and output-decision changes in the changelog.
 
 ## Good pull request titles
 

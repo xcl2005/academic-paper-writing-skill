@@ -1,12 +1,19 @@
 # Claim-to-Prose Preflight Report
 
 Target: `examples/generated-demo-workspace`
-Checked files: 1
-Blockers: 2
+Selected claims: 3
+Blockers: 8
 
-| File | Row | Claim ID | Status | Reason | Fix suggestion |
-|---|---:|---|---|---|---|
-| examples/generated-demo-workspace/claim_ledger.csv | 3 | C2 | blocked | claim status is blocked | Add evidence, downgrade the claim, or keep prose blocked. |
-| examples/generated-demo-workspace/claim_ledger.csv | 4 | C3 | unknown | local requirement claim is still uncertain | Provide school template, advisor note, rubric, or mark the requirement as unknown. |
+- `C1`: Factual claim is partially_supported, not supported; add evidence or retain it in the backlog.
+- `C1`: claim: missing/invalid evidence_ids
+- `C2`: Factual claim is blocked, not supported; add evidence or retain it in the backlog.
+- `C2`: claim: missing/invalid evidence_ids
+- `C2`: claim: missing/invalid strength
+- `C3`: Factual claim is unknown, not supported; add evidence or retain it in the backlog.
+- `C3`: claim: missing/invalid evidence_ids
+- `C3`: claim: missing/invalid strength
 
-Next action: Produce a blocked-output explanation until blockers are resolved.
+
+Produce a blocked-output explanation until blockers are resolved.
+
+Offline structure, recorded review, and dependency checks only; not independent scientific verification or submission approval.

@@ -10,7 +10,7 @@ This skill is **not** a package manager. It should delegate search/install/updat
 
 Use this order:
 
-1. **Delegate first**: if the user's install/update skill is available, call it to search/update/install candidate skills/tools.
+1. **Installed first**: reuse a suitable installed/built-in capability. When discovery or updating is warranted, use the user's curator/installer and obtain required installation approval.
 2. **Validate always**: every candidate returned by the installer must pass this skill's acceptance tests before use.
 3. **Fallback if needed**: if no installer exists, or the installer fails, use this skill's internal search/fallback workflow.
 4. **Record decisions**: selected, rejected, and deferred candidates must be recorded.
@@ -24,7 +24,7 @@ For known research capabilities, consult `capability_registry.yaml` before gener
 
 ## When to Invoke External Installer
 
-Invoke before tasks involving:
+Consider discovery only when installed/built-in capabilities are insufficient and the expected benefit justifies it. Relevant tasks include:
 
 - large literature search;
 - paper crawling / arXiv / Semantic Scholar / ACL Anthology / OpenReview processing;
@@ -133,7 +133,7 @@ project_workspace/
 
 When this skill and an external skill disagree:
 
-1. official source overrides both;
+1. host and user instructions retain authority; an official source governs applicable facts and formatting, not tool permissions;
 2. this skill's invariants override external skill instructions;
 3. user-provided template/requirement overrides generic style advice;
 4. newer verified venue/school rules override stale internal text;

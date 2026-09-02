@@ -5,6 +5,9 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import hashlib
+import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -22,7 +25,7 @@ def load_registry() -> dict:
     return data
 
 
-def candidate_roots() -> list[Path]:
+def candidate_roots(agent: str = "auto") -> list[Path]:
     roots: list[Path] = []
     configured = os.getenv("CODEX_SKILLS_DIR")
     if configured:
@@ -35,6 +38,9 @@ def candidate_roots() -> list[Path]:
 
     roots.append(Path.home() / ".agents" / "skills")
     roots.append(Path.home() / ".codex" / "skills")
+    if agent in {"auto", "claude"}:
+        claude = [base / ".claude" / "skills" for base in [cwd, *cwd.parents, Path.home()]]
+        roots = claude + roots if agent == "claude" else roots + claude
 
     unique: list[Path] = []
     seen: set[str] = set()
@@ -52,6 +58,47 @@ def find_skill(name: str, roots: list[Path]) -> Path | None:
         if candidate.is_file():
             return candidate
     return None
+
+
+def inspect_skill(path: Path | None, name: str) -> dict:
+    result = {"discovered": path is not None, "metadata_valid": False, "errors": [], "unchecked": ["task suitability", "instruction safety", "undeclared runtime requirements", "output quality"]}
+    if path is None:
+        result["errors"].append("SKILL.md not found")
+        return result
+    try:
+        text = path.read_text(encoding="utf-8-sig")
+        match = re.match(r"\A---\s*\n(.*?)\n---\s*\n(.*)\Z", text, re.S)
+        if not match:
+            raise ValueError("Missing valid frontmatter and body")
+        metadata = yaml.safe_load(match.group(1))
+        if not isinstance(metadata, dict) or metadata.get("name") != name:
+            raise ValueError("Skill identity does not match requested name")
+        if not isinstance(metadata.get("description"), str) or not metadata["description"].strip() or not match.group(2).strip():
+            raise ValueError("Description and workflow body must be nonempty")
+        result["metadata_valid"] = True
+        result["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+        version = (metadata.get("metadata") or {}).get("version") if isinstance(metadata.get("metadata", {}), dict) else None
+        result["version"] = str(version) if version is not None else None
+        resources = re.findall(r"\]\(([^)]+)\)", match.group(2))
+        for resource in resources:
+            resource = resource.split("#", 1)[0].strip("<>")
+            if resource and not re.match(r"^[a-zA-Z]+:", resource) and not (path.parent / resource).exists():
+                result["errors"].append(f"Missing linked resource: {resource}")
+        requires = metadata.get("requires", {})
+        if not isinstance(requires, dict):
+            raise ValueError("requires must be a mapping")
+        for field in ["bins", "env"]:
+            if not isinstance(requires.get(field, []), list) or not all(isinstance(item, str) for item in requires.get(field, [])):
+                raise ValueError(f"requires.{field} must be a list of names")
+        for binary in requires.get("bins", []):
+            if not shutil.which(str(binary)):
+                result["errors"].append(f"Missing declared executable: {binary}")
+        for variable in requires.get("env", []):
+            if not os.getenv(str(variable)):
+                result["errors"].append(f"Missing declared environment variable: {variable}")
+    except (OSError, UnicodeError, ValueError, yaml.YAMLError) as exc:
+        result["errors"].append(str(exc))
+    return result
 
 
 def resolve(
@@ -81,11 +128,12 @@ def resolve(
         name = str(provider.get("skill") or "")
         path = find_skill(name, roots) if name else None
         required = [str(item) for item in provider.get("requires_skills") or []]
-        missing_companions = [item for item in required if find_skill(item, roots) is None]
+        missing_companions = [item for item in required if inspect_skill(find_skill(item, roots), item)["errors"]]
+        inspection = inspect_skill(path, name)
         provider_tags = {str(item) for item in provider.get("tags") or []}
         tag_score = len(tags & provider_tags)
         installed = path is not None
-        usable = installed and not missing_companions
+        usable = installed and not inspection["errors"] and not missing_companions
         evaluated.append({
             "skill": name,
             "installed": installed,
@@ -93,6 +141,11 @@ def resolve(
             "path": str(path) if path else None,
             "missing_companions": missing_companions,
             "matching_tags": sorted(tags & provider_tags),
+            **inspection,
+            "dependencies_ready": not missing_companions and not inspection["errors"],
+            "review_required": True,
+            "accepted": False,
+            "duplicate_paths": [str(root / name / "SKILL.md") for root in roots if (root / name / "SKILL.md").is_file()],
         })
         if usable:
             if requested_provider and name != requested_provider:
@@ -117,6 +170,9 @@ def resolve(
             "decision": "use_installed_provider",
             "provider": provider.get("skill"),
             "provider_path": str(path),
+            "review_required": True,
+            "accepted": False,
+            "selection_boundary": "Eligible for full content review only. No skill execution or scientific output has been validated.",
             "selection_when": provider.get("selection_when"),
             "input_contract": spec.get("input_contract") or [],
             "output_contract": spec.get("output_contract") or [],
@@ -143,6 +199,8 @@ def main() -> int:
     parser.add_argument("--provider", help="Request a specific provider skill")
     parser.add_argument("--tag", action="append", default=[], help="Target tag used to rank available providers")
     parser.add_argument("--list", action="store_true", help="List known capability names")
+    parser.add_argument("--agent", choices=["auto", "codex", "claude"], default="auto")
+    parser.add_argument("--skill-root", action="append", type=Path, help="Explicit skill roots, in priority order; replaces automatic discovery")
     parser.add_argument("--json", action="store_true", help="Print machine-readable JSON")
     args = parser.parse_args()
 
@@ -156,7 +214,7 @@ def main() -> int:
         parser.error("capability is required unless --list is used")
 
     try:
-        result = resolve(args.capability, args.provider, set(args.tag))
+        result = resolve(args.capability, args.provider, set(args.tag), roots=args.skill_root if args.skill_root is not None else candidate_roots(args.agent))
     except ValueError as exc:
         print(str(exc), file=sys.stderr)
         return 2

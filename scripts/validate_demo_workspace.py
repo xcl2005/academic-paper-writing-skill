@@ -7,6 +7,8 @@ import json
 import sys
 from pathlib import Path
 
+import workspace_contract as wc
+
 
 REQUIRED_BY_MODE = {
     "research_paper": [
@@ -39,6 +41,7 @@ def main() -> int:
 
     root = Path(args.workspace)
     errors: list[str] = []
+    errors.extend(error for path in wc.csv_files(root) for error in wc.read_table(path)["errors"])
     for rel in REQUIRED_BY_MODE[args.mode]:
         if not (root / rel).exists():
             errors.append(f"Missing required demo file: {rel}")

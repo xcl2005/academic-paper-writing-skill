@@ -88,7 +88,7 @@
 | [nature-data](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-data/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | **数据**<br><sub>可用性声明 · FAIR</sub> | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
 | [nature-paper2ppt](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-paper2ppt/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | **汇报**<br><sub>论文转 PPT · 渲染</sub> | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
 
-完整输入、输出和验收契约见 [`capability_registry.yaml`](capability_registry.yaml)。第三方 Skill 保持独立安装、独立版本和独立许可证，本仓库不复制或捆绑其代码。
+完整输入、输出和验收契约见 [`capability_registry.yaml`](capability_registry.yaml)。第三方 Skill 保持独立安装、独立版本和独立许可证，本仓库不复制或捆绑其代码。当前验证覆盖内部流程与离线路由；这 18 个接口不等于 18 项真实科研任务都已完成端到端验证。
 
 ## 为什么值得使用
 
@@ -126,6 +126,8 @@ git clone https://github.com/xcl2005/academic-paper-writing-skill.git `
 ```
 
 </details>
+
+运行辅助脚本需要 **Python 3.10 / 3.12 + PyYAML**。请先按[运行环境与首次验证](docs/QUICKSTART.md)建立独立环境并安装 `requirements.txt`；其中提供 Windows、macOS / Linux 的完整绝对路径命令。下方 `python scripts/...` 示例默认从 Skill 根目录运行，研究输出应放在独立工作目录。[已有工作区升级](docs/MIGRATION.md)先预览、后备份迁移。
 
 ### 2. 直接描述研究任务
 
@@ -190,6 +192,8 @@ Skill 不会立刻拼出一篇看似完整的论文。它会按当前证据和�
 <a id="evidence-first"></a>
 
 ## 🛡️ 证据优先
+
+`claim_id → evidence_id → source / result / artifact`：主张要有可定位的依据和真实核验记录。机器检查记录与关联的一致性，不自动证明科学结论为真；明确标注的未知项、假设和限制可以保留。[字段与门禁说明](docs/EVIDENCE_CONTRACT.md)
 
 这个 skill 的重点不是让文字更像论文，而是让研究记录足以支撑文字。
 
@@ -320,6 +324,8 @@ python scripts/test_stage_gate.py
 python scripts/validate_readme_quality.py
 python scripts/pre_prose_check.py examples/generated-demo-workspace --expect-block
 ```
+
+完整维护检查统一使用 `python scripts/check.py`。结构检查返回 `structure_valid`，缺少真实人工复核记录返回 `evidence_review_required`，均不代表阶段已完成。
 
 GitHub Actions 会同时验证工作区初始化、证据状态、强 claim 阻断、provider fallback、阶段门禁和示例产物漂移。
 

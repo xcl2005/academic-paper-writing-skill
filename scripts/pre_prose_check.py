@@ -15,6 +15,10 @@ def evidence_report(target: Path) -> dict[str, object]:
     statuses = evidence_status.load_statuses()
     csv_files = evidence_status.iter_csv([target])
     errors: list[str] = []
+    if not target.exists():
+        errors.append("Target does not exist.")
+    if not csv_files:
+        errors.append("No CSV records were checked.")
     for path in csv_files:
         errors.extend(evidence_status.validate_csv(path.resolve(), statuses))
     return {
@@ -25,9 +29,9 @@ def evidence_report(target: Path) -> dict[str, object]:
     }
 
 
-def build_report(target: Path) -> dict[str, object]:
+def build_report(target: Path, section: str | None = None) -> dict[str, object]:
     evidence = evidence_report(target)
-    claims = claim_check.build_report(target)
+    claims = claim_check.build_report(target, section)
     evidence_errors = int(evidence["error_count"])
     claim_blockers = int(claims["blocker_count"])
     blocked = evidence_errors > 0 or claim_blockers > 0
@@ -39,8 +43,9 @@ def build_report(target: Path) -> dict[str, object]:
         "next_action": (
             "Produce a blocked-output explanation until evidence status errors and claim blockers are resolved."
             if blocked
-            else "Final prose may proceed after human review."
+            else claims["next_action"]
         ),
+        "verification_boundary": claims["verification_boundary"],
     }
 
 
@@ -100,19 +105,20 @@ def render_markdown(report: dict[str, object]) -> str:
     else:
         lines.extend(["No claim blockers found.", ""])
 
-    lines.extend([f"Next action: {report['next_action']}", ""])
+    lines.extend([f"Next action: {report['next_action']}", "", str(report["verification_boundary"]), ""])
     return "\n".join(lines)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run evidence-status and claim-to-evidence checks before final prose.")
     parser.add_argument("target", help="Academic workspace or claim/evidence directory")
+    parser.add_argument("--section", help="Check only active claims in this exact section")
     parser.add_argument("--expect-block", action="store_true", help="Pass only if the gate blocks prose")
     parser.add_argument("--json", action="store_true", help="Print machine-readable JSON")
     parser.add_argument("--report", help="Write a Markdown report to this path")
     args = parser.parse_args()
 
-    report = build_report(Path(args.target))
+    report = build_report(Path(args.target), args.section)
     markdown = render_markdown(report)
     if args.report:
         out = Path(args.report)

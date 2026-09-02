@@ -1,7 +1,2 @@
-type: object
-required: [idea_id, research_question, testable_prediction, decision_status]
-properties:
-  idea_id: {type: string}
-  research_question: {type: string}
-  testable_prediction: {type: string}
-  decision_status: {enum: [candidate, needs_evidence, shortlisted, selected, deferred, rejected]}
+contract: workspace_contract.yaml
+table: research_idea_portfolio

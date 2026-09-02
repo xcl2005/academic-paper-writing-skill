@@ -1,0 +1,2 @@
+evidence_id,source_id,result_id,artifact_path,locator,supports_claim_ids,review_status,reviewed_by,reviewed_at,limitations
+EV1,,,fixture-evidence.txt,line 2,C1,verified,offline-test-fixture,2026-09-03,Only checks the literal synthetic fixture; not real scientific review.

@@ -23,7 +23,7 @@ Use this skill across the research lifecycle:
 
 Do not use this skill as a direct ghostwriting shortcut when the user asks only for final prose without sources, data, result evidence, or requirement context. First route to evidence discovery, source verification, analysis planning, or a bounded draft with explicit placeholders.
 
-Do not treat demo samples as verified sources. Do not turn `needs_recheck`, `missing_source`, or `unknown` rows into final prose.
+Do not treat demo samples as verified sources. Do not turn `needs_recheck`, `missing_source`, or `unknown` rows into final prose as verified findings. Explicitly labeled limitations, proposals, and assumptions may remain uncertain.
 
 ## Non-Negotiable Invariants
 
@@ -57,12 +57,12 @@ For hybrid work, first satisfy verified graduation requirements and evidence nee
 
 ## Standard Call Protocol
 
-1. Read `skill_manifest.yaml` and `capability_registry.yaml`.
-2. Read `modules/00_core_invariants.md` and `modules/01_agent_orchestrator.md`.
-3. Classify the request by capability, not by a predetermined end-to-end route.
+1. Classify the request using the capability table below. The manifest is maintainer metadata, not mandatory startup reading.
+2. Read `modules/00_core_invariants.md`. Add `modules/01_agent_orchestrator.md` only for multi-stage coordination.
+3. Read only the matching capability's registry entry (the resolver returns its contract), not the full registry or every project route.
 4. Load only the matching modules from the capability router below. Add `modules/11_integrity_reproducibility_guard.md` for evidence-bearing outputs.
 5. Resolve specialist providers through `modules/22_capability_provider_router.md`. A selected provider supplies detailed domain execution and formatting; the internal module remains the reliable fallback.
-6. For a new substantial project, run `python scripts/init_project.py --out <workspace> --type <research_paper|undergraduate_thesis|hybrid_capstone_research>` and update `project_state.yaml`.
+6. For a new substantial project, run `<skill-python> <skill-root>/scripts/init_project.py --out <workspace> --type <research_paper|undergraduate_thesis|hybrid_capstone_research>`. Keep unknown inputs empty; use the initialized project type. Runtime setup is in `docs/QUICKSTART.md`.
 7. Create structured evidence artifacts before final prose, analysis claims, figures, or submission files when the task warrants them.
 8. Run the relevant stage gate and artifact QA. Report blocked or partial states honestly.
 9. Preserve the user's chosen tools, format, language, and scope unless a verified requirement conflicts.
@@ -101,6 +101,8 @@ python scripts/resolve_capability.py scientific_visualization --tag nature --jso
 ```
 
 If an installed provider is selected, read that provider's full `SKILL.md` and its required workflow resources. Use its detailed domain, layout, formatting, and QA standards. Do not reduce it to the short registry description. If it is unavailable, incomplete, unsafe, incompatible, or fails acceptance, use the internal baseline and report the limitation. Never install an unknown provider silently.
+
+Resolver `usable` means eligible for content review, not accepted for execution. It reports `accepted=false` and unchecked requirements. Use `--skill-root` for explicit isolated roots or `--agent claude` for Claude-first discovery; validate runtime requirements and outputs before relying on them.
 
 Use `templates/capability_handoff.yaml` for multi-capability work so source boundaries, protected facts, permissions, outputs, and unresolved items survive handoffs.
 
@@ -177,6 +179,8 @@ python scripts/check_stage_gate.py <workspace> --gate presentation
 
 A blocked gate is a work queue, not permission to fabricate missing fields.
 
+`--allow-empty` reports `structure_valid`, never readiness. Completed gates require valid records, evidence dependencies, filled artifacts, and a recorded `gate_reviews.<stage>` human sign-off. `evidence_review_required` is not a passing gate. Thesis proposal/midterm/final/defense use verified requirement IDs; non-quantitative analysis may have an explained, reviewed exemption. See `docs/EVIDENCE_CONTRACT.md`.
+
 ## Pre-Prose Checks
 
 Before evidence-bearing final prose, run:
@@ -194,6 +198,10 @@ python scripts/check_claims_before_prose.py <workspace-or-claim-ledger>
 ```
 
 If checks fail, produce a blocked-output explanation. Name the unsupported claim, missing source, unresolved analysis, unavailable result, or unknown requirement and state the smallest next action.
+
+Use the canonical contract in `schemas/workspace_contract.yaml`. Active factual claims require `status=supported` and `evidence_ids` resolving to reviewed support records, source/result IDs, exact locators, and available artifacts. Never create a review/sign-off on someone's behalf. These checks validate recorded consistency, not independent scientific truth.
+
+Use `output_scope=backlog` for claims excluded from the current output, or `--section` for a bounded check. A `claim_kind=limitation|proposal|assumption` note can retain `status=unknown` with `strength=low|none`; do not relabel a factual result to bypass the gate. The final artifact must preserve these labels. Older workspaces require an explicit preview and backed-up migration; see `docs/MIGRATION.md`.
 
 ## External Capabilities
 

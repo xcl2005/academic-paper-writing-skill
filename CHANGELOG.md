@@ -1,6 +1,15 @@
 # Changelog
 
-## Unreleased
+## 2.1.0 - 2026-09-03
+
+- Unified CSV contracts, status validation, selected-claim checks, source/result dependencies, and offline evidence review records. Empty or nonexistent input cannot pass.
+- Distinguished uncertain notes and excluded backlog claims from factual assertions; added bounded section checks without silently promoting evidence status.
+- Required stage artifacts, applicable thesis requirement IDs, completed evidence mappings, and recorded human review. Structure-only checks no longer report completion.
+- Fixed all three project initializers, added preview-first backed-up legacy migration, and documented workspace schema version 2.
+- Hardened provider metadata/resources/companion checks, added explicit roots and Claude paths, and removed discoverable nested test skills.
+- Guarded demo replacement by ownership and generated new content before replacing old output.
+- Added canonical regression cases, a single maintainer check, pinned validation dependencies, and cross-platform CI.
+- Preserved all original modes, internal modules, 18 optional provider mappings, artwork, and bilingual README ordering.
 
 - Rewrote both public READMEs around user problems, realistic tasks, capabilities, evidence controls, prompt recipes, and deliverables instead of release notes and internal module routing.
 - Restored the original project artwork as a constrained README visual anchor.

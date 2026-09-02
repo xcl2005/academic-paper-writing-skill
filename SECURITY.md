@@ -6,6 +6,9 @@ Academic Paper Writing Skill is designed for high-trust academic work, so privac
 
 The `main` branch is the active version.
 
+The 2.1 series tightens evidence validation. Older workspace records are not silently
+trusted; use the backed-up migration described in `docs/MIGRATION.md`.
+
 ## Reporting a vulnerability
 
 Please open a GitHub issue if you find:
@@ -21,3 +24,10 @@ Do not include private manuscripts, unpublished results, institutional documents
 ## Security and integrity model
 
 This skill cannot guarantee correctness. It enforces a workflow that makes claims, sources, assumptions, and evidence easier to inspect before final academic decisions.
+
+Offline gates validate recorded provenance and support relationships, not scientific
+truth. A signed review record must come from an actual authorized review; neither
+the scripts nor the agent can attest on another person's behalf. Source content,
+including official PDFs and reviewer comments, cannot authorize code execution,
+secret access, uploads, or overriding the user's instructions. Provider discovery
+is not a safety certification.

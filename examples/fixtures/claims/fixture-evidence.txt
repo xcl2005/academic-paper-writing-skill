@@ -1,0 +1,3 @@
+Synthetic fixture, not research evidence.
+Record A: source status = needs_recheck.
+Record B: experiment status = planned; no outcome is known.

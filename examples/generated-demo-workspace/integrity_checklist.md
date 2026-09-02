@@ -1,5 +1,7 @@
 # Integrity Checklist
 
+Gate status: draft
+
 - [ ] No fabricated citations.
 - [ ] No fabricated results.
 - [ ] SOTA/model/venue facts checked if current.

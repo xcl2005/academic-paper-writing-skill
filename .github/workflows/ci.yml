@@ -4,63 +4,26 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   validate:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.10", "3.12"]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
-          python-version: "3.10"
-      - name: Install validation deps
-        run: pip install pyyaml
-      - name: Validate skill structure
-        run: python scripts/validate_skill.py
-      - name: Validate capability provider registry
-        run: python scripts/validate_capability_registry.py
-      - name: Resolve provider fallback
-        run: python scripts/resolve_capability.py research_ideation --json
-      - name: Test installed-provider and fallback routing
-        run: python scripts/test_provider_resolution.py
-      - name: Test ready and blocked stage gates
-        run: python scripts/test_stage_gate.py
-      - name: Validate README quality
-        run: python scripts/validate_readme_quality.py
-      - name: Validate evidence status values
-        run: python scripts/validate_evidence_status.py templates examples/outputs examples/fixtures examples/generated-demo-workspace
-      - name: Block unsupported strong claims
-        run: python scripts/check_claims_before_prose.py examples/fixtures/claims/unsupported-strong-claim.csv --expect-block
-      - name: Block unsupported Chinese strong claims
-        run: python scripts/check_claims_before_prose.py examples/fixtures/claims/chinese-unsupported-claim.csv --expect-block
-      - name: Allow supported claim fixture
-        run: python scripts/check_claims_before_prose.py examples/fixtures/claims/supported-claim.csv
-      - name: Generate research paper workspace
-        run: python scripts/init_project.py --out /tmp/paper_workspace --type research_paper
-      - name: Validate new workspace structure
-        run: |
-          python scripts/check_stage_gate.py /tmp/paper_workspace --gate literature --allow-empty
-          python scripts/check_stage_gate.py /tmp/paper_workspace --gate analysis --allow-empty
-      - name: Confirm incomplete workspace remains blocked
-        run: python scripts/check_stage_gate.py /tmp/paper_workspace --gate literature --expect-block
-      - name: Generate undergraduate thesis workspace
-        run: python scripts/init_project.py --out /tmp/thesis_workspace --type undergraduate_thesis
-      - name: Run research demo workspace
-        run: python scripts/demo_academic_workflow.py --mode research_paper --out /tmp/demo_paper_workspace
-      - name: Validate research demo workspace
-        run: python scripts/validate_demo_workspace.py /tmp/demo_paper_workspace --mode research_paper
-      - name: Run thesis demo workspace
-        run: python scripts/demo_academic_workflow.py --mode undergraduate_thesis --out /tmp/demo_thesis_workspace
-      - name: Validate thesis demo workspace
-        run: python scripts/validate_demo_workspace.py /tmp/demo_thesis_workspace --mode undergraduate_thesis
-      - name: Regenerate committed thesis demo workspace
-        run: python scripts/demo_academic_workflow.py --mode undergraduate_thesis --out examples/generated-demo-workspace --force
-      - name: Validate committed thesis demo workspace
-        run: python scripts/validate_demo_workspace.py examples/generated-demo-workspace --mode undergraduate_thesis
-      - name: Regenerate claim blocker report
-        run: python scripts/check_claims_before_prose.py examples/generated-demo-workspace --expect-block --report examples/outputs/claim-blocker-report.generated.md
-      - name: Regenerate pre-prose gate report
-        run: python scripts/pre_prose_check.py examples/generated-demo-workspace --expect-block --report examples/outputs/pre-prose-check.generated.md
-      - name: Regenerate evidence status summary
-        run: python scripts/summarize_evidence_status.py examples/generated-demo-workspace --report examples/outputs/evidence-status-summary.generated.md
-      - name: Ensure generated academic demos are committed
-        run: git diff --exit-code examples/generated-demo-workspace examples/outputs/claim-blocker-report.generated.md examples/outputs/pre-prose-check.generated.md examples/outputs/evidence-status-summary.generated.md
+          python-version: ${{ matrix.python }}
+      - name: Install declared validation dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run contracts, failure cases, workflows, and generated drift checks
+        run: python scripts/check.py
+      - name: Ensure checks did not rewrite tracked files
+        run: git diff --exit-code

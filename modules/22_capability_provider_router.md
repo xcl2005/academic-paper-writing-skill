@@ -10,6 +10,7 @@ Resolve each research capability to the strongest available specialist without m
 2. Preserve an explicit user choice of provider unless it violates a higher-priority rule or cannot satisfy the task.
 3. Run `python scripts/resolve_capability.py <capability>` or emulate the same registry lookup.
 4. Prefer an installed provider whose tags fit the target and whose required companion skills are present.
+   The resolver checks identity, content presence, linked resources, and declared dependencies, but always returns `accepted=false`. `usable` is a legacy routing field meaning eligible for full review, not execution approval. Review its `unchecked` list and the actual task fit. Explicit roots replace automatic discovery; duplicate paths and selected source are reported.
 5. If a provider is selected, read its `SKILL.md` completely and read the provider resources it requires for the chosen workflow. The registry summary is not a substitute for the provider's detailed instructions.
 6. Normalize the task into `templates/capability_handoff.yaml`. Pass only the inputs and permissions needed for that capability.
 7. Write provider outputs to the project workspace or an isolated provider-output directory. Do not let a provider silently edit this skill's modules or unrelated project files.

@@ -88,7 +88,7 @@ Start from a research direction, a few papers, data, a draft, or reviewer commen
 | [nature-data](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-data/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | **Data**<br><sub>availability · FAIR</sub> | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
 | [nature-paper2ppt](https://github.com/Yuan1z0825/nature-skills/blob/main/skills/nature-paper2ppt/SKILL.md)<br><sub>[Nature Skills](https://github.com/Yuan1z0825/nature-skills)</sub> | **Slides**<br><sub>paper-to-PPT · render QA</sub> | [![GitHub stars](https://img.shields.io/github/stars/Yuan1z0825/nature-skills?style=flat-square&label=)](https://github.com/Yuan1z0825/nature-skills/stargazers) |
 
-See [`capability_registry.yaml`](capability_registry.yaml) for complete input, output, and acceptance contracts. Third-party skills retain their own installation, release lifecycle, and license; this repository does not copy or bundle their code.
+See [`capability_registry.yaml`](capability_registry.yaml) for complete input, output, and acceptance contracts. Third-party skills retain their own installation, release lifecycle, and license; this repository does not copy or bundle their code. Current validation covers internal workflows and offline routing, not end-to-end research execution of all 18 providers.
 
 ## Why use it
 
@@ -126,6 +126,8 @@ git clone https://github.com/xcl2005/academic-paper-writing-skill.git `
 ```
 
 </details>
+
+The helper scripts need **Python 3.10 / 3.12 + PyYAML**. Follow [runtime setup and first validation](docs/QUICKSTART.md) to create an isolated environment and install `requirements.txt`; it includes complete absolute-path commands for Windows and macOS / Linux. Relative `python scripts/...` examples below run from the skill root. Keep research output in a separate workspace. [Existing workspace updates](docs/MIGRATION.md) start with a preview and backup.
 
 ### 2. Describe a real research task
 
@@ -193,6 +195,8 @@ The route adapts to the task. A literature review does not force an experiment s
 <a id="evidence-first"></a>
 
 ## 🛡️ Evidence first
+
+`claim_id → evidence_id → source / result / artifact`: claims need locatable support and an actual review record. Machine checks establish record consistency, not scientific truth. Explicitly labeled unknowns, assumptions, and limitations may remain. [Fields and gate decisions](docs/EVIDENCE_CONTRACT.md)
 
 The goal is not merely to make prose sound academic. The research record must be strong enough to support the prose.
 
@@ -327,6 +331,8 @@ python scripts/test_stage_gate.py
 python scripts/validate_readme_quality.py
 python scripts/pre_prose_check.py examples/generated-demo-workspace --expect-block
 ```
+
+Run the complete maintainer suite with `python scripts/check.py`. Structure-only checks return `structure_valid`; missing recorded human review returns `evidence_review_required`. Neither means a stage is complete.
 
 GitHub Actions also checks workspace initialization, evidence statuses, strong-claim blocking, provider fallback, stage gates, and generated-example drift.
 

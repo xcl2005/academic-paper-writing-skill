@@ -1,0 +1,68 @@
+workspace_schema_version: 2
+tables:
+  claim_ledger:
+    columns: [claim_id, claim_text, section, strength, evidence_type, evidence_source, status, fix_needed, claim_kind, output_scope, evidence_ids]
+    id: claim_id
+    required_values: [claim_id, claim_text, status, claim_kind, output_scope]
+    aliases: {claim: claim_text, text: claim_text, evidence_pointer: evidence_source, caveat: fix_needed}
+    defaults: {claim_kind: factual, output_scope: active, strength: unknown}
+    enums:
+      status: claim_status
+      strength: [high, medium, low, none, unknown]
+      claim_kind: [factual, limitation, proposal, assumption]
+      output_scope: [active, backlog]
+  literature_matrix:
+    columns: [paper_id, title, year, venue, source_url_or_doi, task_problem, method_family, dataset_benchmark, metrics, main_result, contribution, limitations, relation_to_user_idea, possible_gap, reliability_notes, verification_status, read_scope, reviewed_by, reviewed_at]
+    id: paper_id
+    required_values: [paper_id, title, verification_status]
+    aliases: {venue_or_source: venue, method_or_focus: method_family, dataset_or_context: dataset_benchmark, claim: main_result, limitation: limitations, relevance: relation_to_user_idea, notes: reliability_notes}
+    enums: {verification_status: source_status}
+  experiment_matrix:
+    columns: [experiment_id, research_question, hypothesis, dataset_or_input, baseline_or_control, metric, controlled_variable, procedure, result_status, expected_evidence, failure_interpretation, compute_or_time_cost, reproducibility_notes, result_summary, artifact_path, data_ids, code_version]
+    id: experiment_id
+    required_values: [experiment_id, research_question, result_status]
+    enums: {result_status: result_status}
+  evidence_records:
+    columns: [evidence_id, source_id, result_id, artifact_path, locator, supports_claim_ids, review_status, reviewed_by, reviewed_at, limitations]
+    id: evidence_id
+    required_values: [evidence_id, review_status]
+    enums: {review_status: source_status}
+  requirement_register:
+    columns: [requirement_id, requirement_text, source_id, locator, verification_status, applicability, acceptance_criteria]
+    id: requirement_id
+    required_values: [requirement_id, requirement_text, verification_status, applicability]
+    enums:
+      verification_status: source_status
+      applicability: [required, optional, not_applicable, unknown]
+  graduation_evidence_map:
+    columns: [section, expected_evidence, current_status, next_action, module_or_contribution, implementation_evidence, code_location, screenshot_or_log, test_case, thesis_section, defense_talking_point, risk_if_questioned, requirement_id, evidence_ids]
+    required_values: [section, current_status]
+    enums: {current_status: artifact_status}
+  data_provenance:
+    columns: [asset_id, asset_type, description, source_or_owner, license_or_permission, version_or_date, processing_steps, storage_location, access_route, data_status, verification_status]
+    id: asset_id
+    required_values: [asset_id, asset_type, data_status, verification_status]
+    enums: {data_status: data_status, verification_status: source_status}
+  screening_log:
+    columns: [record_id, title, identifier, source, database, query_id, found_date, duplicate_of, inclusion_reason, exclusion_reason, screening_status, verification_status]
+    id: record_id
+    required_values: [record_id, title, screening_status, verification_status]
+    enums: {screening_status: screening_status, verification_status: source_status}
+  research_idea_portfolio:
+    columns: [idea_id, research_question, mechanism_or_rationale, expected_contribution, closest_work_or_anchor, evidence_for_gap, testable_prediction, minimum_viable_study, feasibility, risks, ethics_or_dual_use, decision_status, decision_reason]
+    id: idea_id
+    required_values: [idea_id, research_question, testable_prediction, decision_status]
+    enums: {decision_status: decision_status}
+  novelty_verification:
+    columns: [idea, closest_existing_work, overlap, difference, evidence_needed, novelty_score_1_5, feasibility_score_1_5, duplication_risk, decision]
+    required_values: [idea]
+  roi_matrix:
+    columns: [idea, data_needed, compute_needed, implementation_time, baseline_cost, risk, expected_contribution, venue_or_thesis_fit, decision]
+    required_values: [idea]
+  external_skill_candidates:
+    columns: [name, source_or_path, found_by, version_or_commit, task_relevance, documentation_score, maintenance_score, integrity_score, environment_score, license_safety, total_score, decision, reason, limitations]
+    required_values: [name]
+  terminology_ledger:
+    columns: [term, canonical_form, definition, source, first_use, notes, verification_status]
+    required_values: [term, canonical_form, verification_status]
+    enums: {verification_status: source_status}

@@ -1,3 +1,3 @@
-claim_id,claim,status,evidence_type,evidence_pointer
-C1,The proposed system outperforms existing RAG evaluation frameworks,blocked,experiment result,none
-C2,The undergraduate thesis must include a specific chapter format,unknown,official requirement,none
+claim_id,claim_text,section,strength,evidence_type,evidence_source,status,fix_needed,claim_kind,output_scope,evidence_ids
+C1,The proposed system outperforms existing RAG evaluation frameworks,,unknown,experiment result,none,blocked,,factual,active,
+C2,The undergraduate thesis must include a specific chapter format,,unknown,official requirement,none,unknown,,factual,active,

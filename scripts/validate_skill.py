@@ -55,7 +55,12 @@ REQUIRED_FILES = [
     "examples/fixtures/claims/chinese-unsupported-claim.csv",
     "examples/fixtures/claims/unsupported-strong-claim.csv",
     "examples/fixtures/claims/supported-claim.csv",
-    "examples/fixtures/provider-skills/scientific-brainstorming/SKILL.md",
+    "examples/fixtures/provider-skills/scientific-brainstorming/SKILL.fixture",
+    "schemas/workspace_contract.yaml",
+    "scripts/workspace_contract.py",
+    "scripts/migrate_workspace.py",
+    "templates/evidence_records.csv",
+    "templates/requirement_register.csv",
     "examples/generated-demo-workspace/DEMO_MANIFEST.json",
     "examples/generated-demo-workspace/README_NEXT_STEPS.md",
     "examples/outputs/evidence-status-summary.generated.md",
@@ -215,6 +220,11 @@ def validate_backward_compatibility(manifest: dict) -> list[str]:
 
 def main() -> int:
     errors: list[str] = []
+    from sync_contract_assets import sync
+    errors.extend(sync())
+    for nested_skill in ROOT.rglob("SKILL.md"):
+        if nested_skill != ROOT / "SKILL.md" and ".git" not in nested_skill.parts:
+            errors.append(f"Unexpected discoverable nested skill: {nested_skill.relative_to(ROOT)}")
     for rel in REQUIRED_FILES:
         if not (ROOT / rel).exists():
             errors.append(f"Missing required file: {rel}")

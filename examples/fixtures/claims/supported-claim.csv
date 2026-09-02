@@ -1,3 +1,3 @@
-claim_id,claim,status,evidence_type,evidence_pointer
-C1,The literature matrix records source verification before prose generation,supported,workflow evidence,literature_matrix.csv
-C2,The experiment remains planned until benchmark results are available,supported,project-state evidence,project_state.yaml
+claim_id,claim_text,section,strength,evidence_type,evidence_source,status,fix_needed,claim_kind,output_scope,evidence_ids
+C1,Synthetic record A includes a source status field.,Results,low,local fixture,fixture-evidence.txt,supported,Only describes this test fixture.,factual,active,EV1
+C2,The experiment remains planned; no outcome is known.,Limitations,low,,,unknown,Not an achieved result.,limitation,active,

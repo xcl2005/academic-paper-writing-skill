@@ -12,7 +12,9 @@ For each strong claim, record in `claim_ledger.csv`:
 - section;
 - evidence type;
 - evidence source;
-- status: supported / weak / unsupported / assumption;
+- status: supported / partially_supported / unsupported / needs_recheck / blocked / unknown;
+- claim_kind: factual / limitation / proposal / assumption, independent of support status;
+- output_scope and evidence_ids from `schemas/workspace_contract.yaml`;
 - fix needed.
 
 High-risk words:

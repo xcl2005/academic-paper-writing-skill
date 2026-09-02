@@ -1,9 +1,2 @@
-columns:
-  - claim_id
-  - claim_text
-  - section
-  - strength
-  - evidence_type
-  - evidence_source
-  - status
-  - fix_needed
+contract: workspace_contract.yaml
+table: claim_ledger

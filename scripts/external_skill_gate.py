@@ -5,7 +5,11 @@ This does not install anything; it only checks basic compatibility signals.
 from __future__ import annotations
 
 import argparse
+import json
+import re
 from pathlib import Path
+
+from resolve_capability import inspect_skill
 
 GOOD_FILES = ["SKILL.md", "README.md", "LICENSE", "LICENSE.md", "pyproject.toml", "package.json"]
 RISK_WORDS = ["fabricate citation", "fake citation", "invent results", "disable safety"]
@@ -38,7 +42,7 @@ def score_candidate(path: Path) -> tuple[int, list[str]]:
     if any(k in text for k in ["example", "usage", "install", "template"]):
         score += 10
         notes.append("has usage/install/template signals")
-    if any(r in text for r in RISK_WORDS):
+    if risk_signals(text)["requires_review"]:
         score -= 30
         notes.append("risk phrase found")
 
@@ -46,19 +50,47 @@ def score_candidate(path: Path) -> tuple[int, list[str]]:
     return score, notes
 
 
+def risk_signals(text: str) -> dict:
+    risky, prohibited = [], []
+    for clause in re.split(r"[\n.;]|\bbut\b", text.lower()):
+        for phrase in RISK_WORDS:
+            for match in re.finditer(re.escape(phrase), clause):
+                prefix = clause[:match.start()]
+                if re.search(r"(?:do not|must not|never|avoid|no)\s+(?:\w+\s+){0,2}$", prefix):
+                    prohibited.append(phrase)
+                else:
+                    risky.append(phrase)
+    return {"requires_review": sorted(set(risky)), "explicit_prohibitions": sorted(set(prohibited))}
+
+
+def screen_candidate(path: Path) -> dict:
+    score, notes = score_candidate(path)
+    texts = []
+    for name in ["SKILL.md", "README.md"]:
+        file = path / name
+        if file.is_file():
+            texts.append(file.read_text(encoding="utf-8", errors="replace")[:20000])
+    signals = risk_signals("\n".join(texts))
+    inspection = inspect_skill(path / "SKILL.md" if (path / "SKILL.md").is_file() else None, path.name)
+    return {"decision": "needs_review", "accepted": False, "documentation_signal_score": score,
+            "notes": notes, "risk_signals": signals, "structure_errors": inspection["errors"],
+            "checked": ["top-level documentation", "skill metadata and linked resources", "limited phrase context"],
+            "not_checked": ["nested scripts", "runtime behavior", "task output", "all prompt-injection variants", "license validity"],
+            "boundary": "Heuristic triage only. A high score is not a safety or suitability endorsement."}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("path")
+    parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
     path = Path(args.path)
     if not path.exists() or not path.is_dir():
         print("Candidate path not found or not a directory")
         return 1
-    score, notes = score_candidate(path)
-    print(f"score={score}")
-    for note in notes:
-        print(f"- {note}")
-    return 0
+    report = screen_candidate(path)
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+    return 2 if report["risk_signals"]["requires_review"] or report["structure_errors"] else 0
 
 
 if __name__ == "__main__":

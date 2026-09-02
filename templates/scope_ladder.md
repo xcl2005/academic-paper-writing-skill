@@ -1,5 +1,7 @@
 # Scope Ladder
 
+Gate status: draft
+
 ## MVP
 
 ## Acceptable
